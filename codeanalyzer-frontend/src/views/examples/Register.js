@@ -32,7 +32,21 @@ import {
   Col,
 } from "reactstrap";
 
+import React,{ useState } from 'react';
+
 const Register = () => {
+
+//editted code for name, email, password
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+
+  const submitForm = ()=>{
+    //console.log(name,email,password)
+    fetch("http://localhost:1337/api/auth/local/register",)
+  }
+
   return (
     <>
       <Col lg="6" md="8">
@@ -90,7 +104,12 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Name" type="text" />
+                  <Input 
+                    placeholder="Name" 
+                    type="text"  
+                    onChange={(n)=>setName(n.target.value)}
+                    value={name}  
+                  />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -103,7 +122,9 @@ const Register = () => {
                   <Input
                     placeholder="Email"
                     type="email"
-                    autoComplete="new-email"
+                    autoComplete="new-email"  
+                    onChange={(e)=>setEmail(e.target.value)} 
+                    value={email}
                   />
                 </InputGroup>
               </FormGroup>
@@ -118,6 +139,7 @@ const Register = () => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
+                    onChange={(e)=>setPassword(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
@@ -150,7 +172,7 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button className="mt-4" color="primary" type="button" onClick={()=>submitForm()}>
                   Create account
                 </Button>
               </div>
