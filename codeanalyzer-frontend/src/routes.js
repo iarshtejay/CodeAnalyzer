@@ -82,13 +82,6 @@ var routes = [
     path: "/repositories",
     name: "Repositories",
     icon: "ni ni-collection text-blue",
-<<<<<<< HEAD
-<<<<<<< HEAD
-    component: Icons,
-    layout: "/admin"
-=======
-=======
->>>>>>> e40aa0f8 (Repository Commits V1)
     component: JiraAuth,
     layout: "/admin",
     // sub_route: [
@@ -100,14 +93,6 @@ var routes = [
     //     layout: "/admin",
     //   },
     // ],
-<<<<<<< HEAD
->>>>>>> e1bf161f (jira integration + context api complete)
-=======
-=======
-    component: Icons,
-    layout: "/admin"
->>>>>>> db02b4bc (Repository Commits V1)
->>>>>>> e40aa0f8 (Repository Commits V1)
   },
   {
     path: "/maps",
