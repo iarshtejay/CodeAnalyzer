@@ -83,7 +83,11 @@ deploy_prod:
     - echo "DATABASE_PASSWORD=$DATABASE_PROD_PASSWORD" >> .env
 #    - echo "dbDriver=$DATABASE_DRIVER" >> .env
     - echo "Deploying the release pipeline"
+<<<<<<< HEAD
     - chmod og-rwx ${DEPLOY_PROD_SSH_KEY}
     - dpl --provider=heroku --app=$HEROKU_APP_BACKEND --api-key=$HEROKU_API_KEY
+=======
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+>>>>>>> d5f1a8a8 (removing unnecessary permissions)
   only:
     - main
