@@ -280,10 +280,20 @@ only:
 =======
 #    - echo "dbDriver=$DATABASE_DRIVER" >> .env
     - echo "Deploying the release pipeline"
+<<<<<<< HEAD
     - chmod og-rwx ${DEPLOY_PROD_SSH_KEY}
     - dpl --provider=heroku --app=$HEROKU_APP_BACKEND --api-key=$HEROKU_API_KEY
+<<<<<<< HEAD
 >>>>>>> 03529e88 (updating backend deploy vars)
+<<<<<<< HEAD
 >>>>>>> 7b54fa8e (updating backend deploy vars)
+=======
+=======
+=======
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+>>>>>>> d5f1a8a8 (removing unnecessary permissions)
+>>>>>>> 23eacb92 (removing unnecessary permissions)
+>>>>>>> ce0555f3 (removing unnecessary permissions)
   only:
     - main
 >>>>>>> f889e6db (fixing yaml)
