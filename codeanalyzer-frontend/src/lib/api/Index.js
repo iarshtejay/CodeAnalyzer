@@ -11,7 +11,7 @@ const authGithubUser = (accessToken) => {
 
 const userRepository = async (username)=>{
     const response = await get('https://api.github.com/users/tushartushar/repos') //,'+username+'
-    console.log(response.data)
+    // console.log(response.data)
     clean(response)
 }
 
