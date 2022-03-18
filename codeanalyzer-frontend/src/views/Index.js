@@ -62,6 +62,7 @@ const Index = (props) => {
     const accessToken = query.get('access_token');
     const userRegistration = await api.authGithubUser(accessToken);
     console.log('User Registration Successful ->', userRegistration);
+
   })()
   }, []);
 
