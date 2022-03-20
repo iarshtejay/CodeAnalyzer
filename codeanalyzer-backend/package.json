@@ -9,16 +9,22 @@
     "build": "strapi build",
     "strapi": "strapi",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e1bf161f (jira integration + context api complete)
     "start-frontend-dev": "cd ../codeanalyzer-frontend && npm run start",
     "start-frontend-prod": "cd ../codeanalyzer-frontend && npm run start",
     "start-backend-dev": "NODE_ENV=development npm run develop",
     "start-backend-prod": "NODE_ENV=production npm run develop",
+<<<<<<< HEAD
 =======
     "start-frontend-dev": "cd ../codeanalyzer-frontend && yarn start",
     "start-frontend-prod": "cd ../codeanalyzer-frontend && yarn start",
     "start-backend-dev": "NODE_ENV=development yarn develop",
     "start-backend-prod": "NODE_ENV=production yarn develop",
 >>>>>>> 72885e25 (switching to only npm, removing yarn)
+=======
+>>>>>>> e1bf161f (jira integration + context api complete)
     "full-dev-mode": "concurrently \"npm run start-backend-dev\" \"npm run start-frontend-dev\"",
     "full-prod-mode": "concurrently \"npm run start-backend-prod\" \"npm run start-frontend-prod\""
   },

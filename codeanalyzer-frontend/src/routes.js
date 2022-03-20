@@ -36,6 +36,7 @@ import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import JiraAuth from "views/JiraAuth";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e1bf161f (jira integration + context api complete)
 =======
 =======
@@ -48,6 +49,8 @@ import Icons from "views/menu/Icons.js";
 import Commits from "views/menu/Commits.js";
 >>>>>>> db02b4bc (Repository Commits V1)
 >>>>>>> e40aa0f8 (Repository Commits V1)
+=======
+>>>>>>> e1bf161f (jira integration + context api complete)
 
 var routes = [
   {
