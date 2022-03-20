@@ -16,6 +16,7 @@
 
 */
 import Index from "views/Index.js";
+<<<<<<< HEAD
 import Profile from "views/menu/Profile.js";
 import Maps from "views/menu/Maps.js";
 import Register from "views/menu/Register.js";
@@ -23,6 +24,15 @@ import Login from "views/menu/Login.js";
 import Tables from "views/menu/Tables.js";
 import Icons from "views/menu/Icons.js";
 import Commits from "views/menu/Commits.js";
+=======
+import Profile from "views/examples/Profile.js";
+import Maps from "views/examples/Maps.js";
+import Register from "views/examples/Register.js";
+import Login from "views/examples/Login.js";
+import Tables from "views/examples/Tables.js";
+import Icons from "views/examples/Icons.js";
+import JiraAuth from "views/JiraAuth";
+>>>>>>> e1bf161f (jira integration + context api complete)
 
 var routes = [
   {
@@ -57,8 +67,22 @@ var routes = [
     path: "/repositories",
     name: "Repositories",
     icon: "ni ni-collection text-blue",
+<<<<<<< HEAD
     component: Icons,
     layout: "/admin"
+=======
+    component: JiraAuth,
+    layout: "/admin",
+    // sub_route: [
+    //   {
+    //     path: "/repositories/commits",
+    //     name: "Commits",
+    //     icon: "ni ni-bullet-list-67 text-blue",
+    //     component: JiraAuth,
+    //     layout: "/admin",
+    //   },
+    // ],
+>>>>>>> e1bf161f (jira integration + context api complete)
   },
   {
     path: "/maps",

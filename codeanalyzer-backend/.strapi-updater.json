@@ -1,5 +1,9 @@
 {
 	"latest": "4.1.5",
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
+=======
+	"lastUpdateCheck": 1647796501018,
+>>>>>>> e1bf161f (jira integration + context api complete)
 	"lastNotification": 1645051085480
 }
