@@ -4,6 +4,7 @@ const JiraContext = React.createContext([
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   { authCode: "", authFlag: "", accessToken: "", cloudId: "", refreshToken: "" },
   () => {
 =======
@@ -21,6 +22,17 @@ const JiraContext = React.createContext([
     () => {
     },
 >>>>>>> 46eb48e9 (fixing mc)
+=======
+    {authCode: "", authFlag: "", accessToken: "", cloudId: "", refreshToken: ""},
+    () => {
+    },
+=======
+  { authCode: "", authFlag: "", accessToken: "", cloudId: "" },
+  () => {
+    console.log("in here?");
+  },
+>>>>>>> ae4d25bc (jira integration + context api complete)
+>>>>>>> dae46cb7 (jira integration + context api complete)
 ]);
 
 export default JiraContext;
