@@ -38,6 +38,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from "reactstrap";
 
 // core components
@@ -74,6 +75,10 @@ const Index = (props) => {
         console.log('User Registration was Successful!');
       }
     }
+
+    //for fetching data from api 
+    api.fetchGithubRepo(userRegistration.data.user.username)
+    
   })()
   }, []);
 

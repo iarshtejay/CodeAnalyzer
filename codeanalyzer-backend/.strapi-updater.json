@@ -2,6 +2,7 @@
 	"latest": "4.1.5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
@@ -11,4 +12,8 @@
 	"lastUpdateCheck": 1647898948674,
 	"lastNotification": 1647899757303
 >>>>>>> 29376015 (updating backend deploy vars)
+=======
+	"lastUpdateCheck": 1647794109056,
+	"lastNotification": 1647794109040
+>>>>>>> 114bcba6 (Registration changes)
 }
