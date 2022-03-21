@@ -12,6 +12,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
@@ -32,6 +33,8 @@
 >>>>>>> dae46cb7 (jira integration + context api complete)
 =======
 >>>>>>> 7b54fa8e (updating backend deploy vars)
+=======
+>>>>>>> 7ac276cc (Registration changes)
 	"lastUpdateCheck": 1647986179069,
 >>>>>>> 46eb48e9 (fixing mc)
 	"lastNotification": 1647899757303
@@ -51,6 +54,8 @@
 >>>>>>> ae4d25bc (jira integration + context api complete)
 =======
 >>>>>>> 03529e88 (updating backend deploy vars)
+=======
+>>>>>>> 65c39196 (Registration changes)
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
@@ -69,6 +74,7 @@
 	"lastNotification": 1647899757303
 >>>>>>> 29376015 (updating backend deploy vars)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	"lastUpdateCheck": 1647794109056,
 	"lastNotification": 1647794109040
@@ -78,4 +84,13 @@
 =======
 >>>>>>> 03529e88 (updating backend deploy vars)
 >>>>>>> 7b54fa8e (updating backend deploy vars)
+=======
+>>>>>>> 03529e88 (updating backend deploy vars)
+=======
+=======
+	"lastUpdateCheck": 1647794109056,
+	"lastNotification": 1647794109040
+>>>>>>> 114bcba6 (Registration changes)
+>>>>>>> 65c39196 (Registration changes)
+>>>>>>> 7ac276cc (Registration changes)
 }

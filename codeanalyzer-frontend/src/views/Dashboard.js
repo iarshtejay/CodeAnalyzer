@@ -77,7 +77,11 @@ const Dashboard = (props) => {
     }
 
     //for fetching data from api 
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/Dashboard.js
     // api.fetchGithubRepo(userRegistration.data.user.username)
+=======
+    api.fetchGithubRepo(userRegistration.data.user.username)
+>>>>>>> 65c39196 (Registration changes):codeanalyzer-frontend/src/views/Index.js
     
   })()
   }, []);
