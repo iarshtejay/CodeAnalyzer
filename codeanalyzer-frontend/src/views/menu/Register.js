@@ -32,6 +32,7 @@ import {
   Col,
 } from "reactstrap";
 
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -41,6 +42,21 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const formSubmitHandler = async () => {
+=======
+import React,{ useState } from "react"
+
+
+
+
+const Register = () => {
+
+  const [username,setUsername] = useState("")
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+
+
+  const formSubmitHandler = async () =>{
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
     // const response = fetch("http://localhost:1337/api/users",{
     //   method:"POST",
     //   headers:{
@@ -59,12 +75,24 @@ const Register = () => {
     const credentials = {
       username,
       email,
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
       password,
     };
 
     const response = await axios.post("/users", credentials);
     console.log(response);
   };
+=======
+      password
+    }
+
+    const response = await post('/users',credentials)
+    console.log(response)
+
+  }
+
+
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
 
   return (
     <>
@@ -122,12 +150,19 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
                   <Input
                     placeholder="Name"
                     type="text"
                     onChange={(e) => {
                       setUsername(e.target.value);
                     }}
+=======
+                  <Input 
+                    placeholder="Name" 
+                    type="text"
+                    onChange={(e)=>{setUsername(e.target.value)}} 
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
                   />
                 </InputGroup>
               </FormGroup>
@@ -142,9 +177,13 @@ const Register = () => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
+=======
+                    onChange={(e)=>{setEmail(e.target.value)}}
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
                   />
                 </InputGroup>
               </FormGroup>
@@ -159,9 +198,13 @@ const Register = () => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
+=======
+                    onChange={(e)=>{setPassword(e.target.value)}}
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
                   />
                 </InputGroup>
               </FormGroup>
@@ -194,6 +237,7 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
+<<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
                 <Button
                   className="mt-4"
                   color="primary"
@@ -201,6 +245,13 @@ const Register = () => {
                   onClick={() => {
                     formSubmitHandler();
                   }}
+=======
+                <Button 
+                  className="mt-4" 
+                  color="primary" 
+                  type="button"
+                  onClick={()=>{formSubmitHandler()}}
+>>>>>>> 114bcba6 (Registration changes):codeanalyzer-frontend/src/views/examples/Register.js
                 >
                   Create account
                 </Button>
