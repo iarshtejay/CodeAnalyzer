@@ -32,6 +32,8 @@ import {
   Col,
 } from "reactstrap";
 
+import { Link, useHistory, useLocation } from "react-router-dom";
+
 const Login = () => {
   return (
     <>
@@ -45,8 +47,7 @@ const Login = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                href="http://localhost:1337/api/connect/github"
               >
                 <span className="btn-inner--icon">
                   <img
@@ -143,13 +144,9 @@ const Login = () => {
             </a>
           </Col>
           <Col className="text-right" xs="6">
-            <a
-              className="text-light"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
-            >
+            <Link to="/auth/register" className="text-light">
               <small>Create new account</small>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Col>

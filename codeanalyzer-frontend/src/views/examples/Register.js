@@ -17,6 +17,8 @@
 */
 
 // reactstrap components
+import { api } from "lib/api";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -32,20 +34,46 @@ import {
   Col,
 } from "reactstrap";
 
-import React,{ useState } from 'react';
+const Register = (props) => {
+  //editted code for name, email, password
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const Register = () => {
+  // This function (formSubmitHandler) will pass the registration details to
+  //backend so further we can save user details in our database.
+  const formSubmitHandler = () => {
+    console.log(username, email, password);
 
-//editted code for name, email, password
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+    const info = {
+      data: {
+        username: username,
+        email: email,
+        password: password,
+      },
+    };
 
+    api.pushData(info);
 
-  const submitForm = ()=>{
-    //console.log(name,email,password)
-    fetch("http://localhost:1337/api/auth/local/register",)
-  }
+    // fetch("http://localhost:1337/api/auth/local/register",{
+    //   method:"post",
+    //   headers:{
+    //     "Content-Type":"application/json"
+    //   },
+    //   body:JSON.stringify({
+    //     name,
+    //     email,
+    //     password
+    //   })
+    // }).then(res=>res.json())
+    // .then(data=>{
+    //   if(data.error){
+    //     console.log(data.error)
+    //   } else{
+    //     console.log("Success!!!!!!!!!!!!!!")
+    //   }
+    // })
+  };
 
   return (
     <>
@@ -59,8 +87,7 @@ const Register = () => {
               <Button
                 className="btn-neutral btn-icon mr-4"
                 color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                href="http://localhost:1337/api/connect/github"
               >
                 <span className="btn-inner--icon">
                   <img
@@ -104,11 +131,13 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input 
-                    placeholder="Name" 
-                    type="text"  
-                    onChange={(n)=>setName(n.target.value)}
-                    value={name}  
+
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -122,9 +151,10 @@ const Register = () => {
                   <Input
                     placeholder="Email"
                     type="email"
-                    autoComplete="new-email"  
-                    onChange={(e)=>setEmail(e.target.value)} 
-                    value={email}
+                    autoComplete="new-email"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -138,8 +168,9 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
-                    autoComplete="new-password"
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -172,7 +203,12 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button" onClick={()=>submitForm()}>
+                <Button
+                  className="mt-4"
+                  color="primary"
+                  type="button"
+                  onClick={() => formSubmitHandler()}
+                >
                   Create account
                 </Button>
               </div>

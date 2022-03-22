@@ -1,6 +1,6 @@
-const path = require('path');
+const path = require("path");
 
-module.exports = ({ env }) => ({   
+module.exports = ({ env }) => ({
   connection: {
     client: "mysql",
     connection: {
@@ -8,8 +8,8 @@ module.exports = ({ env }) => ({
       port: env("DEV_DATABASE_PORT", 3306),
       database: env("DEV_DATABASE_NAME", "ASDC_PROJECT_BHARAT"),
       user: env("DEV_DATABASE_USERNAME", "root"),
-      password: env("DEV_DATABASE_PASSWORD", "password"),
+      password: env("DEV_DATABASE_PASSWORD", ""),
     },
-    useNullAsDefault: true,   
-  }, 
- });
+    useNullAsDefault: true,
+  },
+});
