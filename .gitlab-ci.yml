@@ -168,11 +168,16 @@ deploy_backend_prod:
 >>>>>>> 92bc3d19 (adding faraday dependency)
     - gem install dpl
 <<<<<<< HEAD
+<<<<<<< HEAD
     - cd codeanalyzer-backend
 >>>>>>> 29376015 (updating backend deploy vars)
 =======
     - cd code-analyzer-backend
 >>>>>>> ddc2f904 (updating node version)
+=======
+    - npm config set legacy-peer-deps true
+    - cd codeanalyzer-backend
+>>>>>>> de9fe714 (node dependency fix)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -226,6 +231,7 @@ deploy_frontend_prod:
 <<<<<<< HEAD
     - gem install dpl
     - npm config set legacy-peer-deps true
+<<<<<<< HEAD
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
 <<<<<<< HEAD
@@ -280,6 +286,8 @@ only:
 >>>>>>> 92bc3d19 (adding faraday dependency)
     - gem install dpl
 >>>>>>> 4f46e01f (Update .gitlab-ci.yml)
+=======
+>>>>>>> de9fe714 (node dependency fix)
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
