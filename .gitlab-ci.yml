@@ -148,10 +148,20 @@ deploy_prod:
   stage: deploy_prod
 =======
 deploy_backend_prod:
+<<<<<<< HEAD
   stage: deploy_backend_prod
 >>>>>>> 64da8f70 (Update .gitlab-ci.yml)
+<<<<<<< HEAD
 >>>>>>> 270a27e5 (Update .gitlab-ci.yml)
+<<<<<<< HEAD
 >>>>>>> 71a93dfa (Update .gitlab-ci.yml)
+=======
+=======
+=======
+  stage: deploy_prod
+>>>>>>> 8e4ae227 (fixing yaml)
+>>>>>>> 7dc25bae (fixing yaml)
+>>>>>>> 1bac2f31 (fixing yaml)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -374,7 +384,7 @@ only:
     - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
 
 deploy_frontend_prod:
-  stage: deploy_frontend_prod
+  stage: deploy_prod
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
