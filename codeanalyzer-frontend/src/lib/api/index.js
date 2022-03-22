@@ -28,6 +28,7 @@ const authGithubUser = (accessToken) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
@@ -167,6 +168,8 @@ export const api = {
 =======
 =======
 >>>>>>> 0b7de6d9 (fixing compilation issues)
+=======
+>>>>>>> ad877c1a (Repository Commits V1)
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
@@ -183,6 +186,11 @@ const createAuths = (info, headers) => {
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
+=======
+const createAuths = (info, headers) => {
+    return post('/auths', info, headers);
+}
+>>>>>>> e40aa0f8 (Repository Commits V1)
 
 
 export const api = {
@@ -190,8 +198,11 @@ export const api = {
     createAuths
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b5b5e658 (Repository Commits V1)
 =======
+=======
+>>>>>>> ad877c1a (Repository Commits V1)
 =======
 const fetchGithubRepo = async (username)=>{
     const url = "https://api.github.com/users/tushartushar/repos";
@@ -234,4 +245,9 @@ export const api = {
   // fetchGithubRepo
 };
 >>>>>>> 93003fc4 (fixing compilation issues)
+<<<<<<< HEAD
 >>>>>>> 0b7de6d9 (fixing compilation issues)
+=======
+=======
+>>>>>>> e40aa0f8 (Repository Commits V1)
+>>>>>>> ad877c1a (Repository Commits V1)
