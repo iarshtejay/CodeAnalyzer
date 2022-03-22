@@ -12,6 +12,9 @@ const createAuths = (info, headers) => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a6efc26a (fixing mc)
 // const fetchGithubRepo = async (username)=>{
 //     const url = "https://api.github.com/users/tushartushar/repos";
 
@@ -23,11 +26,14 @@ const createAuths = (info, headers) => {
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
+<<<<<<< HEAD
 =======
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
 >>>>>>> e40aa0f8 (Repository Commits V1)
+=======
+>>>>>>> a6efc26a (fixing mc)
 
 
 export const api = {
