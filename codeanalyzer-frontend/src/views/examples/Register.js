@@ -17,7 +17,8 @@
 */
 
 // reactstrap components
-import React,{ useState } from 'react'
+import { api } from "lib/api";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -33,41 +34,40 @@ import {
   Col,
 } from "reactstrap";
 
-
-
-
-
 const Register = () => {
-
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // This function (formSubmitHandler) will pass the registration details to backend so further we can save user details in our database.
-  const formSubmitHandler = () =>{
-    console.log(name,email,password);
+  const formSubmitHandler = () => {
+    console.log(name, email, password);
 
-    fetch("http://localhost:1337/api/auth/local/register",{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        name,
-        email,
-        password
-      })
-    }).then(res=>res.json())
-    .then(data=>{
-      if(data.error){
-        console.log(data.error)
-      } else{
-        console.log("Success!!!!!!!!!!!!!!")
-      }
-    })
+    const data = {
+      name,
+      email,
+      password,
+    };
 
-  }
+    // fetch("http://localhost:1337/api/auth/local/register",{
+    //   method:"post",
+    //   headers:{
+    //     "Content-Type":"application/json"
+    //   },
+    //   body:JSON.stringify({
+    //     name,
+    //     email,
+    //     password
+    //   })
+    // }).then(res=>res.json())
+    // .then(data=>{
+    //   if(data.error){
+    //     console.log(data.error)
+    //   } else{
+    //     console.log("Success!!!!!!!!!!!!!!")
+    //   }
+    // })
+  };
 
   return (
     <>
@@ -125,10 +125,12 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input 
-                    placeholder="Name" 
-                    type="text" 
-                    onChange={(e)=>{setName(e.target.value)}}
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -143,7 +145,9 @@ const Register = () => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
-                    onChange={(e)=>{setEmail(e.target.value)}}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -157,7 +161,9 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
-                    onChange={(e)=>{setPassword(e.target.value)}}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </InputGroup>
               </FormGroup>
@@ -190,11 +196,11 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button 
-                  className="mt-4" 
-                  color="primary" 
+                <Button
+                  className="mt-4"
+                  color="primary"
                   type="button"
-                  onClick={()=>formSubmitHandler()}
+                  onClick={() => formSubmitHandler()}
                 >
                   Create account
                 </Button>

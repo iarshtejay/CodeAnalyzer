@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "normal_users",
+  "info": {
+    "singularName": "normal-user",
+    "pluralName": "normal-users",
+    "displayName": "NormalUsers"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password"
+    }
+  }
+}
