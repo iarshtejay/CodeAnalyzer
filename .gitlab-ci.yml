@@ -210,7 +210,7 @@ deploy_backend_prod:
 >>>>>>> 04f24ed8 (fixing ruby version)
 =======
     - apt-get update -qy
-    - apt-get install -y ruby-dev
+    - apt-get install -y ruby-full
     - apt-get install -u zip unzip
 <<<<<<< HEAD
     - gem install faraday -v 1.10.0
