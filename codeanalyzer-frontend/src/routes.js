@@ -17,6 +17,7 @@
 */
 import Index from "views/Index.js";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Profile from "views/menu/Profile.js";
 import Maps from "views/menu/Maps.js";
 import Register from "views/menu/Register.js";
@@ -25,6 +26,8 @@ import Tables from "views/menu/Tables.js";
 import Icons from "views/menu/Icons.js";
 import Commits from "views/menu/Commits.js";
 =======
+=======
+>>>>>>> e40aa0f8 (Repository Commits V1)
 import Profile from "views/examples/Profile.js";
 import Maps from "views/examples/Maps.js";
 import Register from "views/examples/Register.js";
@@ -32,7 +35,19 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import JiraAuth from "views/JiraAuth";
+<<<<<<< HEAD
 >>>>>>> e1bf161f (jira integration + context api complete)
+=======
+=======
+import Profile from "views/menu/Profile.js";
+import Maps from "views/menu/Maps.js";
+import Register from "views/menu/Register.js";
+import Login from "views/menu/Login.js";
+import Tables from "views/menu/Tables.js";
+import Icons from "views/menu/Icons.js";
+import Commits from "views/menu/Commits.js";
+>>>>>>> db02b4bc (Repository Commits V1)
+>>>>>>> e40aa0f8 (Repository Commits V1)
 
 var routes = [
   {
@@ -68,9 +83,12 @@ var routes = [
     name: "Repositories",
     icon: "ni ni-collection text-blue",
 <<<<<<< HEAD
+<<<<<<< HEAD
     component: Icons,
     layout: "/admin"
 =======
+=======
+>>>>>>> e40aa0f8 (Repository Commits V1)
     component: JiraAuth,
     layout: "/admin",
     // sub_route: [
@@ -82,7 +100,14 @@ var routes = [
     //     layout: "/admin",
     //   },
     // ],
+<<<<<<< HEAD
 >>>>>>> e1bf161f (jira integration + context api complete)
+=======
+=======
+    component: Icons,
+    layout: "/admin"
+>>>>>>> db02b4bc (Repository Commits V1)
+>>>>>>> e40aa0f8 (Repository Commits V1)
   },
   {
     path: "/maps",
