@@ -11,6 +11,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
@@ -29,6 +30,8 @@
 >>>>>>> b5b5e658 (Repository Commits V1)
 =======
 >>>>>>> dae46cb7 (jira integration + context api complete)
+=======
+>>>>>>> 7b54fa8e (updating backend deploy vars)
 	"lastUpdateCheck": 1647986179069,
 >>>>>>> 46eb48e9 (fixing mc)
 	"lastNotification": 1647899757303
@@ -46,22 +49,33 @@
 =======
 =======
 >>>>>>> ae4d25bc (jira integration + context api complete)
+=======
+>>>>>>> 03529e88 (updating backend deploy vars)
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
 >>>>>>> e1bf161f (jira integration + context api complete)
 	"lastNotification": 1645051085480
+<<<<<<< HEAD
 >>>>>>> db02b4bc (Repository Commits V1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e40aa0f8 (Repository Commits V1)
+=======
+=======
+>>>>>>> 7b54fa8e (updating backend deploy vars)
 =======
 	"lastUpdateCheck": 1647898948674,
 	"lastNotification": 1647899757303
 >>>>>>> 29376015 (updating backend deploy vars)
+<<<<<<< HEAD
 =======
 	"lastUpdateCheck": 1647794109056,
 	"lastNotification": 1647794109040
 >>>>>>> 114bcba6 (Registration changes)
 =======
 >>>>>>> b5b5e658 (Repository Commits V1)
+=======
+>>>>>>> 03529e88 (updating backend deploy vars)
+>>>>>>> 7b54fa8e (updating backend deploy vars)
 }

@@ -178,6 +178,7 @@ deploy_backend_prod:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
+<<<<<<< HEAD
     - gem install faraday -v 1.10.0
 >>>>>>> 92bc3d19 (adding faraday dependency)
     - gem install dpl
@@ -190,6 +191,9 @@ deploy_backend_prod:
 >>>>>>> ddc2f904 (updating node version)
 =======
     - npm config set legacy-peer-deps true
+=======
+    - gem install dpl
+>>>>>>> 03529e88 (updating backend deploy vars)
     - cd codeanalyzer-backend
 >>>>>>> de9fe714 (node dependency fix)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
@@ -197,7 +201,12 @@ deploy_backend_prod:
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
     - echo "DATABASE_USERNAME=$DATABASE_PROD_USERNAME" >> .env
     - echo "DATABASE_PASSWORD=$DATABASE_PROD_PASSWORD" >> .env
+<<<<<<< HEAD
 #    - echo "dbDriver=$DATABASE_DRIVER" >> .env
+=======
+<<<<<<< HEAD
+    #    - echo "dbDriver=$DATABASE_DRIVER" >> .env
+>>>>>>> 7b54fa8e (updating backend deploy vars)
     - echo "Deploying the release pipeline"
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -261,11 +270,20 @@ only:
 =======
 =======
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip-cleanup
+<<<<<<< HEAD
 >>>>>>> 3f7d437c (fixing uml typo)
 =======
     - chmod og-rwx ${DEPLOY_PROD_SSH_KEY}
     - dpl --provider=heroku --app=$HEROKU_APP_BACKEND --api-key=$HEROKU_API_KEY
 >>>>>>> 29376015 (updating backend deploy vars)
+=======
+=======
+#    - echo "dbDriver=$DATABASE_DRIVER" >> .env
+    - echo "Deploying the release pipeline"
+    - chmod og-rwx ${DEPLOY_PROD_SSH_KEY}
+    - dpl --provider=heroku --app=$HEROKU_APP_BACKEND --api-key=$HEROKU_API_KEY
+>>>>>>> 03529e88 (updating backend deploy vars)
+>>>>>>> 7b54fa8e (updating backend deploy vars)
   only:
     - main
 >>>>>>> f889e6db (fixing yaml)
