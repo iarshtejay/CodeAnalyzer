@@ -84,7 +84,7 @@ deploy_backend_prod:
 >>>>>>> 8e4ae227 (fixing yaml)
   script:
     - apt-get update -qy && apt-get upgrade -y
-    - apt-get install software-properties-common
+    - apt-get install software-properties-common -y
     - gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     - apt-add-repository -y ppa:rael-gc/rvm
     - apt-get update
@@ -126,7 +126,7 @@ deploy_frontend_prod:
   stage: deploy_prod
   script:
     - apt-get update -qy && apt-get upgrade -y
-    - apt-get install software-properties-common
+    - apt-get install software-properties-common -y
     - gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     - apt-add-repository -y ppa:rael-gc/rvm
     - apt-get update
