@@ -82,6 +82,7 @@ deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 deploy_backend_prod:
 <<<<<<< HEAD
@@ -107,6 +108,9 @@ deploy_backend_prod:
 =======
   stage: deploy_prod
 >>>>>>> 8e4ae227 (fixing yaml)
+=======
+  skip_cleanup: true
+>>>>>>> 70bb52fb (setting skip_cleanup)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -198,6 +202,7 @@ deploy_backend_prod:
 
 deploy_frontend_prod:
   stage: deploy_prod
+  skip_cleanup: true
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
