@@ -21,8 +21,13 @@ stages:
   - build
   - test
   - deploy_uat
+<<<<<<< HEAD
   - deploy_frontend_prod
   - deploy_backend_prod
+=======
+  - deploy_backend_prod
+  - deploy_frontend-prod
+>>>>>>> 1dc92b68 (removing datetime)
   - sonarqube-check
 
 build:
@@ -78,6 +83,7 @@ sonarqube-check:
     - qurram # or the name of your main branch
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
@@ -114,6 +120,10 @@ deploy_backend_prod:
 >>>>>>> 70bb52fb (setting skip_cleanup)
 =======
 >>>>>>> ddc2f904 (updating node version)
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+>>>>>>> 1dc92b68 (removing datetime)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -213,7 +223,7 @@ deploy_backend_prod:
     - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
 
 deploy_frontend_prod:
-  stage: deploy_prod
+  stage: deploy_frontend_prod
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
