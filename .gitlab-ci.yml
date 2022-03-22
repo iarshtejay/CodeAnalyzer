@@ -75,6 +75,7 @@ sonarqube-check:
 deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 deploy_backend_prod:
 <<<<<<< HEAD
@@ -86,14 +87,20 @@ deploy_backend_prod:
 =======
   skip_cleanup: true
 >>>>>>> 70bb52fb (setting skip_cleanup)
+=======
+>>>>>>> ddc2f904 (updating node version)
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
     - gem install faraday -v 1.10.0
     - gem install dpl
+<<<<<<< HEAD
     - cd codeanalyzer-backend
 <<<<<<< HEAD
+=======
+    - cd code-analyzer-backend
+>>>>>>> ddc2f904 (updating node version)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -122,7 +129,6 @@ deploy_backend_prod:
 
 deploy_frontend_prod:
   stage: deploy_prod
-  skip_cleanup: true
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
