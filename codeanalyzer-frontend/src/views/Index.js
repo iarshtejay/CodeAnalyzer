@@ -57,14 +57,50 @@ const Index = (props) => {
   const query = useQuery();
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
+  //This are for repository table
+  const [info,setInfo] = useState([{}])
+
   useEffect(() => {
     ;(async () => {
     const accessToken = query.get('access_token');
     const userRegistration = await api.authGithubUser(accessToken);
     console.log('User Registration Successful ->', userRegistration);
-
+    const data= await api.userRepository(userRegistration.data.user.username)
+    const newdata = await repoData(data)
+    setInfo(newdata)
   })()
   }, []);
+
+
+
+const repoData = async (data) => {
+    for (let i = 0; i < data.length; i++) {
+      const batch = {
+        data: {
+          name: data[i].name,
+          //commits: commit,
+          //languages: languages,
+          has_issues: data[i].has_issues,
+          has_projects: data[i].has_projects,
+          description: data[i].description,
+          url: data[i].html_url,
+          //uid: uid,
+          // repoCreatedAt: createdAt,
+          // repoUpdatedAt: updatedAt,
+          // repoPushedAt: pushedAt,
+          size: data[i].size,
+        }
+      };
+      console.log("Done!",batch)
+      //await api.pushRepositoryData(batch)
+    }
+    return data
+  };
+
+
+
+
+
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());

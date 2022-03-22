@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commits",
+  "info": {
+    "singularName": "commit",
+    "pluralName": "commits",
+    "displayName": "commit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sha": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    }
+  }
+}

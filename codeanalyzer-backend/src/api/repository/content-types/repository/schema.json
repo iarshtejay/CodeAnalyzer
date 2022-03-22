@@ -15,14 +15,6 @@
     "name": {
       "type": "string"
     },
-    "uid": {
-      "type": "uid"
-    },
-    "languages": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::language.language"
-    },
     "url": {
       "type": "string"
     },
@@ -39,13 +31,16 @@
       "type": "biginteger"
     },
     "repoCreatedAt": {
-      "type": "datetime"
+      "type": "datetime",
+      "default": "2022-03-01T04:00:00.000Z"
     },
     "repoUpdatedAt": {
-      "type": "datetime"
+      "type": "datetime",
+      "default": "2022-03-01T04:00:00.000Z"
     },
     "repoPushedAt": {
-      "type": "datetime"
+      "type": "datetime",
+      "default": "2022-03-01T04:00:00.000Z"
     }
   }
 }
