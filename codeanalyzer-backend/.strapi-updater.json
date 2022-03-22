@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
@@ -17,6 +18,9 @@
 	"lastNotification": 1645051085480
 =======
 	"lastUpdateCheck": 1647898948674,
+=======
+	"lastUpdateCheck": 1647992254805,
+>>>>>>> 0d520d6c (refactoring jira oauth)
 	"lastNotification": 1647899757303
 >>>>>>> 29376015 (updating backend deploy vars)
 =======
