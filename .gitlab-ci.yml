@@ -147,6 +147,7 @@ deploy_backend_prod:
 deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 deploy_backend_prod:
 <<<<<<< HEAD
@@ -170,8 +171,16 @@ deploy_backend_prod:
 =======
   skip_cleanup: true
 >>>>>>> 70bb52fb (setting skip_cleanup)
+<<<<<<< HEAD
 >>>>>>> 912b4cc8 (setting skip_cleanup)
+<<<<<<< HEAD
 >>>>>>> 9b352453 (setting skip_cleanup)
+=======
+=======
+=======
+>>>>>>> ddc2f904 (updating node version)
+>>>>>>> 5c499a40 (updating node version)
+>>>>>>> bd56a4cb (updating node version)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -229,6 +238,7 @@ deploy_backend_prod:
     - gem install dpl
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - cd codeanalyzer-backend
 <<<<<<< HEAD
 =======
@@ -277,16 +287,27 @@ deploy_backend_prod:
     - cd code-analyzer-backend
 >>>>>>> ddc2f904 (updating node version)
 =======
+=======
+>>>>>>> bd56a4cb (updating node version)
     - npm config set legacy-peer-deps true
 =======
     - gem install dpl
 >>>>>>> 03529e88 (updating backend deploy vars)
+=======
+<<<<<<< HEAD
+>>>>>>> 5c499a40 (updating node version)
     - cd codeanalyzer-backend
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> de9fe714 (node dependency fix)
 =======
 <<<<<<< HEAD
 >>>>>>> 71a93dfa (Update .gitlab-ci.yml)
+=======
+=======
+    - cd code-analyzer-backend
+>>>>>>> ddc2f904 (updating node version)
+>>>>>>> bd56a4cb (updating node version)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -441,7 +462,6 @@ only:
 
 deploy_frontend_prod:
   stage: deploy_prod
-  skip_cleanup: true
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
