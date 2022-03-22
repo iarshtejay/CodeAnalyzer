@@ -319,7 +319,10 @@ only:
 #    - echo "dbDriver=$DATABASE_DRIVER" >> .env
     - echo "Deploying the release pipeline"
 <<<<<<< HEAD
+<<<<<<< HEAD
     - chmod og-rwx ${DEPLOY_PROD_SSH_KEY}
+=======
+>>>>>>> 821627c9 (fixing yaml)
     - dpl --provider=heroku --app=$HEROKU_APP_BACKEND --api-key=$HEROKU_API_KEY
 <<<<<<< HEAD
 >>>>>>> 03529e88 (updating backend deploy vars)
