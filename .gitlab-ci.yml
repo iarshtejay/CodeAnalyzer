@@ -36,6 +36,7 @@ stages:
   - deploy_backend_prod
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   - deploy_frontend-prod
 >>>>>>> 1dc92b68 (removing datetime)
 =======
@@ -45,6 +46,13 @@ stages:
   - deploy_frontend-prod
 >>>>>>> 29e49017 (removing datetime)
 >>>>>>> 14324204 (removing datetime)
+=======
+  - deploy_frontend-prod
+>>>>>>> 29e49017 (removing datetime)
+=======
+  - deploy_frontend_prod
+>>>>>>> 1fe6f110 (fixing uml typo)
+>>>>>>> a34ef172 (fixing uml typo)
   - sonarqube-check
 
 build:
@@ -536,6 +544,7 @@ deploy_frontend_prod:
     - npm config set legacy-peer-deps true
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
+<<<<<<< HEAD
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
 >>>>>>> 71a93dfa (Update .gitlab-ci.yml)
 
