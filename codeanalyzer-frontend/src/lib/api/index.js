@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios";
 import { get, post, put, destroy } from "../../config";
 
@@ -35,19 +36,30 @@ const createAuths = (info, headers) => {
 =======
 >>>>>>> a6efc26a (fixing mc)
 
+=======
+import {get, post} from "../../config";
+import {getJiraAccessToken, getJiraAuthCode, getJiraCloudId, jiraOAuthFlow} from './jira'
 
-const fetchGithubRepo = async (username)=>{
-    const url = "https://api.github.com/users/tushartushar/repos";
-    
-    const response = await get(url)
-    //console.log(response.data)
-    cleanData(response.data)
-}
+const authGithubUser = (accessToken) => {
+    return get("/auth/github/callback?access_token=" + accessToken);
+};
 
+const createGithubAuths = (info) => {
+    return post("/github-auths", info);
+};
+>>>>>>> 46eb48e9 (fixing mc)
 
-const lengthOfFetchedData = async (url)=>{
-    return await get(url).length
-}
+// const fetchGithubRepo = async (username)=>{
+//     const url = "https://api.github.com/users/tushartushar/repos";
+
+//     const response = await get(url)
+//     //console.log(response.data)
+//     cleanData(response.data)
+// }
+
+const lengthOfFetchedData = async (url) => {
+    return await get(url).length;
+};
 
 export const api = {
     authGithubUser,
@@ -85,6 +97,7 @@ export const api = {
 <<<<<<< HEAD
     authGithubUser,
     createGithubAuths,
+<<<<<<< HEAD
     fetchGithubRepo
 }
 >>>>>>> 114bcba6 (Registration changes)
@@ -101,3 +114,11 @@ export const api = {
     fetchGithubRepo
 }
 >>>>>>> 114bcba6 (Registration changes)
+=======
+    getJiraAuthCode,
+    getJiraAccessToken,
+    getJiraCloudId,
+    jiraOAuthFlow
+    // fetchGithubRepo
+};
+>>>>>>> 46eb48e9 (fixing mc)

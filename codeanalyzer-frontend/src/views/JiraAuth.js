@@ -1,32 +1,23 @@
-import axios from "axios";
 import Header from "components/Headers/Header";
 import JiraContext from "contexts/JiraContext";
-import { useEffect, useContext } from "react";
-import { Button, Container } from "reactstrap";
+import {useContext, useEffect} from "react";
+import {Button, Container} from "reactstrap";
+import {api} from "../lib/api";
+import {jiraOAuthFlow} from "../lib/api/jira";
+
 
 const JiraAuth = () => {
-  const [jiraAuth, setJiraAuth] = useContext(JiraContext);
+    const [jiraAuth, setJiraAuth] = useContext(JiraContext);
 
-  useEffect(() => {
-    const getJiraReqs = async () => {
-      const code = new URLSearchParams(window.location.search).get("code");
-      const res = await axios.post("https://auth.atlassian.com/oauth/token", {
-        grant_type: "authorization_code",
-        client_id: "i3xw91FFYBjOowYsu2dxRvYSi8aUPYDR",
-        client_secret:
-          "lqUhvU8tz4CU4tmB5IM_fjyub6bTlMonkVKYRHOThxxRsStBlrlUIrbS37BrM484",
-        code,
-        redirect_uri: "http://localhost:3000/admin/repositories",
-      });
-      console.log(res);
-      const res2 = await axios.get(
-        "https://api.atlassian.com/oauth/token/accessible-resources",
-        {
-          headers: {
-            Authorization: `Bearer ${res.data.access_token}`,
-            Accept: "application/json",
-          },
+    useEffect(() => {
+
+        const OAuthResponse = jiraOAuthFlow()
+        if (!OAuthResponse.status) {
+            console.log("Authorization not complete yet")
+        } else {
+            setJiraAuth(OAuthResponse)
         }
+<<<<<<< HEAD
       );
       console.log(res2);
       // setJiraCloudId(res2.data[0].id);
@@ -49,16 +40,16 @@ const JiraAuth = () => {
       };
       setJiraAuth(newJiraAuth);
       console.log("JIRA AUTH", jiraAuth, newJiraAuth);
-    };
-    const jiraCode = new URLSearchParams(window.location.search).get("code");
-    if (!jiraCode) {
-      console.log("Not auth yet");
-    } else {
-      getJiraReqs();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+=======
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    const authorizeJira = () => {
+        setJiraAuth({...jiraAuth, authCode: api.getJiraAuthCode()})
+>>>>>>> 46eb48e9 (fixing mc)
+    };
+
+<<<<<<< HEAD
   const authorizeJira = () => {
     if (!new URLSearchParams(window.location.search).get("code")) {
       window.location.replace(
@@ -90,6 +81,22 @@ const JiraAuth = () => {
       </Container>
     </>
   );
+=======
+    return (
+        <>
+            <Header/>
+            <Container className="mt--7">
+                {jiraAuth.authFlag ? (
+                    <></>
+                ) : (
+                    <Button className="btn-icon-clipboard" onClick={authorizeJira}>
+                        Authorize Jira
+                    </Button>
+                )}
+            </Container>
+        </>
+    );
+>>>>>>> 46eb48e9 (fixing mc)
 };
 
 export default JiraAuth;
