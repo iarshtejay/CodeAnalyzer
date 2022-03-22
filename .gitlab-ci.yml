@@ -112,6 +112,7 @@ deploy_backend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
@@ -152,6 +153,12 @@ deploy_backend_prod:
 >>>>>>> 556bba47 (using rvm)
     # - apt-get install -u zip unzip
 >>>>>>> 04f24ed8 (fixing ruby version)
+=======
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - apt-get install -u zip unzip
+    - gem install faraday -v 1.10.0
+>>>>>>> 92bc3d19 (adding faraday dependency)
     - gem install dpl
     - cd codeanalyzer-backend
 >>>>>>> 29376015 (updating backend deploy vars)
@@ -198,10 +205,14 @@ deploy_frontend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 92bc3d19 (adding faraday dependency)
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
     - gem install faraday -v 1.10.0
+<<<<<<< HEAD
     - gem install dpl
     - npm config set legacy-peer-deps true
     - cd codeanalyzer-frontend
@@ -254,6 +265,8 @@ only:
 >>>>>>> 556bba47 (using rvm)
     # - apt-get install -u zip unzip
 >>>>>>> 04f24ed8 (fixing ruby version)
+=======
+>>>>>>> 92bc3d19 (adding faraday dependency)
     - gem install dpl
 >>>>>>> 4f46e01f (Update .gitlab-ci.yml)
     - cd codeanalyzer-frontend
