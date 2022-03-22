@@ -1,16 +1,22 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 93003fc4 (fixing compilation issues)
 import axios from "axios";
 import { get, post, put, destroy } from "../../config";
 
 const authGithubUser = (accessToken) => {
   return get("/auth/github/callback?access_token=" + accessToken);
 };
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
+=======
+>>>>>>> 93003fc4 (fixing compilation issues)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -45,6 +51,7 @@ const authGithubUser = (accessToken) => {
 };
 
 const createGithubAuths = (info) => {
+<<<<<<< HEAD
     return post("/github-auths", info);
 };
 >>>>>>> 46eb48e9 (fixing mc)
@@ -89,11 +96,25 @@ const createGithubAuths = (info) => {
 //     cleanData(response.data)
 // }
 
+=======
+  return post("/github-auths", info);
+};
+
+// const fetchGithubRepo = async (username)=>{
+//     const url = "https://api.github.com/users/tushartushar/repos";
+
+//     const response = await get(url)
+//     //console.log(response.data)
+//     cleanData(response.data)
+// }
+
+>>>>>>> 93003fc4 (fixing compilation issues)
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
 
 export const api = {
+<<<<<<< HEAD
 <<<<<<< HEAD
     authGithubUser,
     createGithubAuths,
@@ -102,10 +123,13 @@ export const api = {
 }
 >>>>>>> 114bcba6 (Registration changes)
 =======
+=======
+>>>>>>> 93003fc4 (fixing compilation issues)
   authGithubUser,
   createGithubAuths,
   // fetchGithubRepo
 };
+<<<<<<< HEAD
 >>>>>>> 93003fc4 (fixing compilation issues)
 =======
 >>>>>>> e40aa0f8 (Repository Commits V1)
@@ -122,3 +146,5 @@ export const api = {
     // fetchGithubRepo
 };
 >>>>>>> 46eb48e9 (fixing mc)
+=======
+>>>>>>> 93003fc4 (fixing compilation issues)
