@@ -1,15 +1,30 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 93003fc4 (fixing compilation issues)
 import axios from "axios";
 import { get, post, put, destroy } from "../../config";
+=======
+import { get, post } from "../../config";
+import {
+  getJiraAccessToken,
+  getJiraAuthCode,
+  getJiraCloudId,
+  jiraOAuthFlow,
+} from "./jira";
+=======
+import axios from "axios";
+import { get, post, put, destroy } from "../../config";
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
 
 const authGithubUser = (accessToken) => {
   return get("/auth/github/callback?access_token=" + accessToken);
 };
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -150,6 +165,8 @@ export const api = {
 =======
 >>>>>>> 93003fc4 (fixing compilation issues)
 =======
+=======
+>>>>>>> 0b7de6d9 (fixing compilation issues)
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
@@ -183,16 +200,38 @@ const fetchGithubRepo = async (username)=>{
     //console.log(response.data)
     cleanData(response.data)
 }
+=======
+const createGithubAuths = (info) => {
+  return post("/github-auths", info);
+};
 
+// const fetchGithubRepo = async (username)=>{
+//     const url = "https://api.github.com/users/tushartushar/repos";
+>>>>>>> 93003fc4 (fixing compilation issues)
 
-const lengthOfFetchedData = async (url)=>{
-    return await get(url).length
-}
+//     const response = await get(url)
+//     //console.log(response.data)
+//     cleanData(response.data)
+// }
+
+const lengthOfFetchedData = async (url) => {
+  return await get(url).length;
+};
 
 export const api = {
+<<<<<<< HEAD
     authGithubUser,
     createGithubAuths,
     fetchGithubRepo
 }
 >>>>>>> 114bcba6 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+  authGithubUser,
+  createGithubAuths,
+  // fetchGithubRepo
+};
+>>>>>>> 93003fc4 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)

@@ -33,12 +33,16 @@ import {
 } from "reactstrap";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
 <<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -53,6 +57,7 @@ import React,{ useState } from "react"
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 import React, { useState } from "react";
@@ -71,10 +76,23 @@ const Register = () => {
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
+=======
+=======
+import React, { useState } from "react";
+import axios from "axios";
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
   const [username,setUsername] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
@@ -91,7 +109,13 @@ const Register = () => {
 >>>>>>> 93003fc4 (fixing compilation issues):codeanalyzer-frontend/src/views/examples/Register.js
 =======
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+  const formSubmitHandler = async () => {
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
     // const response = fetch("http://localhost:1337/api/users",{
     //   method:"POST",
     //   headers:{
@@ -111,9 +135,13 @@ const Register = () => {
       username,
       email,
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
       password,
     };
 
@@ -163,7 +191,18 @@ const Register = () => {
 
 
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+      password,
+    };
+
+    const response = await axios.post("/users", credentials);
+    console.log(response);
+  };
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
 
   return (
     <>
@@ -222,12 +261,16 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
 <<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                   <Input
                     placeholder="Name"
                     type="text"
@@ -259,7 +302,18 @@ const Register = () => {
 >>>>>>> 93003fc4 (fixing compilation issues):codeanalyzer-frontend/src/views/examples/Register.js
 =======
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+                  <Input
+                    placeholder="Name"
+                    type="text"
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                    }}
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                   />
                 </InputGroup>
               </FormGroup>
@@ -275,12 +329,16 @@ const Register = () => {
                     type="email"
                     autoComplete="new-email"
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
 <<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
@@ -300,7 +358,15 @@ const Register = () => {
 >>>>>>> 93003fc4 (fixing compilation issues):codeanalyzer-frontend/src/views/examples/Register.js
 =======
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                   />
                 </InputGroup>
               </FormGroup>
@@ -316,12 +382,16 @@ const Register = () => {
                     type="password"
                     autoComplete="new-password"
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
 <<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -341,7 +411,15 @@ const Register = () => {
 >>>>>>> 93003fc4 (fixing compilation issues):codeanalyzer-frontend/src/views/examples/Register.js
 =======
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                   />
                 </InputGroup>
               </FormGroup>
@@ -375,12 +453,16 @@ const Register = () => {
               </Row>
               <div className="text-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 <<<<<<< HEAD:codeanalyzer-frontend/src/views/menu/Register.js
 =======
 <<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+<<<<<<< HEAD
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                 <Button
                   className="mt-4"
                   color="primary"
@@ -416,7 +498,19 @@ const Register = () => {
 >>>>>>> 93003fc4 (fixing compilation issues):codeanalyzer-frontend/src/views/examples/Register.js
 =======
 >>>>>>> 65c39196 (Registration changes)
+<<<<<<< HEAD
 >>>>>>> 7ac276cc (Registration changes)
+=======
+=======
+                <Button
+                  className="mt-4"
+                  color="primary"
+                  type="button"
+                  onClick={() => {
+                    formSubmitHandler();
+                  }}
+>>>>>>> 3440f513 (fixing compilation issues)
+>>>>>>> 0b7de6d9 (fixing compilation issues)
                 >
                   Create account
                 </Button>
