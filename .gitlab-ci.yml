@@ -51,6 +51,7 @@ deploy_uat:
   only:
     - uat
 
+<<<<<<< HEAD
 sonarqube-check:
   image:
     name: sonarsource/sonar-scanner-cli:latest
@@ -70,12 +71,17 @@ sonarqube-check:
 
 deploy_prod:
   stage: deploy_prod
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
     - gem install dpl
     - cd codeanalyzer-backend
+<<<<<<< HEAD
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -91,3 +97,21 @@ deploy_prod:
 >>>>>>> d5f1a8a8 (removing unnecessary permissions)
   only:
     - main
+=======
+    - echo "dbURL=$DATABASE_PROD_URL" > .env
+    - echo "dbUserName=$DATABASE_PROD_USERNAME" >> .env
+    - echo "dbPassword=$DATABASE_PROD_PASSWORD" >> .env
+    - echo "dbDriver=$DATABASE_DRIVER" >> .env
+    - echo "Deploying the backend release pipeline"
+    - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
+
+deploy_frontend_prod:
+  stage: deploy_frontend_prod
+  script:
+    - cd codeanalyzer-frontend
+    - echo "Deploying the frontend release pipeline"
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+
+only:
+  - main
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
