@@ -26,8 +26,12 @@ stages:
   - deploy_backend_prod
 =======
   - deploy_backend_prod
+<<<<<<< HEAD
   - deploy_frontend-prod
 >>>>>>> 1dc92b68 (removing datetime)
+=======
+  - deploy_frontend_prod
+>>>>>>> 3f7d437c (fixing uml typo)
   - sonarqube-check
 
 build:
@@ -300,6 +304,7 @@ only:
 >>>>>>> de9fe714 (node dependency fix)
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
+<<<<<<< HEAD
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
 <<<<<<< HEAD
 
@@ -307,6 +312,9 @@ only:
   - main
 >>>>>>> 64da8f70 (Update .gitlab-ci.yml)
 =======
+=======
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip-cleanup
+>>>>>>> 3f7d437c (fixing uml typo)
   only:
     - main
 >>>>>>> f889e6db (fixing yaml)
