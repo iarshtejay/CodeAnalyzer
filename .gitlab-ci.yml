@@ -168,11 +168,19 @@ deploy_backend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0ebb1601 (fixing ruby version)
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
 <<<<<<< HEAD
     - gem install faraday -v 1.10.0
+=======
+    - apt update -qy
+    - apt install -y ruby-full
+    # - apt-get install -u zip unzip
+>>>>>>> 110eb121 (fixing ruby version)
     - gem install dpl
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -389,9 +397,15 @@ only:
 deploy_frontend_prod:
   stage: deploy_prod
   script:
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
+=======
+    - apt update -qy
+    - apt install -y ruby-full
+    # - apt-get install -u zip unzip
+>>>>>>> 110eb121 (fixing ruby version)
     - gem install dpl
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
