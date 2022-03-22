@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commits",
+  "info": {
+    "singularName": "commit",
+    "pluralName": "commits",
+    "displayName": "Commit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "sha": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::branch.branch",
+      "inversedBy": "commits"
+    }
+  }
+}

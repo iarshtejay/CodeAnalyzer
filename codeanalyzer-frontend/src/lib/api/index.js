@@ -5,11 +5,11 @@ const authGithubUser = (accessToken) => {
     return get('/auth/github/callback?access_token=' + accessToken)
 }
 
-const createGithubAuths = (info) => {
-    return post('/github-auths', info);
+const createAuths = (info, headers) => {
+    return post('/auths', info, headers);
 }
 
 export const api = {
     authGithubUser,
-    createGithubAuths
+    createAuths
 }

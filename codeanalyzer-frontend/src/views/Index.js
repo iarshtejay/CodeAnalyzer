@@ -62,17 +62,15 @@ const Index = (props) => {
     const accessToken = query.get('access_token');
     const refreshToken = query.get('refresh_token');
     const expiresIn = query.get('raw[expires_in]');
+    console.log('AT->', accessToken, refreshToken, expiresIn);
     const userRegistration = await api.authGithubUser(accessToken);
-    if(userRegistration && userRegistration.user){
-      const createGithubAuths = await api.createGithubAuths({
-        data: {
-          accessToken: accessToken,
-          refreshToken: refreshToken,
-          expiresIn: expiresIn,
-          user: userRegistration.user,
-        }
-      });
-      if(createGithubAuths){
+    console.log('UR->', userRegistration);
+    if(userRegistration && userRegistration.data.user){
+      console.log('CGA', userRegistration.data.user, userRegistration.data.user, accessToken, refreshToken, expiresIn);
+      const createGithubAuth = await createGithubAuths(userRegistration.data.user, accessToken, refreshToken, expiresIn, { headers: {
+        'Authorization' : 'Bearer ' + userRegistration.data.jwt
+      }});
+      if(createGithubAuth){
         console.log('User Registration was Successful!');
       }
     }
@@ -81,6 +79,24 @@ const Index = (props) => {
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
+  }
+
+  const createGithubAuths = async (user, accessToken, refreshToken, expiresIn, headers) => {
+    try{
+      console.log('Headers', headers);
+      return await api.createAuths({
+        data: {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          expiresIn: expiresIn,
+          user: user,
+          kind: 'Github',
+          cloudId: null
+        }
+      }, headers);
+    } catch (err) {
+      console.error('Unable to add Github Auths -> ' , err)
+    }
   }
 
   const toggleNavs = (e, index) => {
