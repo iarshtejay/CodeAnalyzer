@@ -169,8 +169,11 @@ deploy_backend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0ebb1601 (fixing ruby version)
+=======
+>>>>>>> bc30f3d3 (updating to apt)
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
@@ -178,6 +181,9 @@ deploy_backend_prod:
     - gem install faraday -v 1.10.0
 =======
     - apt update -qy
+=======
+    - apt update -qy && apt upgrade
+>>>>>>> fcac2f07 (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 110eb121 (fixing ruby version)
@@ -398,11 +404,15 @@ deploy_frontend_prod:
   stage: deploy_prod
   script:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
 =======
     - apt update -qy
+=======
+    - apt update -qy && apt upgrade
+>>>>>>> fcac2f07 (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 110eb121 (fixing ruby version)
