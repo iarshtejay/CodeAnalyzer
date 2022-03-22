@@ -24,6 +24,7 @@ import Chart from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
 
 import useQuery from "../hooks/useQuery";
+import useClean from "../hooks/useClean";
 // reactstrap components
 import {
   Button,
@@ -48,7 +49,7 @@ import {
   chartExample2,
 } from "variables/charts.js";
 
-import { api } from "../lib/api"
+import { api } from "../lib/api";
 
 import Header from "components/Headers/Header.js";
 
@@ -56,15 +57,66 @@ const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const query = useQuery();
   const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const [info, setInfo] = useState([{}]);
+
+  //This are for commits table
+  const [commit, setCommit] = useState(null);
+  const [languages, setLanguages] = useState("");
+  const [name, setName] = useState("");
+  const [issues, setIssues] = useState(false);
+  const [projects, setProjects] = useState(false);
+  const [uid, setUid] = useState(null);
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+  const [pushedAt, setPushedAt] = useState("");
+  const [updatedAt, setUpdatedAt] = useState("");
+  const [size, setSize] = useState(null);
 
   useEffect(() => {
-    ;(async () => {
-    const accessToken = query.get('access_token');
-    const userRegistration = await api.authGithubUser(accessToken);
-    console.log('User Registration Successful ->', userRegistration);
-
-  })()
+    (async () => {
+      const accessToken = query.get("access_token");
+      const userRegistration = await api.authGithubUser(accessToken);
+      console.log("User Registration Successful ->", userRegistration);
+      setInfo(api.userRepository(userRegistration.data.user.username));
+    })();
   }, []);
+
+  //const setData = () => {};
+
+  const cleanData = () => {
+    for (let i = 0; i < info.length; i++) {
+      setName(info[i].name);
+      setCommit(info[i].commits_url);
+      setLanguages(info[i].languages_url);
+      setIssues(info[i].has_issues);
+      setProjects(info[i].has_projects);
+      setDescription(info[i].description);
+      setUrl(info[i].html_url);
+      setUid(info[i].id);
+      setCreatedAt(info[i].created_at);
+      setPushedAt(info[i].pushed_at);
+      setUpdatedAt(info[i].updated_at);
+      setSize(info[i].size);
+
+      const batch = {
+        data: {
+          name: name,
+          commits: commit,
+          languages: languages,
+          has_issues: issues,
+          has_projects: projects,
+          description: description,
+          url: url,
+          uid: uid,
+          repoCreatedAt: createdAt,
+          repoUpdatedAt: updatedAt,
+          repoPushedAt: pushedAt,
+          size: size,
+        },
+      };
+    }
+  };
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());

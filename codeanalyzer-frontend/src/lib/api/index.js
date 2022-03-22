@@ -20,18 +20,12 @@ const pushData = async (info) => {
 const userRepository = async (username) => {
   const response = await get("https://api.github.com/users/tushartushar/repos"); //,'+username+'
   console.log(response.data);
-  clean(response);
+  return response.data;
+  //clean(response);
 };
 
 // This function will count the commits made by the user.
-const clean = async (response) => {
-  const repository = response.data;
-  console.log(repository.length);
-  //console.log(repository[0].commits_url)
-  const url = repository[0].commits_url.slice(0, -6);
-  const commits = await get(url);
-  console.log(commits.data);
-};
+const clean = async (response) => {};
 
 export const api = {
   authGithubUser,

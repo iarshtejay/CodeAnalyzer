@@ -46,6 +46,12 @@
     },
     "repoPushedAt": {
       "type": "datetime"
+    },
+    "commits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::commit.commit",
+      "mappedBy": "repository"
     }
   }
 }
