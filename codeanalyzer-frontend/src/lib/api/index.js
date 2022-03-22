@@ -5,6 +5,12 @@ const authGithubUser = (accessToken) => {
   return get("/auth/github/callback?access_token=" + accessToken);
 };
 
+// This function is used to push the data to database.
+const pushData = (data) => {
+  console.log(data);
+  const response = post("/normal-users", data);
+};
+
 // This function will take username from fetched data and
 //then get the all repository information from the github api.
 
