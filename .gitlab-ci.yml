@@ -35,11 +35,16 @@ stages:
 =======
   - deploy_backend_prod
 <<<<<<< HEAD
+<<<<<<< HEAD
   - deploy_frontend-prod
 >>>>>>> 1dc92b68 (removing datetime)
 =======
   - deploy_frontend_prod
 >>>>>>> 3f7d437c (fixing uml typo)
+=======
+  - deploy_frontend-prod
+>>>>>>> 29e49017 (removing datetime)
+>>>>>>> 14324204 (removing datetime)
   - sonarqube-check
 
 build:
@@ -100,6 +105,7 @@ sonarqube-check:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
@@ -141,9 +147,13 @@ deploy_backend_prod:
   stage: deploy_backend_prod
 >>>>>>> 1dc92b68 (removing datetime)
 =======
+=======
+>>>>>>> 14324204 (removing datetime)
 deploy_backend_prod:
   stage: deploy_backend_prod
 =======
+=======
+>>>>>>> 29e49017 (removing datetime)
 deploy_prod:
   stage: deploy_prod
 <<<<<<< HEAD
@@ -179,8 +189,18 @@ deploy_backend_prod:
 =======
 =======
 >>>>>>> ddc2f904 (updating node version)
+<<<<<<< HEAD
 >>>>>>> 5c499a40 (updating node version)
+<<<<<<< HEAD
 >>>>>>> bd56a4cb (updating node version)
+=======
+=======
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+>>>>>>> 1dc92b68 (removing datetime)
+>>>>>>> 29e49017 (removing datetime)
+>>>>>>> 14324204 (removing datetime)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -474,7 +494,7 @@ only:
     - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
 
 deploy_frontend_prod:
-  stage: deploy_prod
+  stage: deploy_frontend_prod
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
