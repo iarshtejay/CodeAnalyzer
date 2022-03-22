@@ -69,6 +69,9 @@ deploy_uat:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 71a93dfa (Update .gitlab-ci.yml)
 sonarqube-check:
   image:
     name: sonarsource/sonar-scanner-cli:latest
@@ -86,6 +89,7 @@ sonarqube-check:
   only:
     - qurram # or the name of your main branch
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 deploy_prod:
@@ -128,6 +132,18 @@ deploy_backend_prod:
 deploy_backend_prod:
   stage: deploy_backend_prod
 >>>>>>> 1dc92b68 (removing datetime)
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+=======
+deploy_prod:
+  stage: deploy_prod
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
+>>>>>>> 270a27e5 (Update .gitlab-ci.yml)
+>>>>>>> 71a93dfa (Update .gitlab-ci.yml)
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -195,7 +211,11 @@ deploy_backend_prod:
     - gem install dpl
 >>>>>>> 03529e88 (updating backend deploy vars)
     - cd codeanalyzer-backend
+<<<<<<< HEAD
 >>>>>>> de9fe714 (node dependency fix)
+=======
+<<<<<<< HEAD
+>>>>>>> 71a93dfa (Update .gitlab-ci.yml)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -296,6 +316,7 @@ only:
 >>>>>>> ce0555f3 (removing unnecessary permissions)
   only:
     - main
+<<<<<<< HEAD
 >>>>>>> f889e6db (fixing yaml)
 =======
 =======
@@ -335,10 +356,27 @@ only:
 <<<<<<< HEAD
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
 <<<<<<< HEAD
+=======
+=======
+    - echo "dbURL=$DATABASE_PROD_URL" > .env
+    - echo "dbUserName=$DATABASE_PROD_USERNAME" >> .env
+    - echo "dbPassword=$DATABASE_PROD_PASSWORD" >> .env
+    - echo "dbDriver=$DATABASE_DRIVER" >> .env
+    - echo "Deploying the backend release pipeline"
+    - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
+
+deploy_frontend_prod:
+  stage: deploy_frontend_prod
+  script:
+    - cd codeanalyzer-frontend
+    - echo "Deploying the frontend release pipeline"
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+>>>>>>> 71a93dfa (Update .gitlab-ci.yml)
 
 only:
   - main
 >>>>>>> 64da8f70 (Update .gitlab-ci.yml)
+<<<<<<< HEAD
 =======
 =======
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip-cleanup
@@ -346,3 +384,5 @@ only:
   only:
     - main
 >>>>>>> f889e6db (fixing yaml)
+=======
+>>>>>>> 71a93dfa (Update .gitlab-ci.yml)
