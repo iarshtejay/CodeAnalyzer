@@ -1,5 +1,6 @@
 image: node:16.14.0
 
+<<<<<<< HEAD
 # default:
 #   before_script:
 #     - apt-get update -qy
@@ -7,6 +8,8 @@ image: node:16.14.0
 #     - apt-get install -u zip unzip
 #     - gem install dpl
 
+=======
+>>>>>>> 4f46e01f (Update .gitlab-ci.yml)
 cache:
   paths:
     - node_modules/
@@ -108,6 +111,10 @@ deploy_backend_prod:
 deploy_frontend_prod:
   stage: deploy_frontend_prod
   script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - apt-get install -u zip unzip
+    - gem install dpl
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
