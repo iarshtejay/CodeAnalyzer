@@ -35,19 +35,24 @@ import {
 } from "reactstrap";
 
 const Register = () => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // This function (formSubmitHandler) will pass the registration details to backend so further we can save user details in our database.
+  // This function (formSubmitHandler) will pass the registration details to
+  //backend so further we can save user details in our database.
   const formSubmitHandler = () => {
-    console.log(name, email, password);
+    console.log(username, email, password);
 
-    const data = {
-      name,
-      email,
-      password,
+    const info = {
+      data: {
+        username: username,
+        email: email,
+        password: password,
+      },
     };
+
+    api.pushData(info);
 
     // fetch("http://localhost:1337/api/auth/local/register",{
     //   method:"post",
@@ -129,7 +134,7 @@ const Register = () => {
                     placeholder="Name"
                     type="text"
                     onChange={(e) => {
-                      setName(e.target.value);
+                      setUsername(e.target.value);
                     }}
                   />
                 </InputGroup>
