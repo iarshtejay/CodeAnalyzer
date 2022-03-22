@@ -97,12 +97,16 @@ deploy_backend_prod:
 >>>>>>> ddc2f904 (updating node version)
 =======
 deploy_backend_prod:
+<<<<<<< HEAD
   stage: deploy_backend_prod
 >>>>>>> 1dc92b68 (removing datetime)
 =======
 deploy_backend_prod:
   stage: deploy_backend_prod
 >>>>>>> 64da8f70 (Update .gitlab-ci.yml)
+=======
+  stage: deploy_prod
+>>>>>>> 8e4ae227 (fixing yaml)
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
@@ -157,7 +161,7 @@ deploy_backend_prod:
     - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
 
 deploy_frontend_prod:
-  stage: deploy_frontend_prod
+  stage: deploy_prod
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
