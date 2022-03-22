@@ -1,9 +1,14 @@
 {
 	"latest": "4.1.5",
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"lastUpdateCheck": 1647977102637,
 =======
 	"lastUpdateCheck": 1647796501018,
 >>>>>>> e1bf161f (jira integration + context api complete)
 	"lastNotification": 1645051085480
+=======
+	"lastUpdateCheck": 1647898948674,
+	"lastNotification": 1647899757303
+>>>>>>> 29376015 (updating backend deploy vars)
 }
