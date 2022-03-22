@@ -108,6 +108,7 @@ deploy_backend_prod:
   stage: deploy_prod
 >>>>>>> 8e4ae227 (fixing yaml)
   script:
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
@@ -126,6 +127,11 @@ deploy_backend_prod:
     - cd codeanalyzer-backend
 >>>>>>> de9fe714 (node dependency fix)
 =======
+=======
+    - apt update -qy
+    - apt install -y ruby-full
+    # - apt-get install -u zip unzip
+>>>>>>> 04f24ed8 (fixing ruby version)
     - gem install dpl
     - cd codeanalyzer-backend
 >>>>>>> 29376015 (updating backend deploy vars)
@@ -168,6 +174,7 @@ deploy_frontend_prod:
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
@@ -202,6 +209,11 @@ only:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
+=======
+    - apt update -qy
+    - apt install -y ruby-full
+    # - apt-get install -u zip unzip
+>>>>>>> 04f24ed8 (fixing ruby version)
     - gem install dpl
 >>>>>>> 4f46e01f (Update .gitlab-ci.yml)
     - cd codeanalyzer-frontend
