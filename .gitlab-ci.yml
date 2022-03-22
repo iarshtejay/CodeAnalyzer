@@ -56,6 +56,7 @@ deploy_uat:
     - uat
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 sonarqube-check:
   image:
     name: sonarsource/sonar-scanner-cli:latest
@@ -95,6 +96,10 @@ deploy_backend_prod:
 deploy_backend_prod:
   stage: deploy_backend_prod
 >>>>>>> 1dc92b68 (removing datetime)
+=======
+deploy_backend_prod:
+  stage: deploy_backend_prod
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
   script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
@@ -142,12 +147,16 @@ deploy_backend_prod:
     - echo "dbPassword=$DATABASE_PROD_PASSWORD" >> .env
     - echo "dbDriver=$DATABASE_DRIVER" >> .env
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
     - echo "Deploying the backend release pipeline"
     - dpl --provider=heroku --app=$HEROKU_BACKEND_APP --api-key=$HEROKU_BACKEND_API_KEY
 
 deploy_frontend_prod:
   stage: deploy_frontend_prod
   script:
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
@@ -177,3 +186,11 @@ only:
   only:
     - main
 >>>>>>> f889e6db (fixing yaml)
+=======
+    - cd codeanalyzer-frontend
+    - echo "Deploying the frontend release pipeline"
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+
+only:
+  - main
+>>>>>>> 64da8f70 (Update .gitlab-ci.yml)
