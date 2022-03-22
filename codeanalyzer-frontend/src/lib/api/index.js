@@ -33,4 +33,5 @@ const clean = async (response) => {
 export const api = {
   authGithubUser,
   userRepository,
+  pushData,
 };
