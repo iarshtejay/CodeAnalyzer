@@ -239,6 +239,7 @@ deploy_backend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - cd codeanalyzer-backend
 <<<<<<< HEAD
 =======
@@ -289,6 +290,8 @@ deploy_backend_prod:
 =======
 =======
 >>>>>>> bd56a4cb (updating node version)
+=======
+>>>>>>> 730d7779 (node dependency fix)
     - npm config set legacy-peer-deps true
 =======
     - gem install dpl
@@ -296,6 +299,9 @@ deploy_backend_prod:
 =======
 <<<<<<< HEAD
 >>>>>>> 5c499a40 (updating node version)
+=======
+<<<<<<< HEAD
+>>>>>>> 2bc04362 (node dependency fix)
     - cd codeanalyzer-backend
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -307,7 +313,14 @@ deploy_backend_prod:
 =======
     - cd code-analyzer-backend
 >>>>>>> ddc2f904 (updating node version)
+<<<<<<< HEAD
 >>>>>>> bd56a4cb (updating node version)
+=======
+=======
+    - npm config set legacy-peer-deps true
+    - cd codeanalyzer-backend
+>>>>>>> de9fe714 (node dependency fix)
+>>>>>>> 730d7779 (node dependency fix)
     - echo "DATABASE_HOST=$DATABASE_PROD_HOST" > .env
     - echo "DATABASE_PORT=$DATABASE_PROD_PORT" > .env
     - echo "DATABASE_NAME=$DATABASE_PROD_NAME" > .env
@@ -500,6 +513,7 @@ deploy_frontend_prod:
     - gem install faraday -v 1.10.0
 >>>>>>> 5eac3195 (adding faraday dependency)
     - gem install dpl
+    - npm config set legacy-peer-deps true
     - cd codeanalyzer-frontend
     - echo "Deploying the frontend release pipeline"
     - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
