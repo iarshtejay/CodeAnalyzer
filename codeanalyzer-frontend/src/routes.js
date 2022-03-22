@@ -16,6 +16,7 @@
 
 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Index from "views/Index.js";
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -30,6 +31,8 @@ import Commits from "views/menu/Commits.js";
 =======
 >>>>>>> e40aa0f8 (Repository Commits V1)
 =======
+=======
+>>>>>>> b5b5e658 (Repository Commits V1)
 import Dashboard from "views/Dashboard.js";
 >>>>>>> 46eb48e9 (fixing mc)
 import Profile from "views/examples/Profile.js";
@@ -41,9 +44,14 @@ import Icons from "views/examples/Icons.js";
 import JiraAuth from "views/JiraAuth";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e1bf161f (jira integration + context api complete)
 =======
 =======
+=======
+=======
+import Index from "views/Index.js";
+>>>>>>> b5b5e658 (Repository Commits V1)
 import Profile from "views/menu/Profile.js";
 import Maps from "views/menu/Maps.js";
 import Register from "views/menu/Register.js";
@@ -52,9 +60,12 @@ import Tables from "views/menu/Tables.js";
 import Icons from "views/menu/Icons.js";
 import Commits from "views/menu/Commits.js";
 >>>>>>> db02b4bc (Repository Commits V1)
+<<<<<<< HEAD
 >>>>>>> e40aa0f8 (Repository Commits V1)
 =======
 >>>>>>> e1bf161f (jira integration + context api complete)
+=======
+>>>>>>> b5b5e658 (Repository Commits V1)
 
 var routes = [
   {

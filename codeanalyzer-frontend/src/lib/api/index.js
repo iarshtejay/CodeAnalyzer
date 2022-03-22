@@ -12,6 +12,7 @@ const authGithubUser = (accessToken) => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 const createAuths = (info, headers) => {
     return post('/auths', info, headers);
 }
@@ -148,3 +149,13 @@ export const api = {
 >>>>>>> 46eb48e9 (fixing mc)
 =======
 >>>>>>> 93003fc4 (fixing compilation issues)
+=======
+const createAuths = (info, headers) => {
+    return post('/auths', info, headers);
+}
+
+export const api = {
+    authGithubUser,
+    createAuths
+}
+>>>>>>> b5b5e658 (Repository Commits V1)
