@@ -170,10 +170,13 @@ deploy_backend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0ebb1601 (fixing ruby version)
 =======
 >>>>>>> bc30f3d3 (updating to apt)
+=======
+>>>>>>> a6693267 (updating to apt)
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
@@ -184,6 +187,9 @@ deploy_backend_prod:
 =======
     - apt update -qy && apt upgrade
 >>>>>>> fcac2f07 (updating to apt)
+=======
+    - apt update -qy && apt upgrade -y
+>>>>>>> 9e93d31b (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 110eb121 (fixing ruby version)
@@ -405,6 +411,7 @@ deploy_frontend_prod:
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
@@ -413,6 +420,9 @@ deploy_frontend_prod:
 =======
     - apt update -qy && apt upgrade
 >>>>>>> fcac2f07 (updating to apt)
+=======
+    - apt update -qy && apt upgrade -y
+>>>>>>> 9e93d31b (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 110eb121 (fixing ruby version)
