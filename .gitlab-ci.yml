@@ -110,6 +110,7 @@ deploy_backend_prod:
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-full
     - apt-get install -u zip unzip
@@ -133,6 +134,9 @@ deploy_backend_prod:
 =======
     - apt update -qy && apt upgrade
 >>>>>>> 7827fb20 (updating to apt)
+=======
+    - apt update -qy && apt upgrade -y
+>>>>>>> 5cc3a38e (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 04f24ed8 (fixing ruby version)
@@ -180,6 +184,7 @@ deploy_frontend_prod:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - apt-get install -u zip unzip
@@ -219,6 +224,9 @@ only:
 =======
     - apt update -qy && apt upgrade
 >>>>>>> 7827fb20 (updating to apt)
+=======
+    - apt update -qy && apt upgrade -y
+>>>>>>> 5cc3a38e (updating to apt)
     - apt install -y ruby-full
     # - apt-get install -u zip unzip
 >>>>>>> 04f24ed8 (fixing ruby version)
