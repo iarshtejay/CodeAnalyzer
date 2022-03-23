@@ -92,7 +92,7 @@ const repoData = async (data) => {
         }
       };
       console.log("Done!",batch)
-      //await api.pushRepositoryData(batch)
+      await api.pushRepositoryData(batch)
     }
     return data
   };
