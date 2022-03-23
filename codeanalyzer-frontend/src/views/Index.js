@@ -57,66 +57,38 @@ const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const query = useQuery();
   const [chartExample1Data, setChartExample1Data] = useState("data1");
-  const [info, setInfo] = useState([{}]);
+  const [commits,setCommits] = useState([{}])
 
-  //This are for commits table
-  const [commit, setCommit] = useState(null);
-  const [languages, setLanguages] = useState("");
-  const [name, setName] = useState("");
-  const [issues, setIssues] = useState(false);
-  const [projects, setProjects] = useState(false);
-  const [uid, setUid] = useState(null);
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
-  const [pushedAt, setPushedAt] = useState("");
-  const [updatedAt, setUpdatedAt] = useState("");
-  const [size, setSize] = useState(null);
 
   useEffect(() => {
     (async () => {
       const accessToken = query.get("access_token");
       const userRegistration = await api.authGithubUser(accessToken);
       console.log("User Registration Successful ->", userRegistration);
-      setInfo(api.userRepository(userRegistration.data.user.username));
+      
+      const data = await api.userRepository(userRegistration.data.user.username)
+      const newData = await commitData(data)
+      setCommits(newData)
     })();
   }, []);
 
-  //const setData = () => {};
-
-  const cleanData = () => {
-    for (let i = 0; i < info.length; i++) {
-      setName(info[i].name);
-      setCommit(info[i].commits_url);
-      setLanguages(info[i].languages_url);
-      setIssues(info[i].has_issues);
-      setProjects(info[i].has_projects);
-      setDescription(info[i].description);
-      setUrl(info[i].html_url);
-      setUid(info[i].id);
-      setCreatedAt(info[i].created_at);
-      setPushedAt(info[i].pushed_at);
-      setUpdatedAt(info[i].updated_at);
-      setSize(info[i].size);
-
+  //This function is for uploading data to commit table
+  const commitData = async (data) =>{
+    
+    for (let i = 0; i < data.length; i++) {
+      const commit=api.fetchCommit((data[i].commits_url).slice(0,-6))
       const batch = {
-        data: {
-          name: name,
-          commits: commit,
-          languages: languages,
-          has_issues: issues,
-          has_projects: projects,
-          description: description,
-          url: url,
-          uid: uid,
-          repoCreatedAt: createdAt,
-          repoUpdatedAt: updatedAt,
-          repoPushedAt: pushedAt,
-          size: size,
-        },
-      };
+        sha:commit.sha,
+        name:commit.committer.name,
+        data:commit.committer.date,
+        url:commit.url,
+        verified:commit.verification.verified
+      }
+      console.log(batch,i)
     }
-  };
+    return data
+  }
+
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());

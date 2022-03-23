@@ -5,13 +5,25 @@ const authGithubUser = (accessToken) => {
   return get("/auth/github/callback?access_token=" + accessToken);
 };
 
-// This function is used to push the data to database.
-const pushData = async (info) => {
-  // const details = {
-  //   data: info,
-  // };
-  console.log(info);
-  const response = await post("/normal-users", info);
+
+// To post data to commits table
+const pushCommitData = async (info)=> {
+  const response = await post("/api/commits",info)
+}
+
+// Fetching commits data
+const fetchCommit = async (url)=>{
+  const response = await get(url)
+  return response.data
+}
+
+
+
+
+// This function will push the data of registered user to Database
+const pushData = (data) => {
+  console.log(data);
+  const response = post("/normal-users", data);
   console.log(response);
 };
 
@@ -19,16 +31,15 @@ const pushData = async (info) => {
 //then get the all repository information from the github api.
 const userRepository = async (username) => {
   const response = await get("https://api.github.com/users/tushartushar/repos"); //,'+username+'
-  console.log(response.data);
-  return response.data;
-  //clean(response);
+  return response.data
 };
 
-// This function will count the commits made by the user.
-const clean = async (response) => {};
+
 
 export const api = {
   authGithubUser,
   userRepository,
   pushData,
+  pushCommitData,
+  fetchCommit
 };
