@@ -15,100 +15,15 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-import Index from "views/Index.js";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import Profile from "views/menu/Profile.js";
-import Maps from "views/menu/Maps.js";
-import Register from "views/menu/Register.js";
-import Login from "views/menu/Login.js";
-import Tables from "views/menu/Tables.js";
-import Icons from "views/menu/Icons.js";
-import Commits from "views/menu/Commits.js";
-=======
-=======
->>>>>>> e40aa0f8 (Repository Commits V1)
-=======
-=======
->>>>>>> b5b5e658 (Repository Commits V1)
 import Dashboard from "views/Dashboard.js";
->>>>>>> 46eb48e9 (fixing mc)
-import Profile from "views/examples/Profile.js";
-import Maps from "views/examples/Maps.js";
-import Register from "views/examples/Register.js";
-import Login from "views/examples/Login.js";
-import Tables from "views/examples/Tables.js";
-import Icons from "views/examples/Icons.js";
-import JiraAuth from "views/JiraAuth";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e1bf161f (jira integration + context api complete)
-=======
-=======
-=======
-=======
-import Index from "views/Index.js";
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> b5b5e658 (Repository Commits V1)
-=======
-<<<<<<< HEAD
->>>>>>> dae46cb7 (jira integration + context api complete)
-=======
-<<<<<<< HEAD
->>>>>>> ad877c1a (Repository Commits V1)
 import Profile from "views/menu/Profile.js";
 import Maps from "views/menu/Maps.js";
 import Register from "views/menu/Register.js";
 import Login from "views/menu/Login.js";
 import Tables from "views/menu/Tables.js";
-import Icons from "views/menu/Icons.js";
 import Commits from "views/menu/Commits.js";
-<<<<<<< HEAD
->>>>>>> db02b4bc (Repository Commits V1)
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e40aa0f8 (Repository Commits V1)
-=======
->>>>>>> e1bf161f (jira integration + context api complete)
-=======
->>>>>>> b5b5e658 (Repository Commits V1)
-=======
-=======
-=======
-=======
->>>>>>> e40aa0f8 (Repository Commits V1)
-import Profile from "views/examples/Profile.js";
-import Maps from "views/examples/Maps.js";
-import Register from "views/examples/Register.js";
-import Login from "views/examples/Login.js";
-import Tables from "views/examples/Tables.js";
-import Icons from "views/examples/Icons.js";
 import JiraAuth from "views/JiraAuth";
-<<<<<<< HEAD
->>>>>>> e1bf161f (jira integration + context api complete)
-<<<<<<< HEAD
->>>>>>> ae4d25bc (jira integration + context api complete)
-<<<<<<< HEAD
->>>>>>> dae46cb7 (jira integration + context api complete)
-=======
-=======
-=======
-=======
-import Profile from "views/menu/Profile.js";
-import Maps from "views/menu/Maps.js";
-import Register from "views/menu/Register.js";
-import Login from "views/menu/Login.js";
-import Tables from "views/menu/Tables.js";
-import Icons from "views/menu/Icons.js";
-import Commits from "views/menu/Commits.js";
->>>>>>> db02b4bc (Repository Commits V1)
->>>>>>> e40aa0f8 (Repository Commits V1)
->>>>>>> 7a85f0ba (Repository Commits V1)
->>>>>>> ad877c1a (Repository Commits V1)
+
 
 var routes = [
   {
@@ -143,21 +58,6 @@ var routes = [
     path: "/repositories",
     name: "Repositories",
     icon: "ni ni-collection text-blue",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7a85f0ba (Repository Commits V1)
-<<<<<<< HEAD
-    component: Icons,
-    layout: "/admin"
-=======
-<<<<<<< HEAD
->>>>>>> ae4d25bc (jira integration + context api complete)
-=======
-=======
->>>>>>> e40aa0f8 (Repository Commits V1)
->>>>>>> 7a85f0ba (Repository Commits V1)
     component: JiraAuth,
     layout: "/admin",
     // sub_route: [
@@ -169,20 +69,6 @@ var routes = [
     //     layout: "/admin",
     //   },
     // ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e1bf161f (jira integration + context api complete)
->>>>>>> ae4d25bc (jira integration + context api complete)
-=======
->>>>>>> e1bf161f (jira integration + context api complete)
-=======
-=======
-    component: Icons,
-    layout: "/admin"
->>>>>>> db02b4bc (Repository Commits V1)
->>>>>>> e40aa0f8 (Repository Commits V1)
->>>>>>> 7a85f0ba (Repository Commits V1)
   },
   {
     path: "/maps",
