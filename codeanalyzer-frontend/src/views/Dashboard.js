@@ -39,6 +39,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from "reactstrap";
 
 // core components
@@ -53,7 +54,7 @@ import { api } from "../lib/api";
 
 import Header from "components/Headers/Header.js";
 
-const Index = (props) => {
+const Dashboard = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const query = useQuery();
   const [chartExample1Data, setChartExample1Data] = useState("data1");
@@ -61,32 +62,45 @@ const Index = (props) => {
 
 
   useEffect(() => {
-    (async () => {
-      const accessToken = query.get("access_token");
-      const userRegistration = await api.authGithubUser(accessToken);
-      console.log("User Registration Successful ->", userRegistration);
-      
-      const data = await api.userRepository(userRegistration.data.user.username)
-      const newData = await commitData(data)
-      setCommits(newData)
-    })();
+    ;(async () => {
+    const accessToken = query.get('access_token');
+    const refreshToken = query.get('refresh_token');
+    const expiresIn = query.get('raw[expires_in]');
+    const userRegistration = await api.authGithubUser(accessToken);
+    if(userRegistration && userRegistration.user){
+      const createGithubAuths = await api.createGithubAuths({
+        data: {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          expiresIn: expiresIn,
+          user: userRegistration.user,
+        }
+      });
+      if(createGithubAuths){
+        console.log('User Registration was Successful!');
+      }
+    }
+
+    //for fetching data from api 
+    // api.fetchGithubRepo(userRegistration.data.user.username)
+    
+  })()
   }, []);
 
   //This function is for uploading data to commit table
   const commitData = async (data) =>{
-    const commit = api.fetchCommit((data[0].commits_url).slice(0,-6))
-    console.log(commit)
-    // for (let i = 0; i < data.length; i++) {
-    //   const commit=api.fetchCommit((data[i].commits_url).slice(0,-6))
-    //   const batch = {
-    //     sha:commit.sha,
-    //     name:commit.committer.name,
-    //     data:commit.committer.date,
-    //     url:commit.url,
-    //     verified:commit.verification.verified
-    //   }
-    //   console.log(batch,i)
-    // }
+    
+    for (let i = 0; i < data.length; i++) {
+      const commit=api.fetchCommit((data[i].commits_url).slice(0,-6))
+      const batch = {
+        sha:commit.sha,
+        name:commit.committer.name,
+        data:commit.committer.date,
+        url:commit.url,
+        verified:commit.verification.verified
+      }
+      console.log(batch,i)
+    }
     return data
   }
 
@@ -374,4 +388,4 @@ const Index = (props) => {
   );
 };
 
-export default Index;
+export default Dashboard;

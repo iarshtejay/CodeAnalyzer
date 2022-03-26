@@ -34,12 +34,20 @@ import {
   Col,
 } from "reactstrap";
 
+<<<<<<< HEAD
 const Register = (props) => {
   //editted code for name, email, password
+=======
+import React, { useState } from "react";
+import { post } from "../../config";
+
+const Register = () => {
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+<<<<<<< HEAD
   // This function (formSubmitHandler) will pass the registration details to
   //backend so further we can save user details in our database.
   const formSubmitHandler = () => {
@@ -57,6 +65,11 @@ const Register = (props) => {
 
     // fetch("http://localhost:1337/api/auth/local/register",{
     //   method:"post",
+=======
+  const formSubmitHandler = async () => {
+    // const response = fetch("http://localhost:1337/api/users",{
+    //   method:"POST",
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
     //   headers:{
     //     "Content-Type":"application/json"
     //   },
@@ -65,6 +78,7 @@ const Register = (props) => {
     //     email,
     //     password
     //   })
+<<<<<<< HEAD
     // }).then(res=>res.json())
     // .then(data=>{
     //   if(data.error){
@@ -73,6 +87,21 @@ const Register = (props) => {
     //     console.log("Success!!!!!!!!!!!!!!")
     //   }
     // })
+=======
+    // }).then(res=>res.json)
+    // .then(data=>{
+    //   console.log("USER CREATED---------------->>>",data)
+    // })
+
+    const credentials = {
+      username,
+      email,
+      password,
+    };
+
+    const response = post("/users", credentials);
+    console.log(response);
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
   };
 
   return (
@@ -131,7 +160,10 @@ const Register = (props) => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
                   <Input
                     placeholder="Name"
                     type="text"
@@ -168,6 +200,10 @@ const Register = (props) => {
                   <Input
                     placeholder="Password"
                     type="password"
+<<<<<<< HEAD
+=======
+                    autoComplete="new-password"
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -207,7 +243,13 @@ const Register = (props) => {
                   className="mt-4"
                   color="primary"
                   type="button"
+<<<<<<< HEAD
                   onClick={() => formSubmitHandler()}
+=======
+                  onClick={() => {
+                    formSubmitHandler();
+                  }}
+>>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
                 >
                   Create account
                 </Button>
