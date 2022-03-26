@@ -38,6 +38,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from "reactstrap";
 
 // core components
@@ -52,7 +53,7 @@ import { api } from "../lib/api"
 
 import Header from "components/Headers/Header.js";
 
-const Index = (props) => {
+const Dashboard = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const query = useQuery();
   const [chartExample1Data, setChartExample1Data] = useState("data1");
@@ -63,11 +64,26 @@ const Index = (props) => {
   useEffect(() => {
     ;(async () => {
     const accessToken = query.get('access_token');
+    const refreshToken = query.get('refresh_token');
+    const expiresIn = query.get('raw[expires_in]');
     const userRegistration = await api.authGithubUser(accessToken);
-    console.log('User Registration Successful ->', userRegistration);
-    const data= await api.userRepository(userRegistration.data.user.username)
-    const newdata = await repoData(data)
-    setInfo(newdata)
+    if(userRegistration && userRegistration.user){
+      const createGithubAuths = await api.createGithubAuths({
+        data: {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          expiresIn: expiresIn,
+          user: userRegistration.user,
+        }
+      });
+      if(createGithubAuths){
+        console.log('User Registration was Successful!');
+      }
+    }
+
+    //for fetching data from api 
+    // api.fetchGithubRepo(userRegistration.data.user.username)
+    
   })()
   }, []);
 
@@ -385,4 +401,4 @@ const repoData = async (data) => {
   );
 };
 
-export default Index;
+export default Dashboard;

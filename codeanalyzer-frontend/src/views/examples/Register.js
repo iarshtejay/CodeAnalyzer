@@ -34,28 +34,17 @@ import {
   Col,
 } from "reactstrap";
 
+import React, { useState } from "react";
+import { post } from "../../config";
+
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // This function (formSubmitHandler) will pass the registration details to
-  //backend so further we can save user details in our database.
-  const formSubmitHandler = () => {
-    console.log(username, email, password);
-
-    const info = {
-      data: {
-        username: username,
-        email: email,
-        password: password,
-      },
-    };
-
-    api.pushData(info);
-
-    // fetch("http://localhost:1337/api/auth/local/register",{
-    //   method:"post",
+  const formSubmitHandler = async () => {
+    // const response = fetch("http://localhost:1337/api/users",{
+    //   method:"POST",
     //   headers:{
     //     "Content-Type":"application/json"
     //   },
@@ -64,14 +53,19 @@ const Register = () => {
     //     email,
     //     password
     //   })
-    // }).then(res=>res.json())
+    // }).then(res=>res.json)
     // .then(data=>{
-    //   if(data.error){
-    //     console.log(data.error)
-    //   } else{
-    //     console.log("Success!!!!!!!!!!!!!!")
-    //   }
+    //   console.log("USER CREATED---------------->>>",data)
     // })
+
+    const credentials = {
+      username,
+      email,
+      password,
+    };
+
+    const response = post("/users", credentials);
+    console.log(response);
   };
 
   return (
@@ -166,6 +160,7 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
+                    autoComplete="new-password"
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -205,7 +200,9 @@ const Register = () => {
                   className="mt-4"
                   color="primary"
                   type="button"
-                  onClick={() => formSubmitHandler()}
+                  onClick={() => {
+                    formSubmitHandler();
+                  }}
                 >
                   Create account
                 </Button>
