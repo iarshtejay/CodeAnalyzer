@@ -21,17 +21,6 @@ module.exports = ({env}) => ({
   connection: {
     client: "postgres",
     connection: {
-<<<<<<< HEAD
-      host: env("DEV_DATABASE_HOST", "localhost"),
-      port: env("DEV_DATABASE_PORT", 3306),
-      database: env("DEV_DATABASE_NAME", "ASDC_PROJECT_BHARAT"),
-      user: env("DEV_DATABASE_USERNAME", "root"),
-      password: env("DEV_DATABASE_PASSWORD", ""),
-    },
-    useNullAsDefault: true,
-  },
-});
-=======
       host: config.host,
       port: config.port,
       database: config.database,
@@ -44,4 +33,3 @@ module.exports = ({env}) => ({
     debug: false
   }
 })
->>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
