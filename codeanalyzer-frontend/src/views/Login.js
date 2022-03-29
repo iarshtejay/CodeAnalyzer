@@ -21,7 +21,7 @@ import { Button, Card, CardHeader, CardBody, Row, Col } from "reactstrap";
 
 import React, { useState } from "react";
 
-import LoginForm from "../LoginForm";
+import LoginForm from "./LoginForm";
 import { useToken } from "auth/useToken";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -70,7 +70,7 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../../assets/img/icons/common/github.svg")
+                      require("../assets/img/icons/common/github.svg") 
                         .default
                     }
                   />
@@ -87,7 +87,7 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../../assets/img/icons/common/google.svg")
+                      require("../assets/img/icons/common/github.svg")
                         .default
                     }
                   />

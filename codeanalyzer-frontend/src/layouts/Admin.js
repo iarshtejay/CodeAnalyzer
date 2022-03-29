@@ -38,23 +38,6 @@ const Admin = (props) => {
         mainContent.current.scrollTop = 0;
     }, [location]);
 
-<<<<<<< HEAD
-    const getRoutes = (routes) => {
-        return routes.map((prop, key) => {
-            if (prop.layout === "/admin") {
-                return (
-                    <Route
-                        path={prop.layout + prop.path}
-                        component={prop.component}
-                        key={key}
-                    />
-                );
-            } else {
-                return null;
-            }
-        });
-    };
-=======
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -70,7 +53,6 @@ const Admin = (props) => {
       }
     });
   };
->>>>>>> 173698a7b423f00242a3142bd98f9485b5cc4922
 
     const getBrandText = (path) => {
         for (let i = 0; i < routes.length; i++) {

@@ -11,7 +11,7 @@ import {
 
 import React, { useState } from 'react';
 
-function LoginForm( {OnSignIn, error} ){
+const LoginForm = ( {OnSignIn, error} )=>{
 
     const [details, setDetails] = useState({email:"", password:""});
 
