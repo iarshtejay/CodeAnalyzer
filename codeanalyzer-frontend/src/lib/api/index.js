@@ -1,13 +1,8 @@
-import { get, post } from "../../config";
-import {
-  getJiraAccessToken,
-  getJiraAuthCode,
-  getJiraCloudId,
-  jiraOAuthFlow,
-} from "./jira";
+import {get, post} from "../../config";
+import {getJiraAccessToken, getJiraAuthCode, getJiraCloudId, jiraOAuthFlow,} from "./jira";
 
 const authGithubUser = (accessToken) => {
-  return get("/auth/github/callback?access_token=" + accessToken);
+    return get("/auth/github/callback?access_token=" + accessToken);
 };
 
 
@@ -34,7 +29,7 @@ const createAuths = (info, headers) => {
 // }
 
 const lengthOfFetchedData = async (url) => {
-  return await get(url).length;
+    return await get(url).length;
 };
 
 
@@ -68,6 +63,7 @@ const userRepository = async (username) => {
 // };
 
 export const api = {
+<<<<<<< HEAD
   authGithubUser,
   userRepository,
   pushData,
@@ -82,4 +78,13 @@ export const api = {
   getJiraCloudId,
   jiraOAuthFlow,
   // fetchGithubRepo
+=======
+    authGithubUser,
+    createAuths,
+    getJiraAuthCode,
+    getJiraAccessToken,
+    getJiraCloudId,
+    jiraOAuthFlow,
+    // fetchGithubRepo
+>>>>>>> 806580bd438d447c06d807780e31d3ca158d3342
 };

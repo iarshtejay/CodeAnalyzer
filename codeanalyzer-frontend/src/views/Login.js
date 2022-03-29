@@ -17,7 +17,7 @@
 */
 
 // reactstrap components
-import { Button, Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 
 import React, { useState } from "react";
 
@@ -70,8 +70,7 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../assets/img/icons/common/github.svg") 
-                        .default
+                      require("../assets/img/icons/common/github.svg").default
                     }
                   />
                 </span>
@@ -87,8 +86,7 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../assets/img/icons/common/github.svg")
-                        .default
+                      require("../assets/img/icons/common/google.svg").default
                     }
                   />
                 </span>
