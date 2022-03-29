@@ -17,7 +17,7 @@
 */
 /*eslint-disable*/
 import { useState } from "react";
-import { NavLink as NavLinkRRD, Link } from "react-router-dom";
+import { NavLink as NavLinkRRD, Link, Redirect } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
 
@@ -51,6 +51,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { LogOut } from "auth/LogOut";
 
 var ps;
 
@@ -68,9 +69,11 @@ const Sidebar = (props) => {
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
+  
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
+      if(prop.sidebar != false){
       return (
         <NavItem key={key}>
           <NavLink
@@ -82,24 +85,9 @@ const Sidebar = (props) => {
             <i className={prop.icon} />
             {prop.name}
           </NavLink>
-          {          
-              prop.sub_route?.map((sub_prop, sub_key) => {
-              // console.log("sub_route", sub_prop)
-              return <NavItem style={{marginLeft: '15%'}} key={sub_key}>
-                <NavLink
-                  to={sub_prop.layout + sub_prop.path}
-                  tag={NavLinkRRD}
-                  onClick={closeCollapse}
-                  activeClassName="active"
-                >
-                <i className={sub_prop.icon} />
-                {sub_prop.name}
-                </NavLink>
-              </NavItem>  
-              })
-            }
         </NavItem>
       );
+      }
     });
   };
 
@@ -194,10 +182,12 @@ const Sidebar = (props) => {
                 <span>Support</span>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                <i className="ni ni-user-run" />
-                <span>Logout</span>
-              </DropdownItem>
+                <NavLinkRRD to="/auth/login">
+                  <DropdownItem onClick={(e) => LogOut()}>
+                    <i className="ni ni-user-run" />
+                    <span>Logout</span>
+                  </DropdownItem>
+                </NavLinkRRD>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

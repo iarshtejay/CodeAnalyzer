@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import axios from "axios";
-import { get, post, put, destroy, fbApiVersion } from "../../config";
-=======
 import { get, post } from "../../config";
 import {
   getJiraAccessToken,
@@ -9,21 +5,25 @@ import {
   getJiraCloudId,
   jiraOAuthFlow,
 } from "./jira";
->>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
 
 const authGithubUser = (accessToken) => {
   return get("/auth/github/callback?access_token=" + accessToken);
 };
 
-<<<<<<< HEAD
+
 
 const pushRepositoryData = async (info)=>{
     const response = await post("/repositories", info)
 }
-=======
+
 const createGithubAuths = (info) => {
   return post("/github-auths", info);
 };
+
+const createAuths = (info, headers) => {
+    return post('/github-auths', info, headers);
+}
+
 
 // const fetchGithubRepo = async (username)=>{
 //     const url = "https://api.github.com/users/tushartushar/repos";
@@ -36,7 +36,7 @@ const createGithubAuths = (info) => {
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
->>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
+
 
 
 // This function is used to push the data to database.
@@ -69,16 +69,17 @@ const userRepository = async (username) => {
 
 export const api = {
   authGithubUser,
-<<<<<<< HEAD
   userRepository,
   pushData,
-  pushRepositoryData
-=======
+  pushRepositoryData,
+
   createGithubAuths,
+
+  createAuths,
+
   getJiraAuthCode,
   getJiraAccessToken,
   getJiraCloudId,
   jiraOAuthFlow,
   // fetchGithubRepo
->>>>>>> 59d4ff0c55048993f875a4e04a7c0843d6bcb899
 };
