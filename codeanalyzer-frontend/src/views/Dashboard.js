@@ -204,7 +204,7 @@ const Dashboard = (props) => {
                                         <h6 className="text-uppercase text-light ls-1 mb-1">
                                             Overview
                                         </h6>
-                                        <h2 className="text-white mb-0">Sales value</h2>
+                                        <h2 className="text-white mb-0">Languages</h2>
                                     </div>
                                 </Row>
                             </CardHeader>
@@ -213,8 +213,8 @@ const Dashboard = (props) => {
                                 <div className="chart">
                                     <Pie
                                         data={pieData}
-                                        options={chartExample1.options}
-                                        getDatasetAtEvent={(e) => console.log(e)}
+                                        // options={chartExample1.options}
+                                        // getDatasetAtEvent={(e) => console.log(e)}
                                     />
                                 </div>
                             </CardBody>
