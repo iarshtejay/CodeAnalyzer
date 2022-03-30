@@ -46,44 +46,95 @@ import {chartExample1, chartExample2, chartOptions, parseOptions,} from "variabl
 import {api} from "../lib/api"
 
 import Header from "components/Headers/Header.js";
+import { getRepositoryData } from "lib/api/dashboardData";
 
 const Dashboard = (props) => {
     const [activeNav, setActiveNav] = useState(1);
     const query = useQuery();
     const [chartExample1Data, setChartExample1Data] = useState("data1");
-    
-    // Pie chart
-    const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    const [languages,setLanguages] = useState([]);
+    const [values, setValues] = useState([]);
+    const [pieData,setPieData] = useState({
+        labels: [],
         datasets: [
           {
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+              ],
             borderWidth: 1,
           },
         ],
-      };
+      })
 
 
-    const getData = () => {
+    useEffect(()=>{
+        getRepositoryData()
+        .then(res=>{
+            console.log(res.data.data[0].attributes)
+            const arr = []
+            const arr2 = []
+            res.data.data.forEach(item =>{
+                Object.keys(item.attributes.languages).forEach(key=>{
+                    arr.push(key)
+                    arr2.push(item.attributes.languages[key])
+                }) 
+            })
+            console.log(arr,arr2)
+            setLanguages([...arr])
+            setValues([...arr2])   
+            
+        }).catch((err)=>{
+            console.log(err)
+        })
+    },[])
 
-    }
+
+    useEffect(() => {
+        setPieData({
+            labels: languages,
+            datasets: [
+              {
+                label: '# of Votes',
+                data: values,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                  ],
+                borderWidth: 1,
+              },
+            ],
+          })
+    },[languages, values])
+    
+    // Pie chart
+
 
     useEffect(() => {
         ;(async () => {
@@ -140,6 +191,7 @@ const Dashboard = (props) => {
     };
     return (
         <>
+        {console.log(pieData,"pieData")}
             <Header showCards={true}/>
             {/* Page content */}
             <Container className="mt--7" fluid>
@@ -154,42 +206,13 @@ const Dashboard = (props) => {
                                         </h6>
                                         <h2 className="text-white mb-0">Sales value</h2>
                                     </div>
-                                    <div className="col">
-                                        <Nav className="justify-content-end" pills>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={classnames("py-2 px-3", {
-                                                        active: activeNav === 1,
-                                                    })}
-                                                    href="#pablo"
-                                                    onClick={(e) => toggleNavs(e, 1)}
-                                                >
-                                                    <span className="d-none d-md-block">Month</span>
-                                                    <span className="d-md-none">M</span>
-                                                </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={classnames("py-2 px-3", {
-                                                        active: activeNav === 2,
-                                                    })}
-                                                    data-toggle="tab"
-                                                    href="#pablo"
-                                                    onClick={(e) => toggleNavs(e, 2)}
-                                                >
-                                                    <span className="d-none d-md-block">Week</span>
-                                                    <span className="d-md-none">W</span>
-                                                </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                    </div>
                                 </Row>
                             </CardHeader>
                             <CardBody>
                                 {/* Chart */}
                                 <div className="chart">
-                                    <Line
-                                        data={chartExample1[chartExample1Data]}
+                                    <Pie
+                                        data={pieData}
                                         options={chartExample1.options}
                                         getDatasetAtEvent={(e) => console.log(e)}
                                     />
