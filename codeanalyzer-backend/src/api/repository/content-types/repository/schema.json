@@ -18,29 +18,20 @@
     "url": {
       "type": "string"
     },
-    "description": {
-      "type": "string"
-    },
-    "has_issues": {
-      "type": "boolean"
-    },
-    "has_projects": {
-      "type": "boolean"
-    },
     "size": {
       "type": "biginteger"
     },
-    "repoCreatedAt": {
-      "type": "datetime",
-      "default": "2022-03-01T04:00:00.000Z"
+    "users": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "repositories"
     },
-    "repoUpdatedAt": {
-      "type": "datetime",
-      "default": "2022-03-01T04:00:00.000Z"
+    "owner": {
+      "type": "string"
     },
-    "repoPushedAt": {
-      "type": "datetime",
-      "default": "2022-03-01T04:00:00.000Z"
+    "languages": {
+      "type": "json"
     }
   }
 }

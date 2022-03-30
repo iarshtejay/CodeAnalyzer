@@ -61,8 +61,8 @@ const Login = () => {
               <small>Sign in with</small>
             </div>
             <div className="btn-wrapper text-center">
-              <Button
-                className="btn-neutral btn-icon"
+            <Button
+                className="btn-neutral btn-icon mr-4"
                 color="default"
                 href="http://localhost:1337/api/connect/github"
               >
@@ -70,7 +70,8 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../assets/img/icons/common/github.svg").default
+                      require("../assets/img/icons/common/github.svg")
+                        .default
                     }
                   />
                 </span>

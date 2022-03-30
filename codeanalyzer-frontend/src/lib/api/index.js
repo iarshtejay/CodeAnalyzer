@@ -16,31 +16,21 @@ const createGithubAuths = (info) => {
 };
 
 const createAuths = (info, headers) => {
-    return post('/github-auths', info, headers);
+    return post('/github-auths?populate=%2A', info, headers);
 }
 
 
-// const fetchGithubRepo = async (username)=>{
-//     const url = "https://api.github.com/users/tushartushar/repos";
-
-//     const response = await get(url)
-//     //console.log(response.data)
-//     cleanData(response.data)
-// }
-
-const lengthOfFetchedData = async (url) => {
-    return await get(url).length;
-};
-
-
+const getRepoData = ()=>{
+    return get("/repositories");
+}
 
 // This function is used to push the data to database.
-const pushData = async (info) => {
+// const pushData = async (info) => {
 
-  //console.log(info);
-  const response = await post("/normal-users", info);
-  //console.log(response);
-};
+//   //console.log(info);
+//   const response = await post("/normal-users", info);
+//   //console.log(response);
+// };
 
 
 // This function will take username from fetched data and
@@ -63,28 +53,13 @@ const userRepository = async (username) => {
 // };
 
 export const api = {
-<<<<<<< HEAD
-  authGithubUser,
-  userRepository,
-  pushData,
-  pushRepositoryData,
-
-  createGithubAuths,
-
-  createAuths,
-
-  getJiraAuthCode,
-  getJiraAccessToken,
-  getJiraCloudId,
-  jiraOAuthFlow,
-  // fetchGithubRepo
-=======
     authGithubUser,
     createAuths,
     getJiraAuthCode,
     getJiraAccessToken,
     getJiraCloudId,
     jiraOAuthFlow,
+    pushRepositoryData,
+    getRepoData
     // fetchGithubRepo
->>>>>>> 806580bd438d447c06d807780e31d3ca158d3342
 };
