@@ -61,7 +61,7 @@ const Register = () => {
             password,
         };
 
-        const response = await post("/auth/local/register", credentials);
+        const response = await post("/users", credentials); // /auth/local/register
         localStorage.setItem("jwt", response.data.jwt)
     };
 
