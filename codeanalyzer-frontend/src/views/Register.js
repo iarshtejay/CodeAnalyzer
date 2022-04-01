@@ -33,11 +33,16 @@ import {
 
 import React, {useState} from "react";
 import {post} from "../config";
+import { useToken } from "auth/useToken";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [token, setToken] = useToken();
+    const history = useHistory();
 
     const formSubmitHandler = async () => {
         // const response = fetch("http://localhost:1337/api/users",{
@@ -61,8 +66,21 @@ const Register = () => {
             password,
         };
 
-        const response = await post("/auth/local/register", credentials);
-        localStorage.setItem("jwt", response.data.jwt)
+
+        await axios
+            .post("http://localhost:1337/api/auth/local/register", {
+                username: credentials.username,
+                email: credentials.email,
+                password: credentials.password,
+            })
+            .then(
+                (response) => {
+                    setToken(response.data.jwt);
+                    console.log(response.data.jwt);
+                    history.push("/admin/index");
+            },
+            (error) => console.log(error)
+        );
     };
 
     return (
