@@ -45,20 +45,6 @@ const Register = () => {
     const history = useHistory();
 
     const formSubmitHandler = async () => {
-        // const response = fetch("http://localhost:1337/api/users",{
-        //   method:"POST",
-        //   headers:{
-        //     "Content-Type":"application/json"
-        //   },
-        //   body:JSON.stringify({
-        //     name,
-        //     email,
-        //     password
-        //   })
-        // }).then(res=>res.json)
-        // .then(data=>{
-        //   console.log("USER CREATED---------------->>>",data)
-        // })
 
         const credentials = {
             username,
