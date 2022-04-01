@@ -157,8 +157,8 @@ const Dashboard = (props) => {
                     console.log('User Registration was Successful!');
                 }
             }
-            await localStorage.setItem("token", userRegistration.data.jwt)
-            await localStorage.setItem("githubToken", userRegistration.data.jwt)
+            localStorage.setItem("token", userRegistration.data.jwt) //await
+            localStorage.setItem("githubToken", userRegistration.data.jwt) //await
             console.log("token set", userRegistration.data)
         })()
     }, []);
