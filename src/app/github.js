@@ -64,13 +64,27 @@ exports.getRepositories = async (info) => {
 * @returns contributors 
 */
 exports.getContributors = async (info) => {
-   const MyOctokit = Octokit.plugin(paginateRest);
-   const octokit = new MyOctokit({auth:info.accessToken});
-   return await octokit.paginate('GET /repos/{owner}/{repo}/contributors',{
-       login : info.login,
-       contributions: info.contributions
-   })
+    const MyOctokit = Octokit.plugin(paginateRest);
+    const octokit = new MyOctokit({auth:info.accessToken});
+    
+    return await octokit.paginate('GET /repos/{owner}/{repo}/contributors',{
+        owner : 'bharatwaaj',
+        repo: 'ASDCDemoRepository'
+    });
+};
+
+
+/**
+ * @author Kavya Raval
+ * @param { accessToken } info
+ * @returns messages
+ */
+ exports.getCommitMessages = async (info) => {
+    const MyOctokit = Octokit.plugin(paginateRest);
+    const octokit = new MyOctokit({auth:info.accessToken});
+
+    return await octokit.paginate('GET /repos/{owner}/{repo}/commits',{
+        owner : 'bharatwaaj',
+        repo: 'ASDCDemoRepository'
+    });
 }
-
-
-

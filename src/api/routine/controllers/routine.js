@@ -113,41 +113,33 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       }
     },
 
-	// To Fetch and store Pull Requests from Github into our Database
-	async getAllPullRequests(ctx, next) {
-		let results = [];
-		try {
-			const pullRequests = await Github.getPullRequests({
-				accessToken: "ghu_3xTSizvE3n26aMPnno9IcrbTpSWzv63j9GDi",
-				owner: "htmlunit",
-				repositoryName: "htmlunit",
-			});
-			Promise.all(
-				pullRequests.map(async (pullRequest) => {
-					const pullRequestDataModel = {
-						username: pullRequest.user.login,
-						name: pullRequest.title,
-						prID: pullRequest.id,
-						createdOn: new Date(pullRequest.created_at).toISOString(),
-						stateOpen: pullRequest.state == "closed" ? false : true,
-						closedOn: new Date(pullRequest.closed_at).toISOString(),
-					};
-					// const repository = await strapi.db.query('api::pull-request.pull-request');
-					// console.log('repository', repository);
-					const uploadPRDataModel = await strapi.db
-						.query("api::pull-request.pull-request")
-						.create({
-							data: pullRequestDataModel,
-						});
-					results.push(uploadPRDataModel);
-				})
-			);
-			ctx.body = {
-				success: true,
-			};
-		} catch (err) {
-			console.log(err);
-			ctx.body = err;
-		}
-	},
+
+    //To Fetch and store commits messages from Github into our database UserStory no.7&8
+    async getAllCommitMessages(ctx,next) {
+      let results =[]
+      try{
+        const commitMessages = await Github.getCommitMessages({
+          accessToken:'ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr'
+        });
+        console.log('Commit Messages -->', commitMessages);
+        Promise.all(commitMessages.map(async commitMessages =>{
+          const commitMessagesDataModel = {
+            commit_id:commitMessages.sha,
+            message:commitMessages.commit.message,
+            sha:commitMessages.sha,
+            user:commitMessages.author.login
+          }
+          const uploadcommitMessages = await strapi.db.query('api::commit.commit').create({
+            data:contributorsDataModel
+          })
+          console.log("CONTRIBUTORS--->",uploadcommitMessages );
+          results.push(uploadcommitMessages);
+        } ));
+        ctx.body = results;
+      } catch (err) {
+        console.log(err);
+        ctx.body = err;
+      }
+    },
+
   }));
