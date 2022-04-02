@@ -76,15 +76,49 @@ exports.getContributors = async (info) => {
 
 /**
  * @author Kavya Raval
- * @param { accessToken } info
+ * @param { user, repository, accessToken } info
  * @returns messages
  */
  exports.getCommitMessages = async (info) => {
     const MyOctokit = Octokit.plugin(paginateRest);
     const octokit = new MyOctokit({auth:info.accessToken});
 
-    return await octokit.paginate('GET /repos/{owner}/{repo}/commits',{
-        owner : 'bharatwaaj',
-        repo: 'ASDCDemoRepository'
-    });
+
+    const allBranches = await this.getBranches(info)
+                                    .then(branches => {
+                                        const allBranches = [];
+                                        for(const branch of branches){
+                                            allBranches.push(branch.name);
+                                        }
+                                        return allBranches;
+                                    });
+    
+    const getAllCommitSha = async (allBranches) =>{
+        const allCommitSha = [];
+        for(const branch of allBranches){
+            const data = await octokit.paginate('GET /repos/{owner}/{repo}/commits?sha={branch_name}',{
+                owner: info.owner,
+                repo: info.repositoryName,
+                branch_name: branch
+            });
+
+            for(const commit of data){
+                allCommitSha.push(commit.sha)
+            }
+
+        }
+        return allCommitSha;
+    }
+
+    
+
+    const allCommitSha = await getAllCommitSha(allBranches);
+    const allCommitMessage = await getAllCommitMessage(allCommitSha)
+    return allCommitMessage;                                
+
+
+    // return await octokit.paginate('GET /repos/{owner}/{repo}/commits',{
+    //     owner : 'Ferin79',
+    //     repo: 'Hostel-Management-System-Laravel'
+    // });
 }
