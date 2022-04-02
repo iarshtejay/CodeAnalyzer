@@ -10,5 +10,10 @@ module.exports = {
         path: '/routine/repository/contributors',
         handler: 'routine.getAllContributors',
       },
+      {
+        method: 'GET',
+        path: '/routine/repository/commitMessages',
+        handler: 'routine.getAllCommitMessages'
+      }
     ]
 }
