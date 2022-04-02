@@ -1,13 +1,56 @@
-'use strict';
-const Github = require('../../../app/github'); 
+"use strict";
+const Github = require("../../../app/github");
 
 /**
  *  routine controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController('api::routine.routine', ({ strapi }) =>  ({
+module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
+	
+	// To Fetch and store Pull Requests from Github into our Database
+	async getRepositories(ctx, next) {
+		let results = [];
+		try {
+			const repositories = await Github.getRepositories({
+				accessToken: "ghu_3xTSizvE3n26aMPnno9IcrbTpSWzv63j9GDi",
+				owner: "htmlunit",
+				repositoryName: "htmlunit",
+			});
+			console.log("repositories", repositories);
+			Promise.all(
+				repositories.map(async (repository) => {
+					const repositoryDataModel = {
+						name: repository.name,
+						user: {
+							"id": 23
+						},
+						url: repository.url,
+						owner: repository.owner.login,
+						size: repository.size,
+					};
+					try{
+						console.log('Repo', repositoryDataModel);
+						const uploadRepository = await strapi.db
+						.query("api::repository.repository")
+						.create({
+							data: repositoryDataModel,
+						});
+						results.push(uploadRepository);
+					} catch(err) {
+						console.log(err);
+					}
+				})
+			);
+			ctx.body = {
+				success: true,
+			};
+		} catch (err) {
+			console.log(err);
+			ctx.body = err;
+		}
+	},
 
     // To Fetch and store Pull Requests from Github into our Database
     async getAllPullRequests(ctx, next) {
@@ -32,7 +75,6 @@ module.exports = createCoreController('api::routine.routine', ({ strapi }) =>  (
             const uploadPRDataModel = await strapi.db.query('api::pull-request.pull-request').create({
               data: pullRequestDataModel
             });
-            console.log("UPDM", uploadPRDataModel);
             results.push(uploadPRDataModel);
           }));
           ctx.body = results;
