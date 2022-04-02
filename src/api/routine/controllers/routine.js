@@ -119,7 +119,9 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       let results =[]
       try{
         const commitMessages = await Github.getCommitMessages({
-          accessToken:'ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr'
+          accessToken:'ghu_fAcltGI8KRC5SRT7fumJDcBQtYZbON2P8Xg1',
+          owner: 'Ferin79',
+          repositoryName: 'Hostel-Management-System-Laravel'
         });
         console.log('Commit Messages -->', commitMessages);
         Promise.all(commitMessages.map(async commitMessages =>{
