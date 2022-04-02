@@ -110,6 +110,21 @@ exports.getContributors = async (info) => {
         return allCommitSha;
     }
 
+    const getAllCommitMessage = async (allCommitsSha) =>{
+        const allCommitMessage = [];
+        for(const sha of allCommitsSha){
+            const data = await octokit.paginate('GET /repos/{owner}/{repo}/commits/{commit_sha}',{
+                owner: info.owner,
+                repo: info.repositoryName,
+                commit_sha: sha
+            });
+
+            for(const message of data){
+                allCommitMessage.push(message)
+            }
+        }
+    } 
+
     
 
     const allCommitSha = await getAllCommitSha(allBranches);
