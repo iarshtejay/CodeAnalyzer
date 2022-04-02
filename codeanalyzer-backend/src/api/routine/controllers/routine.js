@@ -71,4 +71,33 @@ module.exports = createCoreController('api::routine.routine', ({ strapi }) =>  (
       }
     },
 
+
+    //To Fetch and store commits messages from Github into our database UserStory no.7&8
+    async getAllCommitMessages(ctx,next) {
+      let results =[]
+      try{
+        const commitMessages = await Github.getCommitMessages({
+          accessToken:'ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr'
+        });
+        console.log('Commit Messages -->', commitMessages);
+        Promise.all(commitMessages.map(async commitMessages =>{
+          const commitMessagesDataModel = {
+            commit_id:commitMessages.sha,
+            message:commitMessages.commit.message,
+            sha:commitMessages.sha,
+            user:commitMessages.author.login
+          }
+          const uploadcommitMessages = await strapi.db.query('api::commit.commit').create({
+            data:contributorsDataModel
+          })
+          console.log("CONTRIBUTORS--->",uploadcommitMessages );
+          results.push(uploadcommitMessages);
+        } ));
+        ctx.body = results;
+      } catch (err) {
+        console.log(err);
+        ctx.body = err;
+      }
+    },
+
   }));
