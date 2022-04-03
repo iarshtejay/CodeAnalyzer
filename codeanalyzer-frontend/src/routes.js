@@ -21,6 +21,7 @@ import Maps from "views/subviews/Maps.js";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 import PullRequests from "views/subviews/PullRequests.js";
+import FileModifications from "views/subviews/FileModifications.js";
 import JiraAuth from "views/JiraAuth";
 import Tables from "views/subviews/Tables";
 import Repositories from "./views/Repositories";
