@@ -4,7 +4,7 @@ const { paginateRest, composePaginateRest } = require("@octokit/plugin-paginate-
 
 /**
  * @author Bharatwaaj Shankar
- * @param {user, repository, accessToken} info 
+ * @param {owner, repository, accessToken} info 
  * @returns Branches
  */
 exports.getBranches = async (info) => {

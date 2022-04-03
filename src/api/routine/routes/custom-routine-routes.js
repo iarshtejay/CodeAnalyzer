@@ -14,6 +14,11 @@ module.exports = {
         method: 'GET',
         path: '/routine/repository/commitMessages',
         handler: 'routine.getAllCommitMessages'
+      },
+      { // Remove after testing
+        method: 'GET',
+        path: '/routine/repository/getBranches',
+        handler: 'routine.getAllBranches'
       }
     ]
 }

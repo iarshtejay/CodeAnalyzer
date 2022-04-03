@@ -144,4 +144,32 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       }
     },
 
+    //Just for Testing.....Don't forget to remove
+    async getAllBranches(ctx,next) {
+      let results =[];
+      try{
+        const contributors = await Github.getBranches({
+          accessToken: 'ghu_07t718GBfo5VwEakbmeE7DOUrB2g1u0Ot2yk',
+          owner: 'vercel',
+          repositoryName: 'next.js'
+        });
+        console.log('Contributors Data ->', contributors);
+        Promise.all(contributors.map(async contributors =>{
+          const contributorsDataModel = {
+            name: contributors.login,
+            github_id:contributors.login,  // HAVE TO DISCUSS WITH BHARAT
+            contributions: contributors.contributions,
+          }
+          const uploadContributorsDataModel = await strapi.db.query('api::contributor.contributor').create({
+            data:contributorsDataModel
+          })
+          console.log("CONTRIBUTORS--->", uploadContributorsDataModel);
+         // results.push(uploadContributorsDataModel);
+        } ));
+        ctx.body = results;
+      }  catch (err) {
+          console.log(err);
+          ctx.body = err;
+      }
+    },
   }));
