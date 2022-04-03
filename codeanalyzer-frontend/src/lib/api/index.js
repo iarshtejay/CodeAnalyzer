@@ -46,6 +46,10 @@ const getPullRequestsUniqueUsers = (info, headers) => {
     return get(`/pull-request/getUsers?repository=${info.repository}`, null, headers);
 }
 
+const getCommitedFilesOfAUser = (info, headers) => {
+    return get(`/commits?filters[authorid][$eq]=${info.authorid}&fields[0]=committedfiles`, headers);
+}
+
 export const api = {
     authGithubUser,
     createAuths,
@@ -58,6 +62,7 @@ export const api = {
     getPullRequestFrequencyPerUser,
     getRepositories,
     getPullRequests,
-    getPullRequestsUniqueUsers
+    getPullRequestsUniqueUsers,
+    getCommits
     // fetchGithubRepo
 }

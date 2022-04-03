@@ -21,6 +21,7 @@ import Maps from "views/subviews/Maps.js";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 import PullRequests from "views/subviews/PullRequests.js";
+import FileModifications from "views/subviews/FileModifications.js";
 import JiraAuth from "views/JiraAuth";
 import Commits from "views/subviews/Commits";
 import Tables from "views/subviews/Tables";
@@ -83,6 +84,13 @@ var routes = [
     name: "Tables",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/FileModifications",
+    name: "FileModifications",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: FileModifications,
     layout: "/admin",
   },
 ];
