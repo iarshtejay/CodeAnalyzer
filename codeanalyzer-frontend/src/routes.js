@@ -22,7 +22,6 @@ import Register from "views/Register.js";
 import Login from "views/Login.js";
 import PullRequests from "views/subviews/PullRequests.js";
 import JiraAuth from "views/JiraAuth";
-import Commits from "views/subviews/Commits";
 import Tables from "views/subviews/Tables";
 import Repositories from "./views/Repositories";
 
@@ -83,6 +82,13 @@ var routes = [
     name: "Tables",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/commits",
+    name: "File Modifications",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: FileModifications,
     layout: "/admin",
   },
 ];
