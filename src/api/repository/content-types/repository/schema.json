@@ -38,6 +38,12 @@
     },
     "languages": {
       "type": "json"
+    },
+    "commit": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::commit.commit",
+      "inversedBy": "repository"
     }
   }
 }

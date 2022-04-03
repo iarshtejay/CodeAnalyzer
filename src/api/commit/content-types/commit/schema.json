@@ -48,6 +48,12 @@
     },
     "jira_ticket": {
       "type": "string"
+    },
+    "repository": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::repository.repository",
+      "inversedBy": "commit"
     }
   }
 }

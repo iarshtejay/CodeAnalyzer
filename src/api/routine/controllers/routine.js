@@ -65,14 +65,14 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             commit_id: commit.sha.substring(0,6),
             message: commit.commit.message,
             sha: commit.sha,
-            authorid: commit.author.id,
+            authorid: commit.commit.author.id,
             totalchanges: commit.stats.total,
             totaladditions: commit.stats.additions,
             totaldeletions: commit.stats.deletions,
             branch: commit.branch,
             commitdate: new Date(commit.commit.author.date).toISOString(),
             committedfiles: [1],
-            jira_ticket:"",
+            jira_ticket:commit.jira_ticket,
           };
           // const repository = await strapi.db.query('api::pull-request.pull-request');
           // console.log('repository', repository);
@@ -81,6 +81,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             .create({
               data: commitDataModel,
             });
+          console.log("COMMITDATAMODEL IS HERE >>>>>>>>>>>>>>>>>>",commitDataModel);
           results.push(commitDataModel);
         })
       );
@@ -161,12 +162,12 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
   async getAllCommitMessages(ctx, next) {
     let results = [];
     try {
-      const contributors = await Github.getCommitMessages({
+      const commitMessages = await Github.getCommitMessages({
         accessToken: "ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr",
         owner: "bharatwaaj",
         repositoryName: "ASDCDemoRepository",
       });
-      console.log("Contributors Data ->", contributors);
+      console.log("Commits Messages Data ->", commitMessages);
       // Promise.all(
       //   contributors.map(async (contributors) => {
       //     const contributorsDataModel = {
