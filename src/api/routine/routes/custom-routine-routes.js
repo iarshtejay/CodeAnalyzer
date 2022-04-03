@@ -18,7 +18,7 @@ module.exports = {
       {
         method: 'GET',
         path: '/routine/repository/commitMessages',
-        handler: 'routine.getAllCommits'
+        handler: 'routine.getAllCommitMessages'
       },
     ]
 }

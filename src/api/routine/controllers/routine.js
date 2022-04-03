@@ -67,11 +67,12 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             sha: commit.sha,
             authorid: commit.author.id,
             totalchanges: commit.stats.total,
-			totaladditions: commit.stats.additions,
-			totaldeletions: commit.stats.deletions,
-			branch: commit.branch,
-			commitdate: new Date(commit.commit.author.date).toISOString(),
-			committedfiles: [1]
+            totaladditions: commit.stats.additions,
+            totaldeletions: commit.stats.deletions,
+            branch: commit.branch,
+            commitdate: new Date(commit.commit.author.date).toISOString(),
+            committedfiles: [1],
+            jira_ticket:"",
           };
           // const repository = await strapi.db.query('api::pull-request.pull-request');
           // console.log('repository', repository);
@@ -155,4 +156,30 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       ctx.body = err;
     }
   },
+
+
+  async getAllCommitMessages(ctx, next) {
+    let results = [];
+    try {
+      const contributors = await Github.getCommitMessages({
+        accessToken: "ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr",
+        owner: "bharatwaaj",
+        repositoryName: "ASDCDemoRepository",
+      });
+      console.log("Contributors Data ->", contributors);
+      // Promise.all(
+      //   contributors.map(async (contributors) => {
+      //     const contributorsDataModel = {
+      //       name: contributors.login,
+      //       github_id: contributors.login, // HAVE TO DISCUSS WITH BHARAT
+      //       contributions: contributors.contributions,
+      //     };
+      //   })
+      // );
+    } catch (err) {
+      console.log(err);
+      ctx.body = err;
+    }
+  },
+
 }));

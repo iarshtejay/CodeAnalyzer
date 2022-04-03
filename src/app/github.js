@@ -202,15 +202,26 @@ exports.getLangDataFromLangUrl = async (info) => {
 
 /**
  * @author Kavya Raval
- * @param { accessToken } info
+ * @param {user, repository, accessToken } info
  * @returns messages
  */
 exports.getCommitMessages = async (info) => {
   const MyOctokit = Octokit.plugin(paginateRest);
   const octokit = new MyOctokit({ auth: info.accessToken });
 
-  return await octokit.paginate("GET /repos/{owner}/{repo}/commits", {
-    owner: "bharatwaaj",
-    repo: "ASDCDemoRepository",
+  const allMessages = [];
+
+  const allCommits = await this.getCommits(info).then((commits)=>{
+        for(const commit of commits){
+            allMessages.push(commit.commit.message)
+            console.log("MESSAGE HERE - >>>>>>>>>",commit.commit.message)
+        }
+        
   });
+
+  return allMessages;
+//   return await octokit.paginate("GET /repos/{owner}/{repo}/commits", {
+//     owner: "bharatwaaj",
+//     repo: "ASDCDemoRepository",
+//   });
 };
