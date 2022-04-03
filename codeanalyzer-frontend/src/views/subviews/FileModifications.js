@@ -60,7 +60,7 @@ import { Bar, Line } from "react-chartjs-2";
 import axios from "axios";
 import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 
-const PullRequests = () => {
+const FileModifications = () => {
 
 
   const [difference, setDifference] = useState([]);

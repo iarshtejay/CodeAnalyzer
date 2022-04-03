@@ -5,6 +5,11 @@ module.exports = {
         path: '/routine/repository/pullrequests',
         handler: 'routine.getAllPullRequests',
       },
+      { 
+        method: 'GET',
+        path: '/routine/repository/commits',
+        handler: 'routine.getAllCommits',
+      },
       {
         method: 'GET',
         path: '/routine/repository/contributors',
@@ -13,12 +18,7 @@ module.exports = {
       {
         method: 'GET',
         path: '/routine/repository/commitMessages',
-        handler: 'routine.getAllCommitMessages'
+        handler: 'routine.getAllCommits'
       },
-      { // Remove after testing
-        method: 'GET',
-        path: '/routine/repository/getBranches',
-        handler: 'routine.getAllBranches'
-      }
     ]
 }
