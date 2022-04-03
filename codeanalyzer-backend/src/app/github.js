@@ -123,14 +123,27 @@ exports.getCommits = async (info) => {
           commit_sha: sha,
         }
       );
-
+    
       for (const commitDetails of data) {
+        const jira_ticket = await messageAnalyzer(commitDetails.commit.message)
+        //console.log(commitDetails.commit.message)
         commitDetails.branch = branch;
+        commitDetails.jira_ticket = jira_ticket;
         allCommitsDetails.push(commitDetails);
       }
     }
     return allCommitsDetails;
 };
+
+  const messageAnalyzer = async (message) =>{
+      if(message.includes("AT-")){
+        console.log("YAY!! we got something over here!!!!");
+        return message.substring(message.indexOf("AT-"),message.indexOf(" "));
+      } else {
+        console.log("Nope! BETTER LUCK NEXT TIME!!!");
+        return "";
+      }
+  }
 
   const allBranches = await this.getBranches(info).then((branches) => {
     const allBranches = [];
@@ -139,6 +152,10 @@ exports.getCommits = async (info) => {
     }
     return allBranches;
   });
+
+
+
+
   const allCommitsSha = await getAllCommitsSha(allBranches);
   const allCommitsDetails = await getAllCommitsDetails(allCommitsSha);
   return allCommitsDetails;
@@ -212,11 +229,11 @@ exports.getCommitMessages = async (info) => {
   const allMessages = [];
 
   const allCommits = await this.getCommits(info).then((commits)=>{
+    const allMessages = [];
         for(const commit of commits){
             allMessages.push(commit.commit.message)
             console.log("MESSAGE HERE - >>>>>>>>>",commit.commit.message)
-        }
-        
+        }   
   });
 
   return allMessages;
