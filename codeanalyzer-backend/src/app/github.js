@@ -125,7 +125,7 @@ exports.getCommits = async (info) => {
       );
     
       for (const commitDetails of data) {
-        const jira_ticket = await messageAnalyzer(commitDetails.commit.message)
+        const jira_ticket = await messageAnalyzer(commitDetails.commit.message,"AT-")
         //console.log(commitDetails.commit.message)
         commitDetails.branch = branch;
         commitDetails.jira_ticket = jira_ticket;
@@ -135,12 +135,12 @@ exports.getCommits = async (info) => {
     return allCommitsDetails;
 };
 
-  const messageAnalyzer = async (message) =>{
-      if(message.includes("AT-")){
-        console.log("YAY!! we got something over here!!!!");
-        return message.substring(message.indexOf("AT-"),message.indexOf(" "));
+  const messageAnalyzer = async (message, pattern) =>{
+      if(message.includes(pattern)){
+        //console.log("YAY!! we got something over here!!!!");
+        return message.substring(message.indexOf(pattern)).split(" ")[0];
       } else {
-        console.log("Nope! BETTER LUCK NEXT TIME!!!");
+        //console.log("Nope! BETTER LUCK NEXT TIME!!!");
         return "";
       }
   }
@@ -152,9 +152,6 @@ exports.getCommits = async (info) => {
     }
     return allBranches;
   });
-
-
-
 
   const allCommitsSha = await getAllCommitsSha(allBranches);
   const allCommitsDetails = await getAllCommitsDetails(allCommitsSha);
@@ -217,28 +214,5 @@ exports.getLangDataFromLangUrl = async (info) => {
   return await get(`/repos/${owner}/${repo}/languages`).then((res) => res.data);
 };
 
-/**
- * @author Kavya Raval
- * @param {user, repository, accessToken } info
- * @returns messages
- */
-exports.getCommitMessages = async (info) => {
-  const MyOctokit = Octokit.plugin(paginateRest);
-  const octokit = new MyOctokit({ auth: info.accessToken });
 
-  const allMessages = [];
 
-  const allCommits = await this.getCommits(info).then((commits)=>{
-    const allMessages = [];
-        for(const commit of commits){
-            allMessages.push(commit.commit.message)
-            console.log("MESSAGE HERE - >>>>>>>>>",commit.commit.message)
-        }   
-  });
-
-  return allMessages;
-//   return await octokit.paginate("GET /repos/{owner}/{repo}/commits", {
-//     owner: "bharatwaaj",
-//     repo: "ASDCDemoRepository",
-//   });
-};
