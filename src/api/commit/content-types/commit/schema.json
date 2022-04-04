@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commits",
+  "info": {
+    "singularName": "commit",
+    "pluralName": "commits",
+    "displayName": "Commit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "commit_id": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "sha": {
+      "type": "string",
+      "unique": true
+    },
+    "authorid": {
+      "type": "integer"
+    },
+    "totalchanges": {
+      "type": "integer"
+    },
+    "totaladditions": {
+      "type": "integer"
+    },
+    "totaldeletions": {
+      "type": "integer"
+    },
+    "committedfiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::committedfile.committedfile",
+      "mappedBy": "commit"
+    },
+    "commitdate": {
+      "type": "datetime"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "jira_ticket": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::repository.repository",
+      "inversedBy": "commit"
+    }
+  }
+}
