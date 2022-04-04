@@ -70,7 +70,7 @@ const FileModifications = () => {
   useEffect(() => {
     ; (async () => {
       const strapiToken = await localStorage.getItem("token");
-      const comms = await api.getCommits({
+      const comms = await api.getCommitedFilesOfAUser({
         headers: {
           'Authorization': 'Bearer ' + strapiToken
         }

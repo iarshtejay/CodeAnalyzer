@@ -63,6 +63,6 @@ export const api = {
     getRepositories,
     getPullRequests,
     getPullRequestsUniqueUsers,
-    getCommits
+    getCommitedFilesOfAUser
     // fetchGithubRepo
 }
