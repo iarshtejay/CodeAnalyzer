@@ -74,8 +74,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             committedfiles: [1],
             jira_ticket:commit.jira_ticket,
           };
-          // const repository = await strapi.db.query('api::pull-request.pull-request');
-          // console.log('repository', repository);
           const uploadCommitDataModel = await strapi.db
             .query("api::commit.commit")
             .create({
