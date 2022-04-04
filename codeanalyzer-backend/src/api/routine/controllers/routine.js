@@ -79,7 +79,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             .create({
               data: commitDataModel,
             });
-          console.log("COMMITDATAMODEL IS HERE >>>>>>>>>>>>>>>>>>",commitDataModel);
+          console.log("COMMITDATAMODEL IS HERE ----------------",commitDataModel);
           results.push(commitDataModel);
         })
       );
