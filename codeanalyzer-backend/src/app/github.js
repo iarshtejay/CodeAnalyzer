@@ -214,5 +214,27 @@ exports.getLangDataFromLangUrl = async (info) => {
   return await get(`/repos/${owner}/${repo}/languages`).then((res) => res.data);
 };
 
+/**
+ * @author Arshdeep Singh
+ * @param {user, repository, accessToken, ticketPatten} info
+ * @returns committedfiles
+ */
+exports.getCommittedFiles = async (info) => {
+  const MyOctokit = Octokit.plugin(paginateRest);
+  const octokit = new MyOctokit({ auth: info.accessToken });
 
+  const allCommittedFiles = await this.getCommits(info).then((commits) => {
+    const allCommitted = [];
+    for (const commit of commits) {
+      if(commit.author.login === user){
+        for(file of commit.files){
+          allCommitted.push({sha: commit.sha, filename:file.filename, status:file.status, additions:file.additions , commit:[commit.sha].substring(0,6), deletions:file.deletions, totalchanges:toString(parseInt(file.additions)+parseInt(file.deletions))});
+        }
+      }
+    }
+    return allCommitted;
+  });
 
+  
+  return allCommittedFiles;
+};
