@@ -39,11 +39,17 @@
     "languages": {
       "type": "json"
     },
-    "commit": {
+    "commits": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::commit.commit",
-      "inversedBy": "repository"
+      "mappedBy": "repository"
+    },
+    "contributors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contributor.contributor",
+      "inversedBy": "repositories"
     }
   }
 }

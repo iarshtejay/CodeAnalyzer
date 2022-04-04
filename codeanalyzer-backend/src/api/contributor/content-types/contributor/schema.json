@@ -15,11 +15,26 @@
     "name": {
       "type": "string"
     },
-    "github_id": {
+    "author_id": {
       "type": "string"
     },
     "contributions": {
       "type": "integer"
+    },
+    "sumadditions": {
+      "type": "biginteger"
+    },
+    "sumdeletions": {
+      "type": "biginteger"
+    },
+    "sumchanges": {
+      "type": "biginteger"
+    },
+    "repositories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::repository.repository",
+      "inversedBy": "contributors"
     }
   }
 }
