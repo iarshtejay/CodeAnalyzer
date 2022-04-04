@@ -181,4 +181,19 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
     }
   },
 
+
+  async getCommitAccordingJiraTicket(ctx,next){
+    const jiraTicket = ctx.request.query.jira_ticket;
+    const allCommitAccordingJiraTicket = await strapi.entityService.findMany(
+      'api::commit.commit',
+      {
+        populate : { commit: true },
+        fields:[
+          "jira_ticket",
+        ],
+        filters: { commit: { jira_ticket: { $eq: jiraTicket } } }
+      }
+    );
+    console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitAccordingJiraTicket);
+  }
 }));
