@@ -56,7 +56,8 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       const allCommits = await Github.getCommits({
         accessToken: ctx.request.query.accessToken, 
         owner: ctx.request.query.owner,
-        repositoryName: ctx.request.query.repositoryName
+        repositoryName: ctx.request.query.repositoryName,
+        ticketPatten:ctx.request.query.ticketPatten
       });
 	  console.log("Fetched allCommits")
       Promise.all(
@@ -195,5 +196,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       }
     );
     console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitAccordingJiraTicket);
-  }
+  },
+
 }));
