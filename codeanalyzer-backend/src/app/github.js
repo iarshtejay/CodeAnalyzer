@@ -126,7 +126,7 @@ exports.getCommits = async (info) => {
     
       for (const commitDetails of data) {
         const jira_ticket = await messageAnalyzer(commitDetails.commit.message,info.ticketPatten)
-        //console.log(commitDetails.commit.message)
+        console.log(info.ticketPatten)
         commitDetails.branch = branch;
         commitDetails.jira_ticket = jira_ticket;
         allCommitsDetails.push(commitDetails);
