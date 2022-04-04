@@ -81,7 +81,7 @@ exports.searchUsingQuery = async (info) => {
 
 /**
  * @author Arshdeep Singh
- * @param {user, repository, accessToken} info
+ * @param {user, repository, accessToken, ticketPatten} info
  * @returns Commits
  */
 exports.getCommits = async (info) => {
@@ -125,8 +125,8 @@ exports.getCommits = async (info) => {
       );
     
       for (const commitDetails of data) {
-        const jira_ticket = await messageAnalyzer(commitDetails.commit.message,"AT-")
-        //console.log(commitDetails.commit.message)
+        const jira_ticket = await messageAnalyzer(commitDetails.commit.message,info.ticketPatten)
+        console.log(info.ticketPatten)
         commitDetails.branch = branch;
         commitDetails.jira_ticket = jira_ticket;
         allCommitsDetails.push(commitDetails);

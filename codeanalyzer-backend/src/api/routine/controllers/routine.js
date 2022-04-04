@@ -62,7 +62,8 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       const allCommits = await Github.getCommits({
         accessToken: ctx.request.query.accessToken, 
         owner: ctx.request.query.owner,
-        repositoryName: ctx.request.query.repositoryName
+        repositoryName: ctx.request.query.repositoryName,
+        ticketPatten:ctx.request.query.ticketPatten
       });
 
       ctx.body = {
@@ -91,7 +92,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             .create({
               data: commitDataModel,
             });
-          console.log("COMMITDATAMODEL IS HERE >>>>>>>>>>>>>>>>>>",commitDataModel);
+          console.log("COMMITDATAMODEL IS HERE ----------------",commitDataModel);
           results.push(commitDataModel);
         })
       );
@@ -243,5 +244,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       }
     );
     console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitAccordingJiraTicket);
-  }
+  },
+
 }));

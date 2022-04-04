@@ -46,14 +46,14 @@
     "branch": {
       "type": "string"
     },
-    "jira_ticket": {
-      "type": "string"
-    },
     "repository": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::repository.repository",
-      "inversedBy": "commit"
+      "inversedBy": "commits"
+    },
+    "authorname": {
+      "type": "string"
     }
   }
 }
