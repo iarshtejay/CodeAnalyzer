@@ -8,16 +8,20 @@ const Github = require("../../../app/github");
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
+  async getBranches(ctx) {
+    let results = [];
+  },
+
   // To Fetch and store Pull Requests from Github into our Database
   async getRepositories(ctx, next) {
     let results = [];
     try {
       const repositories = await Github.getRepositories({
-        accessToken: "ghu_3xTSizvE3n26aMPnno9IcrbTpSWzv63j9GDi",
-        owner: "htmlunit",
-        repositoryName: "htmlunit",
+        accessToken: ctx.request.query.accessToken,
+        owner: ctx.request.query.owner,
+        repositoryName: ctx.request.query.repositoryName,
       });
-
+      console.log("repos", repositories);
       Promise.all(
         repositories.map(async (repository) => {
           const repositoryDataModel = {
@@ -51,18 +55,25 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
   },
 
   async getAllCommits(ctx, next) {
+    console.log("Entered");
     let results = [];
     try {
+      const repositoryId = ctx.request.query.repositoryId;
       const allCommits = await Github.getCommits({
         accessToken: ctx.request.query.accessToken, 
         owner: ctx.request.query.owner,
         repositoryName: ctx.request.query.repositoryName
       });
-	  console.log("Fetched allCommits")
+
+      ctx.body = {
+        allCommits: allCommits,
+      };
+
+      console.log("Fetched allCommits", repositoryId, allCommits);
       Promise.all(
         allCommits.map(async (commit) => {
           const commitDataModel = {
-            commit_id: commit.sha.substring(0,6),
+            commit_id: commit.sha.substring(0, 6),
             message: commit.commit.message,
             sha: commit.sha,
             authorid: commit.commit.author.id,
@@ -72,7 +83,8 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             branch: commit.branch,
             commitdate: new Date(commit.commit.author.date).toISOString(),
             committedfiles: [1],
-            jira_ticket:commit.jira_ticket,
+            repository: repositoryId,
+            authorname: commit.author.login,
           };
           const uploadCommitDataModel = await strapi.db
             .query("api::commit.commit")
@@ -83,9 +95,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
           results.push(commitDataModel);
         })
       );
-      ctx.body = {
-        success: true,
-      };
     } catch (err) {
       console.log(err);
       ctx.body = err;
@@ -94,45 +103,84 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
 
   //To Fetch and store Contributors data from Github into our database
   async getAllContributors(ctx, next) {
-    let results = [];
-    try {
-      const contributors = await Github.getContributors({
-        accessToken: "ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr",
-        owner: "bharatwaaj",
-        repositoryName: "ASDCDemoRepository",
-      });
-      console.log("Contributors Data ->", contributors);
-      Promise.all(
-        contributors.map(async (contributors) => {
-          const contributorsDataModel = {
-            name: contributors.login,
-            github_id: contributors.login, // HAVE TO DISCUSS WITH BHARAT
-            contributions: contributors.contributions,
+    const repoId = ctx.request.query.repoId;
+    console.log("asldjalskdlajkajsd");
+    const allCommitsForRepo = await strapi.entityService.findMany(
+      "api::commit.commit",
+      {
+        populate: { repository: true },
+        fields: [
+          "totalchanges",
+          "totaladditions",
+          "totaldeletions",
+          "authorid",
+        ],
+        filters: { repository: { id: { $eq: repoId } } },
+      }
+    );
+    console.log("ALL COMMITS FOR REPOOO", allCommitsForRepo);
+    let contributors = {};
+    allCommitsForRepo.map((commitData) => {
+      const { authorid } = commitData;
+      if (!contributors[authorid]) {
+        contributors[authorid] = {};
+        contributors[authorid].sumadditions = 0;
+        contributors[authorid].sumdeletions = 0;
+        contributors[authorid].sumchanges = 0;
+      }
+      contributors[authorid].sumadditions =
+        contributors[authorid].sumadditions + commitData.totaladditions;
+      contributors[authorid].sumdeletions =
+        contributors[authorid].sumdeletions + commitData.totaldeletions;
+      contributors[authorid].sumchanges =
+        contributors[authorid].sumchanges + commitData.totalchanges;
+    });
+    console.log("No. of contributors", Object.keys(contributors).length);
+    console.log(contributors);
+    await Promise.all(
+      Object.entries(contributors).map(
+        async ([authorid, contribObj], index) => {
+          console.log("key", authorid), console.log("value", contribObj);
+          const contribEntry = {
+            name: "",
+            author_id: authorid,
+            sumadditions: contribObj.sumadditions,
+            sumdeletions: contribObj.sumdeletions,
+            sumchanges: contribObj.sumchanges,
+            // publishedAt: new Date().toISOString,
+            repositories: [repoId],
           };
-        })
-      );
-    } catch (err) {
-      console.log(err);
-      ctx.body = err;
-    }
+          console.log("contribEntry", contribEntry);
+          const entry = await strapi.entityService.create(
+            "api::contributor.contributor",
+            {
+              data: contribEntry,
+            }
+          );
+        }
+      )
+    );
   },
 
   // To Fetch and store Pull Requests from Github into our Database
   async getAllPullRequests(ctx, next) {
     let results = [];
     try {
+      const repoId = ctx.request.query.repositoryId;
       const pullRequests = await Github.getPullRequests({
-        accessToken: "ghu_3xTSizvE3n26aMPnno9IcrbTpSWzv63j9GDi",
-        owner: "htmlunit",
-        repositoryName: "htmlunit",
+        accessToken: ctx.request.query.accessToken,
+        owner: ctx.request.query.owner,
+        repositoryName: ctx.request.query.repositoryName,
       });
       Promise.all(
         pullRequests.map(async (pullRequest) => {
           const pullRequestDataModel = {
-            repository: 105,
+            repository: repoId,
             username: pullRequest.user.login,
             name: pullRequest.title,
             prID: pullRequest.id,
+            sourceBranch: pullRequest.head.ref,
+            targetBranch: pullRequest.base.ref,
             createdOn: new Date(pullRequest.created_at).toISOString(),
             stateOpen: pullRequest.state == "closed" ? false : true,
             closedOn: new Date(pullRequest.closed_at).toISOString(),

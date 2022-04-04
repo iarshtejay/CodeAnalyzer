@@ -102,8 +102,8 @@ exports.getCommits = async (info) => {
 
       for (const commit of data) {
         allCommitsSha.push({
-            branch: branch,
-            sha: commit.sha
+          branch: branch,
+          sha: commit.sha,
         });
       }
     }
@@ -112,7 +112,7 @@ exports.getCommits = async (info) => {
 
   const getAllCommitsDetails = async (allCommitsSha) => {
     const allCommitsDetails = [];
-    for (var i=0;i<allCommitsSha.length; i++) {
+    for (var i = 0; i < allCommitsSha.length; i++) {
       const sha = allCommitsSha[i].sha;
       const branch = allCommitsSha[i].branch;
       const data = await octokit.paginate(
@@ -133,7 +133,7 @@ exports.getCommits = async (info) => {
       }
     }
     return allCommitsDetails;
-};
+  };
 
   const messageAnalyzer = async (message, pattern) =>{
       if(message.includes(pattern)){
@@ -181,8 +181,8 @@ exports.getRepoDetailsBySlug = async (info) => {
   const repoData = await Promise.all(
     info.repoSlugs.map(async (slug) => {
       const repoRes = await get(
-        `repos/${slug}`,
-        githubRequestHeader(info.accessToken)
+        `repos/${slug}`
+        // githubRequestHeader(info.accessToken)
       ).then((res) => res.data);
       const repoLang = await exports.getLangDataFromLangUrl({
         accessToken: info.accessToken,
