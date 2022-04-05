@@ -85,8 +85,8 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/commits",
-    name: "Comiits according to jira tickets",
+    path: "/commitMessage",
+    name: "Commits according to jira tickets",
     icon: "ni ni-bullet-list-67 text-red",
     component: commitJiraTicket, 
     layout: "/admin",

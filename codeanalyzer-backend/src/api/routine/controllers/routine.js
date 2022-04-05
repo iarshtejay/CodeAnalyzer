@@ -254,8 +254,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
   },
 
   async getCommitWithoutJiraTicket(ctx,next){
-    //const jiraTicket = ctx.request.query.jiraTicket;
-    //console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
+    
     
     const allCommitWithoutJiraTicket = await strapi.entityService.findMany(
       'api::commit.commit',
@@ -267,7 +266,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
         filters: { jira_ticket: { $eq: "" }}
       }
     );
-    //console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
+    
     console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitWithoutJiraTicket);
     return allCommitWithoutJiraTicket;
   },
