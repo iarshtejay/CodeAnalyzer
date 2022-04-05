@@ -46,6 +46,7 @@ import GithubContext from "../contexts/GithubContext"
 import { api } from "../lib/api"
 
 import Header from "components/Headers/Header.js";
+import JiraAuth from "./JiraAuth";
 
 const Dashboard = (props) => {
     const [activeNav, setActiveNav] = useState(1);
@@ -148,6 +149,7 @@ const Dashboard = (props) => {
             <Header showCards={true} repositoryCounts={repositoryCounts} contributorCounts={contributorCounts} />
             {/* Page content */}
             <Container className="mt--7" fluid>
+                <JiraAuth />
                 <Row>
                     <Col className="mb-5 mb-xl-0" xl="8">
                         <Card className="bg-gradient-default shadow">

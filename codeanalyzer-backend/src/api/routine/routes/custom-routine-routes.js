@@ -30,5 +30,10 @@ module.exports = {
         path: '/routine/commit/getCommitAccordingJiraTicket',
         handler: 'routine.getCommitAccordingJiraTicket'
       },
+      {
+        method: 'GET',
+        path: '/routine/commit/getCommitWithoutJiraTicket',
+        handler: 'routine.getCommitWithoutJiraTicket'
+      },
     ]
 }

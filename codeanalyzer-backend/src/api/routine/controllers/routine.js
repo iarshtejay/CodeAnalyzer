@@ -236,7 +236,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
 
   async getCommitAccordingJiraTicket(ctx,next){
     const jiraTicket = ctx.request.query.jiraTicket;
-    console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
+    //console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
     
     const allCommitAccordingJiraTicket = await strapi.entityService.findMany(
       'api::commit.commit',
@@ -248,8 +248,28 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
         filters: { jira_ticket: { $eq: jiraTicket }}
       }
     );
-    console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
+    //console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
     console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitAccordingJiraTicket);
+    return allCommitAccordingJiraTicket;
+  },
+
+  async getCommitWithoutJiraTicket(ctx,next){
+    //const jiraTicket = ctx.request.query.jiraTicket;
+    //console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
+    
+    const allCommitWithoutJiraTicket = await strapi.entityService.findMany(
+      'api::commit.commit',
+      {
+        populate : { commit: true },
+        fields:[
+          "jira_ticket",
+        ],
+        filters: { jira_ticket: { $eq: "" }}
+      }
+    );
+    //console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
+    console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitWithoutJiraTicket);
+    return allCommitWithoutJiraTicket;
   },
 
 }));
