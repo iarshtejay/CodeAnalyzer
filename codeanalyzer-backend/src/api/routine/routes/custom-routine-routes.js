@@ -27,8 +27,8 @@ module.exports = {
       },
       {
         method: 'GET',
-        path: '/routine/repository/getCommitAccordingJiraTicket',
-        handler: 'routine.getAllCommitMessages'
+        path: '/routine/commit/getCommitAccordingJiraTicket',
+        handler: 'routine.getCommitAccordingJiraTicket'
       },
     ]
 }

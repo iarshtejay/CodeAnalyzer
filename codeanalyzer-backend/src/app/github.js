@@ -81,7 +81,7 @@ exports.searchUsingQuery = async (info) => {
 
 /**
  * @author Arshdeep Singh
- * @param {user, repository, accessToken, ticketPatten} info
+ * @param {user, repository, accessToken, ticketPattern} info
  * @returns Commits
  */
 exports.getCommits = async (info) => {
@@ -125,8 +125,9 @@ exports.getCommits = async (info) => {
       );
     
       for (const commitDetails of data) {
-        const jira_ticket = await messageAnalyzer(commitDetails.commit.message,info.ticketPatten)
-        console.log(info.ticketPatten)
+        const jira_ticket = await messageAnalyzer(commitDetails.commit.message,info.ticketPattern)
+        //console.log(info.ticketPattern)
+        //console.log(info.ticketPattern)
         commitDetails.branch = branch;
         commitDetails.jira_ticket = jira_ticket;
         allCommitsDetails.push(commitDetails);
@@ -138,6 +139,7 @@ exports.getCommits = async (info) => {
   const messageAnalyzer = async (message, pattern) =>{
       if(message.includes(pattern)){
         //console.log("YAY!! we got something over here!!!!");
+        
         return message.substring(message.indexOf(pattern)).split(" ")[0];
       } else {
         //console.log("Nope! BETTER LUCK NEXT TIME!!!");
