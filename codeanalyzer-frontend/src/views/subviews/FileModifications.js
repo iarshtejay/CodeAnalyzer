@@ -106,9 +106,19 @@ const FileModifications = () => {
   var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     datasets: [{
+      label: "Number of file additions per month in 2022",
+      data: dataByMonth.addition,
+      borderColor: 'green',
+    },
+    {
       label: "Number of file modifications per month in 2022",
-      data: difference,
-      borderColor: 'rgb(255, 255, 255)',
+      data: dataByMonth.modification,
+      borderColor: 'yellow',
+    },
+    {
+      label: "Number of file deletions per month in 2022",
+      data: dataByMonth.deletion,
+      borderColor: 'green',
     }]
   };
 
