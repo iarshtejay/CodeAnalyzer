@@ -96,7 +96,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
           results.push(commitDataModel);
         })
       );
-      return commitEntries;
+      return allCommits;
     } catch (err) {
       console.log(err);
     }

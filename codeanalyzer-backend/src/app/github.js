@@ -105,7 +105,6 @@ exports.getCommits = async (info) => {
       console.log(url);
       const res = await axios.get(url).then((r) => r.data);
       console.log(res.sha);
-
       const fileEntityArray = res.files.map((fileEntry) => {
         const { sha, filename, status, additions, deletions, changes } =
           fileEntry;
@@ -118,7 +117,7 @@ exports.getCommits = async (info) => {
           deletions,
           changes,
           repository: info.repositoryId,
-          authorname: res.committer.login,
+          authorname: res.committer.login || null,
         };
         return fileEntityObj;
       });
@@ -139,7 +138,7 @@ exports.getCommits = async (info) => {
         commit_id: res.sha.slice(0, 6),
         message: res.commit.message,
         sha: res.commit.tree.sha,
-        authorid: res.author.id,
+        authorid: res.author.id || null,
         totalchanges: res.stats.total,
         totaladditions: res.stats.additions,
         totaldeletions: res.stats.deletions,
@@ -167,8 +166,6 @@ exports.getCommits = async (info) => {
     
       for (const commitDetails of data) {
         const jira_ticket = await messageAnalyzer(commitDetails.commit.message,info.ticketPattern)
-        //console.log(info.ticketPattern)
-        //console.log(info.ticketPattern)
         commitDetails.branch = branch;
         commitDetails.jira_ticket = jira_ticket;
         allCommitsDetails.push(commitDetails);
@@ -178,12 +175,9 @@ exports.getCommits = async (info) => {
   };
 
   const messageAnalyzer = async (message, pattern) =>{
-      if(message.includes(pattern)){
-        //console.log("YAY!! we got something over here!!!!");
-        
+      if(message.includes(pattern)){ 
         return message.substring(message.indexOf(pattern)).split(" ")[0];
       } else {
-        //console.log("Nope! BETTER LUCK NEXT TIME!!!");
         return "";
       }
   }
