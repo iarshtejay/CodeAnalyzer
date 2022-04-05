@@ -62,11 +62,8 @@ const Dashboard = (props) => {
   const [refactoringsChartData, setRefactoringsChartData] = useState([]);
   const [commitsChartData, setCommitsChartData] = useState([]);
   const { user, setUser } = useContext(GithubContext);
-  const [smells, setSmells] = useState({
-    'code':22,
-    'design': 54,
-    'architecture': 69
-});
+  const [smells, setSmells] = useState(); 
+  const [loadedSmells, setLoadedSmells] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -114,6 +111,7 @@ const Dashboard = (props) => {
       console.log("user", user);
       await localStorage.setItem("token", userRegistration.data.jwt);
       await localStorage.setItem("githubToken", accessToken);
+      await fetchSmells();
 
       fetchDashboardData();
     })();
@@ -229,6 +227,18 @@ const Dashboard = (props) => {
     setChartExample1Data("data" + index);
   };
 
+  // Fetch designite smell analysis output
+  const fetchSmells = async () => {
+    const response = await  fetch("34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+    //const data = await response.json();
+    setSmells(response)
+    console.log("FETCHEDEDEDEDE")
+    if(smells){
+        setLoadedSmells(true)
+        console.log("SMELLLSS", smells)
+    }
+}
+
 
   return (
     <>
@@ -318,11 +328,11 @@ const Dashboard = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(smells).map((keyName, i) => (
+                    { loadedSmells ? Object.keys(smells).map((keyName, i) => (
                         <tr>
                             <th scope="row">{keyName}</th>
-                            <td>{smellData[keyName]}</td>
-                        </tr>))
+                            <td>{smells[keyName]}</td>
+                        </tr>)) : <p>Loading..</p> 
                     }
                 </tbody>
               </Table>
