@@ -20,6 +20,7 @@ import Profile from "views/subviews/Profile.js";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 import PullRequests from "views/subviews/PullRequests.js";
+import FileModifications from "views/subviews/FileModifications.js";
 import JiraAuth from "views/JiraAuth";
 import Tables from "views/subviews/Tables";
 import Repositories from "./views/Repositories";
@@ -73,7 +74,7 @@ var routes = [
     path: "/commits",
     name: "File Modifications",
     icon: "ni ni-bullet-list-67 text-red",
-    component: PullRequests, //FileModifications
+    component: FileModifications, //FileModifications
     layout: "/admin",
   },
 ];

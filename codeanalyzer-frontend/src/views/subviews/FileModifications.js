@@ -238,4 +238,4 @@ const FileModifications = () => {
   );
 };
 
-export default PullRequests;
+export default FileModifications;
