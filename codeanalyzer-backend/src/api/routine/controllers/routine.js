@@ -76,7 +76,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             commit_id: commit.sha.substring(0, 6),
             message: commit.commit.message,
             sha: commit.sha,
-            authorid: commit.author.id,
+            authorid: commit.author.id || null,
             totalchanges: commit.stats.total,
             totaladditions: commit.stats.additions,
             totaldeletions: commit.stats.deletions,

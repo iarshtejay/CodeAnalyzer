@@ -14,6 +14,11 @@ module.exports = {
         method: 'GET',
         path: '/commit/getAvgTimeDifferenceBetweenCommits',
         handler: 'commit.getAvgTimeDifferenceBetweenCommits'
-      }
+      },
+      {
+        method: 'GET',
+        path: '/commit/getSortedCommit',
+        handler: 'commit.getSortedCommit'
+      },
     ]
 }
