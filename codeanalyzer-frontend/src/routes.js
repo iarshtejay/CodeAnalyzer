@@ -23,7 +23,7 @@ import PullRequests from "views/subviews/PullRequests.js";
 import JiraAuth from "views/JiraAuth";
 import Tables from "views/subviews/Tables";
 import Repositories from "./views/Repositories";
-import commitJiraTicket from "views/commitJiraTicket";
+import commitJiraTicket from "views/subviews/commitJiraTicket";
 
 var routes = [
   {
@@ -82,6 +82,13 @@ var routes = [
     name: "File Modifications",
     icon: "ni ni-bullet-list-67 text-red",
     component: PullRequests, //FileModifications
+    layout: "/admin",
+  },
+  {
+    path: "/commitsByJiraticket",
+    name: "Commits By Jira Tickets",
+    icon: "ni ni-bullet-list-67 text-red",
+    component: commitJiraTicket, 
     layout: "/admin",
   },
 ];
