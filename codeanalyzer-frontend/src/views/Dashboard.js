@@ -318,7 +318,7 @@ const Dashboard = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(smellData).map((keyName, i) => (
+                    {Object.keys(smells).map((keyName, i) => (
                         <tr>
                             <th scope="row">{keyName}</th>
                             <td>{smellData[keyName]}</td>
