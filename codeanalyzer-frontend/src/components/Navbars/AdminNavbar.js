@@ -58,9 +58,7 @@ const AdminNavbar = (props) => {
               </InputGroup>
             </FormGroup>
           </Form>
-          <Nav className="align-items-center d-none d-md-flex" navbar>
-            
-          </Nav>
+      
         </Container>
       </Navbar>
     </>
