@@ -225,7 +225,11 @@ const Dashboard = (props) => {
   };
 
 
-  const smellData = {}
+  const smellData = {
+      'code':22,
+      'design': 54,
+      'architecture': 69
+  }
 
   return (
     <>
