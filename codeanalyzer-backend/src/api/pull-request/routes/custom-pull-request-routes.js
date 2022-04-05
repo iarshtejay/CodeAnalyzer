@@ -23,6 +23,14 @@ module.exports = {
         config: {
           auth: false,
         }
-      }
+      },
+      {
+        method: 'GET',
+        path: '/pull-request/averageCount',
+        handler: 'pull-request.getAverageCount',
+        config: {
+          auth: false,
+        }
+      },
     ]
 }

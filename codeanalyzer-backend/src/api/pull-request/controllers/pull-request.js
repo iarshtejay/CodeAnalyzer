@@ -88,7 +88,7 @@ module.exports = createCoreController('api::pull-request.pull-request', ({ strap
                         targetBranch: branch
                     }
                 });
-                console.log('count', count);
+                console.log(count);
                 result.push({
                     "branch": branch,
                     "prs": count
@@ -100,5 +100,30 @@ module.exports = createCoreController('api::pull-request.pull-request', ({ strap
             ctx.body = err;
         }
     },
+
+
+    //To fetch return average of PR by each branch
+    async getAverageCount(ctx,next){
+        const repository = ctx.request.query['repositoryId']; 
+        const branches = await strapi.db.query('api::pull-request.pull-request').findMany({
+            select: ['targetBranch'],
+        });
+        const uniqBranches = {};
+        branches.forEach(element => {
+            if(element.targetBranch in uniqBranches){
+                uniqBranches[element.targetBranch] = uniqBranches[element.targetBranch] + 1;
+            }
+            else{
+                uniqBranches[element.targetBranch] = 1;
+            }
+        });
+        console.log(uniqBranches);
+        const count = await strapi.query("api::pull-request.pull-request").count()
+        const average = {};
+        for(const element in uniqBranches){
+            average[element] = Math.round((uniqBranches[element]/count)*100);
+        }
+        return average;
+    }
 
 }));

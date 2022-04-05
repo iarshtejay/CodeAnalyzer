@@ -177,6 +177,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       });
       Promise.all(
         pullRequests.map(async (pullRequest) => {
+        
           const pullRequestDataModel = {
             repository: repoId,
             username: pullRequest.user.login,
@@ -187,6 +188,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             createdOn: new Date(pullRequest.created_at).toISOString(),
             stateOpen: pullRequest.state == "closed" ? false : true,
             closedOn: new Date(pullRequest.closed_at).toISOString(),
+            body:pullRequest.body
           };
           // const repository = await strapi.db.query('api::pull-request.pull-request');
           // console.log('repository', repository);
