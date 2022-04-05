@@ -28,14 +28,6 @@ const getPRMessageCount = (info,headers) =>{
   const data = get("")
 }
 
-// const fetchGithubRepo = async (username)=>{
-//     const url = "https://api.github.com/users/tushartushar/repos";
-
-//     const response = await get(url)
-//     //console.log(response.data)
-//     cleanData(response.data)
-// }
-
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
@@ -107,7 +99,8 @@ const getPullRequestsCountsByBranch = (info, headers) => {
 };
 
 const getAveragePR = (info, headers) => {
-  return get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
+  const a = get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
+  console.log(a,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 }
 const getCommitCountPerHour = (info, headers) => {
   console.log("info per hour", info);
@@ -118,6 +111,14 @@ const getUserLanguageEffort = (info, headers) => {
   console.log("info user language effort", info);
   return get(`/commit/getUserLanguageEffort?repositoryId=${info.repositoryId}`);
 };
+
+const getCommitWithJiraTicket = (info,headers) => {
+  return get(`/routine/commit/getCommitAccordingJiraTicket?jiraTicket=${info.jiraTicket}`);
+}
+
+const getCommitWithoutJiraTicket = (info,headers) => {
+  return get(`/routine/commit/getCommitWithoutJiraTicket`);
+}
 
 export const api = {
   authGithubUser,
@@ -141,5 +142,7 @@ export const api = {
   getAveragePR,
   getCommitCountPerHour,
   getUserLanguageEffort,
+  getCommitWithJiraTicket,
+  getCommitWithoutJiraTicket
   // fetchGithubRepo
 };

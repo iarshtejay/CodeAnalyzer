@@ -68,8 +68,23 @@ import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 
 const commitJiraTicket = () =>{
 
-   // const [data,setData] = useState([]);
-    
+    //const [data,setData] = useState([]);
+    useEffect(() => {
+        ; (async () => {
+          const strapiToken = await localStorage.getItem("token");
+          const repos = await api.getRepositories({
+            headers: {
+              'Authorization': 'Bearer ' + strapiToken
+            }
+          });
+          if (repos.data) {
+            setRepositories(repos.data.data);
+            setChosenRepo(repos.data.data[0].attributes.name);
+            setLoadedRepos(true);
+            loadPullRequestUsers(repos.data.data[0].attributes.name);
+          }
+        })()
+      }, []);
     
 
     return(
