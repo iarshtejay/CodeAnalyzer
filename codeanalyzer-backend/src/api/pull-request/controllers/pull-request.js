@@ -123,7 +123,7 @@ module.exports = createCoreController('api::pull-request.pull-request', ({ strap
         for(const element in uniqBranches){
             average[element] = Math.round((uniqBranches[element]/count)*100);
         }
-        return average;
+        return average["main"];
     }
 
 }));

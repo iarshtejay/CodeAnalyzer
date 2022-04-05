@@ -54,6 +54,7 @@ const Dashboard = (props) => {
     const [chartExample1Data, setChartExample1Data] = useState("data1");
     const [repositoryCounts, setRepositoryCounts] = useState(0);
     const [contributorCounts, setContributorCounts] = useState(0);
+    const [avgPr, setAvgPr] = useState(0); 
     const { user, setUser } = useContext(GithubContext);
 
     useEffect(() => {
@@ -116,6 +117,21 @@ const Dashboard = (props) => {
             console.log("CC", contCount);
             setContributorCounts(contCount.data);
         }
+        const repo = await api.getRepositories({
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+        if(repo.data.data[0].attributes.name != null){
+            const avgCount = await api.getAveragePR({ repository : repo.data.data[0].attributes.name },{
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                }
+            });
+            if(avgCount){
+                setAvgPr(avgCount);
+            }
+        }
     }
 
     const createGithubAuths = async (user, accessToken, refreshToken, expiresIn, headers) => {
@@ -146,7 +162,7 @@ const Dashboard = (props) => {
     };
     return (
         <>
-            <Header showCards={true} repositoryCounts={repositoryCounts} contributorCounts={contributorCounts} />
+            <Header showCards={true} repositoryCounts={repositoryCounts} contributorCounts={contributorCounts} avgPr={avgPr} />
             {/* Page content */}
             <Container className="mt--7" fluid>
                 <JiraAuth />

@@ -24,6 +24,10 @@ const getRepositoriesCount = (info, headers) => {
   return get("/repository/count", info, headers);
 };
 
+const getPRMessageCount = (info,headers) =>{
+  const data = get("")
+}
+
 // const fetchGithubRepo = async (username)=>{
 //     const url = "https://api.github.com/users/tushartushar/repos";
 
@@ -101,6 +105,10 @@ const getPullRequestsCountsByBranch = (info, headers) => {
   );
 };
 
+const getAveragePR = (info, headers) => {
+  return get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
+}
+
 export const api = {
   authGithubUser,
   createAuths,
@@ -120,5 +128,5 @@ export const api = {
   getCommmitCountsByBranch,
   getCommitsFrequencyByRepository,
   getPullRequestsCountsByBranch,
-  // fetchGithubRepo
+  getAveragePR
 };
