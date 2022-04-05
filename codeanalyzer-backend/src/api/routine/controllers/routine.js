@@ -58,17 +58,15 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
     console.log("Entered");
     let results = [];
     try {
+      console.log("herehehrehehrehrhehr");
       const repositoryId = ctx.request.query.repositoryId;
       const allCommits = await Github.getCommits({
         accessToken: ctx.request.query.accessToken, 
         owner: ctx.request.query.owner,
         repositoryName: ctx.request.query.repositoryName,
-        ticketPatten:ctx.request.query.ticketPatten
+        repositoryId: ctx.request.query.repositoryId,
+        strapiToken: ctx.request.query.strapiToken,
       });
-
-      ctx.body = {
-        allCommits: allCommits,
-      };
 
       console.log("Fetched allCommits", repositoryId, allCommits);
       Promise.all(
@@ -96,16 +94,15 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
           results.push(commitDataModel);
         })
       );
+      return commitEntries;
     } catch (err) {
       console.log(err);
-      ctx.body = err;
     }
   },
 
   //To Fetch and store Contributors data from Github into our database
   async getAllContributors(ctx, next) {
     const repoId = ctx.request.query.repoId;
-    console.log("asldjalskdlajkajsd");
     const allCommitsForRepo = await strapi.entityService.findMany(
       "api::commit.commit",
       {
@@ -115,6 +112,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
           "totaladditions",
           "totaldeletions",
           "authorid",
+          "authorname",
         ],
         filters: { repository: { id: { $eq: repoId } } },
       }
@@ -123,11 +121,13 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
     let contributors = {};
     allCommitsForRepo.map((commitData) => {
       const { authorid } = commitData;
+
       if (!contributors[authorid]) {
         contributors[authorid] = {};
         contributors[authorid].sumadditions = 0;
         contributors[authorid].sumdeletions = 0;
         contributors[authorid].sumchanges = 0;
+        contributors[authorid].name = commitData.authorname;
       }
       contributors[authorid].sumadditions =
         contributors[authorid].sumadditions + commitData.totaladditions;
@@ -143,13 +143,13 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
         async ([authorid, contribObj], index) => {
           console.log("key", authorid), console.log("value", contribObj);
           const contribEntry = {
-            name: "",
+            name: contribObj.name,
             author_id: authorid,
             sumadditions: contribObj.sumadditions,
             sumdeletions: contribObj.sumdeletions,
             sumchanges: contribObj.sumchanges,
             // publishedAt: new Date().toISOString,
-            repositories: [repoId],
+            repository: repoId,
           };
           console.log("contribEntry", contribEntry);
           const entry = await strapi.entityService.create(

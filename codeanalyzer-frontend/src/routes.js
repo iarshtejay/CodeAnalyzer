@@ -56,13 +56,6 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
-    layout: "/admin",
-  },
-  {
     path: "/pull-requests",
     name: "Pull Requests",
     icon: "ni ni-bullet-list-67 text-red",
@@ -70,10 +63,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
+    path: "/user-profile",
+    name: "Settings",
+    icon: "ni ni-single-02 text-yellow",
+    component: Profile,
     layout: "/admin",
   },
   {
