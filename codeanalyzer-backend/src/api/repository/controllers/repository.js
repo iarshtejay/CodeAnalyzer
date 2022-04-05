@@ -13,7 +13,7 @@ module.exports = createCoreController(
   ({ strapi }) => ({
     async create(ctx) {
       const { data } = ctx.request.body;
-      const repoUrls = data.urls;
+      const repoUrls = data.url;
       const githubUser = data.user;
       const strapiUserId = githubUser.id;
       const repoData = await Github.getRepoDetailsBySlug({

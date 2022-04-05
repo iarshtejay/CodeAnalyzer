@@ -63,7 +63,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
         accessToken: ctx.request.query.accessToken, 
         owner: ctx.request.query.owner,
         repositoryName: ctx.request.query.repositoryName,
-        ticketPatten:ctx.request.query.ticketPatten
+        ticketPattern:ctx.request.query.ticketPattern
       });
 
       ctx.body = {
@@ -73,6 +73,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
       console.log("Fetched allCommits", repositoryId, allCommits);
       Promise.all(
         allCommits.map(async (commit) => {
+          console.log(commit.jira_ticket,"<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>")
           const commitDataModel = {
             commit_id: commit.sha.substring(0, 6),
             message: commit.commit.message,
@@ -85,7 +86,8 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             commitdate: new Date(commit.commit.author.date).toISOString(),
             committedfiles: [1],
             repository: repositoryId,
-            authorname: commit.author.login,
+            authorname: commit.author.login|| null,
+            jira_ticket: commit.jira_ticket
           };
           const uploadCommitDataModel = await strapi.db
             .query("api::commit.commit")
@@ -209,11 +211,12 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
   async getAllCommitMessages(ctx, next) {
     let results = [];
     try {
-      const commitMessages = await Github.getCommitMessages({
-        accessToken: "ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr",
-        owner: "bharatwaaj",
-        repositoryName: "ASDCDemoRepository",
-      });
+      const commitMessages = "Nothing but Everything.";
+      // const commitMessages = await Github.getCommitMessages({
+      //   accessToken: "ghu_FovUoeyHujht6zue6nT37OwoUonedu4LRopr",
+      //   owner: "bharatwaaj",
+      //   repositoryName: "ASDCDemoRepository",
+      // });
       console.log("Commits Messages Data ->", commitMessages);
       // Promise.all(
       //   contributors.map(async (contributors) => {
@@ -232,7 +235,9 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
 
 
   async getCommitAccordingJiraTicket(ctx,next){
-    const jiraTicket = ctx.request.query.jira_ticket;
+    const jiraTicket = ctx.request.query.jiraTicket;
+    //console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
+    
     const allCommitAccordingJiraTicket = await strapi.entityService.findMany(
       'api::commit.commit',
       {
@@ -240,10 +245,31 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
         fields:[
           "jira_ticket",
         ],
-        filters: { commit: { jira_ticket: { $eq: jiraTicket } } }
+        filters: { jira_ticket: { $eq: jiraTicket }}
       }
     );
+    //console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
     console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitAccordingJiraTicket);
+    return allCommitAccordingJiraTicket;
+  },
+
+  async getCommitWithoutJiraTicket(ctx,next){
+    //const jiraTicket = ctx.request.query.jiraTicket;
+    //console.log(jiraTicket,"<<<<<<<<<<<<<<<<<Query")
+    
+    const allCommitWithoutJiraTicket = await strapi.entityService.findMany(
+      'api::commit.commit',
+      {
+        populate : { commit: true },
+        fields:[
+          "jira_ticket",
+        ],
+        filters: { jira_ticket: { $eq: "" }}
+      }
+    );
+    //console.log("JIRATICKETAGAIN>>>>>>>>>>>>>>",jiraTicket);
+    console.log("HERE are commits according to Jira tickets::::::::::::::::::::",allCommitWithoutJiraTicket);
+    return allCommitWithoutJiraTicket;
   },
 
   async getCommitWithoutJiraTicket(ctx,next){
