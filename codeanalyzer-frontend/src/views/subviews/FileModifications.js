@@ -64,6 +64,7 @@ const FileModifications = () => {
 
   const [committedFiles, setCommittedFiles] = useState([]);
   const [loadedCommittedFiles, setLoadedCommittedFiles] = useState(false);
+  const [dataByMonth, setDataByMonth] = useState({});
 
   useEffect(() => {
     ; (async () => {
@@ -78,23 +79,34 @@ const FileModifications = () => {
       if (commFiles.data) {
         setCommittedFiles(commFiles.data);
         setLoadedCommittedFiles(true);
-        generateChartData();
+        generateChartData(committedFiles);
       }
     })()
   }, []);
 
 
-  const generateChartData = async (e) => {
-    
-    setCreatedOn(data.data.createdOn);
-    setDifference(data.data.difference);
+  const generateChartData = async (data) => {
+    const addCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+    const deleteCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+    const modificationsCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+    for(const committedFile of data){
+      if(committedFile.status === "added" ){
+        addCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
+      }else if(committedFile.status === "deleted" ){
+        deleteCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
+      }else if(committedFile.status === "modified" ){
+        modifiedCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
+      }
+    }
+    setDataByMonth({"addition":addCountByMonth, "modification":modificationsCountByMonth, "deletion":deleteCountByMonth});
     e.preventDefault();
   }
 
   var data = {
-    labels: createdOn,
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     datasets: [{
-      label: "Difference in number of days between PRs",
+      label: "Number of file modifications per month in 2022",
       data: difference,
       borderColor: 'rgb(255, 255, 255)',
     }]
