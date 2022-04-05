@@ -683,6 +683,7 @@ module.exports = createCoreController('api::commit.commit', ({ strapi }) => ({
 
 
   async getCommitByTime(ctx) {
+    
     const repositoryId = ctx.request.query.repositoryId;
     const repoCommits = await strapi.db.query("api::commit.commit").findMany({
       orderBy:{commitdate : 'desc'},
@@ -695,6 +696,7 @@ module.exports = createCoreController('api::commit.commit', ({ strapi }) => ({
         },
       }
     });
+    repoCommits.length = 5;
     return repoCommits;
   },
 

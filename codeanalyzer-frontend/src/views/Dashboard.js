@@ -56,6 +56,8 @@ const Dashboard = (props) => {
     const [refactoringCounts, setRefactoringCounts] = useState(0);
     const [refactoringsChartData, setRefactoringsChartData] = useState([]);
     const [commitsChartData, setCommitsChartData] = useState([]);
+    const [topCommits,setTopCommit] = useState([]);
+    const [dataLoaded,setDataLoaded] = useState(false);
     const { user, setUser } = useContext(GithubContext);
 
     useEffect(() => {
@@ -142,6 +144,17 @@ const Dashboard = (props) => {
             console.log('CCD', commitChartData)
             setCommitsChartData(commitChartData.data);
         }
+        const getTopCommits = await api.getTopCommits({repositoryId:209},{
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+        if(getTopCommits.length != 0){
+            setTopCommit([...getTopCommits.data]); 
+            console.log(topCommits,"<<<<<<<<<<<<<<<")
+            setDataLoaded(true);
+        }
+        
     }
 
     var refactoringChartDataFeed = {
@@ -348,88 +361,39 @@ const Dashboard = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">Facebook</th>
-                                        <td>1,480</td>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <span className="mr-2">60%</span>
-                                                <div>
-                                                    <Progress
-                                                        max="100"
-                                                        value="60"
-                                                        barClassName="bg-gradient-danger"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Facebook</th>
-                                        <td>5,480</td>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <span className="mr-2">70%</span>
-                                                <div>
-                                                    <Progress
-                                                        max="100"
-                                                        value="70"
-                                                        barClassName="bg-gradient-success"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Google</th>
-                                        <td>4,807</td>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <span className="mr-2">80%</span>
-                                                <div>
-                                                    <Progress max="100" value="80" />
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Instagram</th>
-                                        <td>3,678</td>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <span className="mr-2">75%</span>
-                                                <div>
-                                                    <Progress
-                                                        max="100"
-                                                        value="75"
-                                                        barClassName="bg-gradient-info"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">twitter</th>
-                                        <td>2,645</td>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <span className="mr-2">30%</span>
-                                                <div>
-                                                    <Progress
-                                                        max="100"
-                                                        value="30"
-                                                        barClassName="bg-gradient-warning"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                   {
+                                
+                                        
+                                            topCommits.map((commit)=>{
+                                               return (
+                                                <tr>
+                                                <th scope="row">{commit.repository.name}</th>
+                                                <td>{commit.commitdate}</td>
+                                                <td>
+                                                    <div className="d-flex align-items-center">
+                                                        <span className="mr-2">{commit.totalchanges}</span>
+                                                        <div>
+                                                            <Progress
+                                                                max="100"
+                                                                value="60"
+                                                                barClassName="bg-gradient-danger"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>  
+                                               ) 
+                                            })   
+                                   }
+                                              
                                 </tbody>
                             </Table>
                         </Card>
                     </Col>
                 </Row>
             </Container>
+           
+            
         </>
     );
 };
