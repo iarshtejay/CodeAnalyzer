@@ -34,7 +34,7 @@ import JiraAuth from "./JiraAuth";
 
 const commitJiraTicket = () =>{
 
-    const [data,setData] = useState([]);
+   // const [data,setData] = useState([]);
     
     
 

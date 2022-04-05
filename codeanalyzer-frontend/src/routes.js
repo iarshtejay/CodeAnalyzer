@@ -84,12 +84,5 @@ var routes = [
     component: PullRequests, //FileModifications
     layout: "/admin",
   },
-  {
-    path: "/commitMessage",
-    name: "Commits according to jira tickets",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: commitJiraTicket, 
-    layout: "/admin",
-  }, 
 ];
 export default routes;
