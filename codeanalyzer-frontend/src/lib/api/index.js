@@ -128,6 +128,10 @@ const getCommitsCountByRepo = (info, headers) => {
   return get(`/commit/getCommitsCountByRepo`)
 }
 
+const getCommitedFilesByUser = (info, headers) => {
+  return get(`/committedfiles?filters[authorname][$eq]=${info.authorname}`)
+}
+
 export const api = {
   authGithubUser,
   createAuths,
