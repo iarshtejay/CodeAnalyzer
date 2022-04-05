@@ -92,7 +92,7 @@ exports.getCommits = async (info) => {
     .request(`GET /repos/{owner}/{repo}/commits`, {
       owner: info.owner,
       repo: info.repositoryName,
-      per_page: 10,
+      per_page: 30,
     })
     .then((res) => res.data);
   // console.log(commitBrief);
@@ -118,7 +118,8 @@ exports.getCommits = async (info) => {
           deletions,
           changes,
           repository: info.repositoryId,
-          authorname: res.committer?.login || '',
+          authorname: res.committer?.login,
+          commitdate: res.commit.author.date,
         };
         return fileEntityObj;
       });
@@ -134,7 +135,7 @@ exports.getCommits = async (info) => {
           return entry.data.id;
         })
       );
-
+      console.log("FILE ENTRIES HERE", fileEntries);
       const entityObj = {
         commit_id: res.sha.slice(0, 6),
         message: res.commit.message,
@@ -155,6 +156,7 @@ exports.getCommits = async (info) => {
       return entityObj;
     })
   );
+  console.log(commitEntityArray);
   return commitEntityArray;
 };
 

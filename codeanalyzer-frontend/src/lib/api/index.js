@@ -24,6 +24,12 @@ const getRepositoriesCount = (info, headers) => {
   return get("/repository/count", info, headers);
 };
 
+const getUserFromId = (info, headers) => {
+  return get(`/users/${info.userId}`, headers);
+}
+
+
+
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
 };
@@ -98,6 +104,10 @@ const getPullRequestsCountsByBranch = (info, headers) => {
   );
 };
 
+const getCommitedFiles = (headers) => {
+  return get(`/committedfiles`)
+};
+
 const getCommitCountPerHour = (info, headers) => {
   console.log("info per hour", info);
   return get(`/commit/getCommitsByHour?repositoryId=${info.repositoryId}`);
@@ -152,6 +162,7 @@ export const api = {
   getCommmitCountsByBranch,
   getCommitsFrequencyByRepository,
   getPullRequestsCountsByBranch,
+  getCommitedFiles,
   getCommitCountPerHour,
   getUserLanguageEffort,
   getTotalRefactoringsForRepo,
@@ -160,6 +171,7 @@ export const api = {
   getCommitsCountByRepo,
   getCommitsQuery,
   getTopCommits,
-  getRepoId
+  getRepoId,
+  getUserFromId
   // fetchGithubRepo
 };

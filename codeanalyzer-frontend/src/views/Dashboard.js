@@ -41,10 +41,15 @@ import {
 } from "reactstrap";
 
 // core components
-import { chartExample1, chartExample2, chartOptions, parseOptions, } from "variables/charts.js";
-import GithubContext from "../contexts/GithubContext"
-import { api } from "../lib/api"
-
+import {
+    chartExample1,
+    chartExample2,
+    chartOptions,
+    parseOptions,
+} from "variables/charts.js";
+import GithubContext from "../contexts/GithubContext";
+import { api } from "../lib/api";
+import { useHistory } from "react-router-dom";
 import Header from "components/Headers/Header.js";
 
 const Dashboard = (props) => {
@@ -59,59 +64,83 @@ const Dashboard = (props) => {
     const [topCommits,setTopCommit] = useState([]);
     const [dataLoaded,setDataLoaded] = useState(false);
     const { user, setUser } = useContext(GithubContext);
+    const history = useHistory();
 
     useEffect(() => {
-        ; (async () => {
-            const accessToken = query.get('access_token');
-            console.log(accessToken)
-            const refreshToken = query.get('refresh_token');
-            const expiresIn = query.get('raw[expires_in]');
+        (async () => {
+            const accessToken = query.get("access_token");
+            console.log(accessToken);
+            const refreshToken = query.get("refresh_token");
+            const expiresIn = query.get("raw[expires_in]");
             // console.log('AT->', accessToken, refreshToken, expiresIn);
-            const userRegistration = await api.authGithubUser(accessToken);
-            console.log('UR', userRegistration);
-            // console.log('UR->', userRegistration);
-            if (userRegistration && userRegistration.data.user) {
-                // console.log('CGA', userRegistration.data.user, userRegistration.data.user, accessToken, refreshToken, expiresIn);
-                const createGithubAuth = await createGithubAuths(userRegistration.data.user, accessToken, refreshToken, expiresIn, {
-                    headers: {
-                        'Authorization': 'Bearer ' + userRegistration.data.jwt
-                    }
-                });
-                if (createGithubAuth) {
-                    console.log('User Registration was Successful!');
-                    console.log("CGA", createGithubAuth.data.data.attributes.user.data, createGithubAuth, accessToken);
-                    await setUser({
-                        ...createGithubAuth.data.data.attributes.user.data,
+            if (accessToken) {
+                const userRegistration = await api.authGithubUser(accessToken);
+                console.log("UR", userRegistration);
+                // console.log('UR->', userRegistration);
+                if (userRegistration && userRegistration.data.user) {
+                    // console.log('CGA', userRegistration.data.user, userRegistration.data.user, accessToken, refreshToken, expiresIn);
+                    const createGithubAuth = await createGithubAuths(
+                        userRegistration.data.user,
                         accessToken,
-                    });
-                    console.log('user', user);
-                    await localStorage.setItem(
-                        "strapiUserId",
-                        createGithubAuth.data.data.attributes.user.data.id
+                        refreshToken,
+                        expiresIn,
+                        {
+                            headers: {
+                                Authorization: "Bearer " + userRegistration.data.jwt,
+                            },
+                        }
                     );
-                }
-            }
-            console.log('user', user);
-            await localStorage.setItem("token", userRegistration.data.jwt)
-            await localStorage.setItem("githubToken", accessToken)
+                    if (createGithubAuth) {
+                        console.log("User Registration was Successful!");
+                        console.log(
+                            "CGA",
+                            createGithubAuth.data.data.attributes.user.data,
+                            createGithubAuth,
+                            accessToken
+                        );
+                        await setUser({
+                            ...createGithubAuth.data.data.attributes.user.data,
+                            accessToken,
+                        });
+                        console.log("user", user);
+                        await localStorage.setItem(
+                            "strapiUserId",
+                            createGithubAuth.data.data.attributes.user.data.id
+                        );
 
+                    }
+                }
+
+                console.log("user", user);
+                await localStorage.setItem("token", userRegistration.data.jwt);
+                await localStorage.setItem("githubToken", accessToken);
+
+                fetchDashboardData();
+            }
+
+        const token = localStorage.getItem("token");
+        if(token){
             fetchDashboardData();
-        })()
+        }
+    })();
     }, []);
 
     const fetchDashboardData = async () => {
-        console.log('inside!!!');
+        console.log("inside!!!");
         const accessToken = await localStorage.getItem("token");
         const userId = localStorage.getItem("strapiUserId");
         const repoCount = await api.getUserRepos(userId);
         if (repoCount) {
             console.log("RC", repoCount);
+            if (repoCount.data.data.length === 0) {
+                history.push("/add-repos");
+            }
             setRepositoryCounts(repoCount.data.data.length);
         }
         const contCount = await api.getContributorsCount(null, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken
-            }
+                Authorization: "Bearer " + accessToken,
+            },
         });
         if (contCount) {
             console.log("CC", contCount);
@@ -119,29 +148,29 @@ const Dashboard = (props) => {
         }
         const refactoringCount = await api.getTotalRefactorings(null, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken
-            }
+                Authorization: "Bearer " + accessToken,
+            },
         });
-        if(refactoringCount){
+        if (refactoringCount) {
             console.log("RC", refactoringCount);
             setRefactoringCounts(refactoringCount.data);
         }
         const refactoringChartData = await api.getRefactoringData(null, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken
-            }
+                Authorization: "Bearer " + accessToken,
+            },
         });
-        if(refactoringChartData){
-            console.log('RCD', refactoringChartData)
+        if (refactoringChartData) {
+            console.log("RCD", refactoringChartData);
             setRefactoringsChartData(refactoringChartData.data.data);
         }
         const commitChartData = await api.getCommitsCountByRepo(null, {
             headers: {
-                'Authorization': 'Bearer ' + accessToken
-            }
+                Authorization: "Bearer " + accessToken,
+            },
         });
-        if(commitChartData){
-            console.log('CCD', commitChartData)
+        if (commitChartData) {
+            console.log("CCD", commitChartData);
             setCommitsChartData(commitChartData.data);
         }
         const getTopCommits = await api.getTopCommits({repositoryId:209},{
@@ -159,40 +188,53 @@ const Dashboard = (props) => {
 
     var refactoringChartDataFeed = {
         labels: refactoringsChartData.map(function (item) {
-            return item.attributes.commitdate.slice(0, 10);
-          }),
-          datasets: [{
-            label: "Total Refactorings Done Across Repos By Date",
-            data: refactoringsChartData.map(function (item) {
-              return item.attributes.totalchanges;
-            }),
-          }]
-    }
+            return item.attributes.commitdate?.slice(0, 10);
+        }),
+        datasets: [
+            {
+                label: "Total Refactorings Done Across Repos By Date",
+                data: refactoringsChartData.map(function (item) {
+                    return item.attributes.totalchanges;
+                }),
+            },
+        ],
+    };
 
     var commitByRepoDataFeed = {
         labels: Object.keys(commitsChartData),
-          datasets: [{
-            label: "Commits By Repo",
-            data: Object.values(commitsChartData),
-          }]
-    }
+        datasets: [
+            {
+                label: "Commits By Repo",
+                data: Object.values(commitsChartData),
+            },
+        ],
+    };
 
-    const createGithubAuths = async (user, accessToken, refreshToken, expiresIn, headers) => {
+    const createGithubAuths = async (
+        user,
+        accessToken,
+        refreshToken,
+        expiresIn,
+        headers
+    ) => {
         try {
-            console.log('Headers', headers);
-            return await api.createAuths({
-                data: {
-                    accessToken: accessToken,
-                    refreshToken: refreshToken,
-                    expiresIn: expiresIn,
-                    'user': user.id,
-                    kind: 'Github',
-                }
-            }, headers);
+            console.log("Headers", headers);
+            return await api.createAuths(
+                {
+                    data: {
+                        accessToken: accessToken,
+                        refreshToken: refreshToken,
+                        expiresIn: expiresIn,
+                        user: user.id,
+                        kind: "Github",
+                    },
+                },
+                headers
+            );
         } catch (err) {
-            console.error('Unable to add Github Auths -> ', err)
+            console.error("Unable to add Github Auths -> ", err);
         }
-    }
+    };
 
     if (window.Chart) {
         parseOptions(Chart, chartOptions());
@@ -205,7 +247,12 @@ const Dashboard = (props) => {
     };
     return (
         <>
-            <Header showCards={true} repositoryCounts={repositoryCounts} contributorCounts={contributorCounts} refactoringCounts={refactoringCounts} />
+            <Header
+                showCards={true}
+                repositoryCounts={repositoryCounts}
+                contributorCounts={contributorCounts}
+                refactoringCounts={refactoringCounts}
+            />
             {/* Page content */}
             <Container className="mt--7" fluid>
                 <Row>
@@ -217,18 +264,20 @@ const Dashboard = (props) => {
                                         <h6 className="text-uppercase text-light ls-1 mb-1">
                                             Overview
                                         </h6>
-                                        <h2 className="text-white mb-0">Refactorings across Repositories</h2>
+                                        <h2 className="text-white mb-0">
+                                            Refactorings across Repositories
+                                        </h2>
                                     </div>
                                 </Row>
                             </CardHeader>
                             <CardBody>
                                 {/* Chart */}
-                                    <Line
-                                        data={refactoringChartDataFeed}
-                                        options={chartExample1.options2}
-                                        height={150}
-                                        getDatasetAtEvent={(e) => console.log(e)}
-                                    />
+                                <Line
+                                    data={refactoringChartDataFeed}
+                                    options={chartExample1.options2}
+                                    height={150}
+                                    getDatasetAtEvent={(e) => console.log(e)}
+                                />
                             </CardBody>
                         </Card>
                     </Col>
@@ -246,11 +295,11 @@ const Dashboard = (props) => {
                             </CardHeader>
                             <CardBody>
                                 {/* Chart */}
-                                    <Bar
-                                        data={commitByRepoDataFeed}
-                                        options={chartExample2.options}
-                                        height={150}
-                                    />
+                                <Bar
+                                    data={commitByRepoDataFeed}
+                                    options={chartExample2.options}
+                                    height={150}
+                                />
                             </CardBody>
                         </Card>
                     </Col>
