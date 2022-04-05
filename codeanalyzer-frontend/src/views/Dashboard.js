@@ -296,7 +296,7 @@ const Dashboard = (props) => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Smells</h3>
+                    <h3 className="mb-0">Smell Summary</h3>
                   </div>
                   <div className="col text-right">
                     <Button
@@ -319,11 +319,11 @@ const Dashboard = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(smellData).map((keyName, i) => {
+                    {Object.keys(smellData).map((keyName, i) => (
                         <tr>
                             <th scope="row">{keyName}</th>
                             <td>{smellData[keyName]}</td>
-                        </tr>})
+                        </tr>))
                     }
                 </tbody>
               </Table>
