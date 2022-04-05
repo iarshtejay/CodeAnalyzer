@@ -355,8 +355,8 @@ const Dashboard = (props) => {
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
                                     <tr>
-                                        <th scope="col">Referral</th>
-                                        <th scope="col">Visitors</th>
+                                        <th scope="col">Repository</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col" />
                                     </tr>
                                 </thead>
