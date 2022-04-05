@@ -62,6 +62,11 @@ const Dashboard = (props) => {
   const [refactoringsChartData, setRefactoringsChartData] = useState([]);
   const [commitsChartData, setCommitsChartData] = useState([]);
   const { user, setUser } = useContext(GithubContext);
+  const [smells, setSmells] = useState({
+    'code':22,
+    'design': 54,
+    'architecture': 69
+});
   const history = useHistory();
 
   useEffect(() => {
@@ -224,12 +229,6 @@ const Dashboard = (props) => {
     setChartExample1Data("data" + index);
   };
 
-
-  const smellData = {
-      'code':22,
-      'design': 54,
-      'architecture': 69
-  }
 
   return (
     <>
