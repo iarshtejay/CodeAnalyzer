@@ -42,5 +42,18 @@ module.exports = createCoreController(
     async getCounts(ctx) {
       return strapi.query("api::repository.repository").count();
     },
+
+    async getRepoId(ctx) {
+      const repository = ctx.request.query['repositoryName'];
+      const repoId = await strapi.db.query("api::repository.repository").findMany({
+        where :{
+          name: {
+            $eq: repository,
+          },
+        }
+      })
+      return repoId;
+    },
+
   })
 );
