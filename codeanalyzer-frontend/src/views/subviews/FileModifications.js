@@ -62,68 +62,30 @@ import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 
 const FileModifications = () => {
 
-
-  const [difference, setDifference] = useState([]);
-  const [createdOn, setCreatedOn] = useState([]);
-  const [contributor, setContributor] = useState('');
-  const [repositories, setRepositories] = useState([]);
-  const [chosenRepo, setChosenRepo] = useState('');
-  const [chosenPR, setChosenPR] = useState('');
-  const [userNotFound, setUserNotFound] = useState(false);
-  const [loadedRepos, setLoadedRepos] = useState(false);
-  const [prs, setPRS] = useState([]);
+  const [committedFiles, setCommittedFiles] = useState([]);
+  const [loadedCommittedFiles, setLoadedCommittedFiles] = useState(false);
 
   useEffect(() => {
     ; (async () => {
       const strapiToken = await localStorage.getItem("token");
-      const repos = await api.getRepositories({
+      const commFiles = await api.getCommitedFilesByUser({
+        authorname: 'web-flow'
+      }, {
         headers: {
           'Authorization': 'Bearer ' + strapiToken
         }
       });
-      if (repos.data) {
-        setRepositories(repos.data.data);
-        setChosenRepo(repos.data.data[0].attributes.name);
-        setLoadedRepos(true);
-        loadPullRequestUsers();
+      if (commFiles.data) {
+        setCommittedFiles(commFiles.data);
+        setLoadedCommittedFiles(true);
+        generateChartData();
       }
     })()
   }, []);
 
-  const loadPullRequestUsers = async (repo) => {
-      const accessToken = await localStorage.getItem("githubToken");
-      const strapiToken = await localStorage.getItem("token");
-      const pullRequests = await api.getPullRequestsUniqueUsers({
-        repository: repo,
-        accessToken: accessToken,
-      } ,{
-        headers: {
-          'Authorization': 'Bearer ' + strapiToken
-        }
-      });
-      console.log(pullRequests);
-      if(pullRequests){
-        setPRS(pullRequests.data.contributors);
-      }
-  }
 
-  const generatePullRequestsFrequencyPerUser = async (e) => {
-    const accessToken = await localStorage.getItem("githubToken");
-    const strapiToken = await localStorage.getItem("token");
-    const data = await api.getPullRequestFrequencyPerUser({
-      contributor: chosenPR,
-      accessToken: accessToken,
-      repository: repositories
-    }, {
-      headers: {
-        'Authorization': 'Bearer ' + strapiToken
-      }
-    });
-    if ((data.data.createdOn.length <= 0) || (data.data.difference.length <= 0)) {
-      setUserNotFound(true);
-    } else {
-      setUserNotFound(false);
-    }
+  const generateChartData = async (e) => {
+    
     setCreatedOn(data.data.createdOn);
     setDifference(data.data.difference);
     e.preventDefault();
