@@ -129,7 +129,7 @@ const Dashboard = (props) => {
                 }
             });
             if(avgCount){
-                console.log(avgCount.data,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                setAvgPr(avgCount.data);
             }
         }
     }

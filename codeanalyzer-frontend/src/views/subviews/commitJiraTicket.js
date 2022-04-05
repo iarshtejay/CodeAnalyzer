@@ -69,57 +69,58 @@ import { createEmitAndSemanticDiagnosticsBuilderProgram } from "typescript";
 const commitJiraTicket = () =>{
 
     //const [data,setData] = useState([]);
-    useEffect(() => {
-        ; (async () => {
-          const strapiToken = await localStorage.getItem("token");
-          const repos = await api.getRepositories({
-            headers: {
-              'Authorization': 'Bearer ' + strapiToken
-            }
-          });
-          if (repos.data) {
-            setRepositories(repos.data.data);
-            setChosenRepo(repos.data.data[0].attributes.name);
-            setLoadedRepos(true);
-            loadPullRequestUsers(repos.data.data[0].attributes.name);
-          }
-        })()
-      }, []);
+    // useEffect(() => {
+    //     ; (async () => {
+    //       const strapiToken = await localStorage.getItem("token");
+    //       const repos = await api.getRepositories({
+    //         headers: {
+    //           'Authorization': 'Bearer ' + strapiToken
+    //         }
+    //       });
+    //       if (repos.data) {
+    //         setRepositories(repos.data.data);
+    //         setChosenRepo(repos.data.data[0].attributes.name);
+    //         setLoadedRepos(true);
+    //         loadPullRequestUsers(repos.data.data[0].attributes.name);
+    //       }
+    //     })()
+    //   }, []);
     
 
     return(
-        <>
-            <Header />
-            {/* Page content */}
-            <Container className="mt--7" fluid>
-                <Row>
-                <Col>
-                    <Card className="shadow">
-                    <CardHeader className="bg-transparent">
-                        <Row className="align-items-center">
-                        <div className="col">
-                            <h6 className="text-uppercase text-muted ls-1 mb-1">
-                            Commits
-                            </h6>
-                            <h2 className="mb-0">Commits according to Jira Tickets</h2>
-                        </div>
-                        </Row>
-                    </CardHeader>
-                    {/* <CardBody> */}
-                        {/* Chart */}
-                        {/* <div className="chart">
-                        <Bar
-                            data={data}
-                            options={chartExample1.options}
-                            height={"100%"}
-                        />
-                        </div>
-                    </CardBody> */}
-                    </Card>
-                </Col>
-                </Row>
-            </Container>
-        </>
+        // <>
+        //     <Header />
+        //     {/* Page content */}
+        //     <Container className="mt--7" fluid>
+        //         <Row>
+        //         <Col>
+        //             <Card className="shadow">
+        //             <CardHeader className="bg-transparent">
+        //                 <Row className="align-items-center">
+        //                 <div className="col">
+        //                     <h6 className="text-uppercase text-muted ls-1 mb-1">
+        //                     Commits
+        //                     </h6>
+        //                     <h2 className="mb-0">Commits according to Jira Tickets</h2>
+        //                 </div>
+        //                 </Row>
+        //             </CardHeader>
+        //             {/* <CardBody> */}
+        //                 {/* Chart */}
+        //                 {/* <div className="chart">
+        //                 <Bar
+        //                     data={data}
+        //                     options={chartExample1.options}
+        //                     height={"100%"}
+        //                 />
+        //                 </div>
+        //             </CardBody> */}
+        //             </Card>
+        //         </Col>
+        //         </Row>
+        //     </Container>
+        // </>
+        <h1>Hello there in page commitJiraTicket</h1>
     )
 }
 

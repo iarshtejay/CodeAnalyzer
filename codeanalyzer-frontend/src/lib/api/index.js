@@ -98,9 +98,8 @@ const getPullRequestsCountsByBranch = (info, headers) => {
   );
 };
 
-const getAveragePR = (info, headers) => {
-  const a = get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
-  console.log(a,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+const getAveragePR = async (info, headers) => {
+  return await get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
 }
 const getCommitCountPerHour = (info, headers) => {
   console.log("info per hour", info);
