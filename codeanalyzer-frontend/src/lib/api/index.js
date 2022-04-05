@@ -128,6 +128,11 @@ const getTopCommits = (info,headers) => {
   return get(`/commit/getCommitByTime?repositoryId=${info.repositoryId}`);
 }
 
+const getRepoId = async (info,headers) =>{
+  const id = await get(`/repository/repoId?repositoryName=${info.repositoryName}`)
+  return id.data[0].id;
+}
+
 export const api = {
   authGithubUser,
   createAuths,
@@ -154,6 +159,7 @@ export const api = {
   getRefactoringData,
   getCommitsCountByRepo,
   getCommitsQuery,
-  getTopCommits
+  getTopCommits,
+  getRepoId
   // fetchGithubRepo
 };
