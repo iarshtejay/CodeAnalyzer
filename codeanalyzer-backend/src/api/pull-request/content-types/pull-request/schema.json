@@ -43,7 +43,11 @@
       "type": "string"
     },
     "body": {
+<<<<<<< HEAD
       "type": "string"
+=======
+      "type": "text"
+>>>>>>> af960545a92b0ce470759e1c4c63893195a89a20
     }
   }
 }

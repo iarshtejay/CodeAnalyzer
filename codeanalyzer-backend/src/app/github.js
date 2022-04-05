@@ -87,28 +87,69 @@ exports.searchUsingQuery = async (info) => {
 exports.getCommits = async (info) => {
   const MyOctokit = Octokit.plugin(paginateRest);
   const octokit = new MyOctokit({ auth: info.accessToken });
+  console.log("here", info);
+  const commitBrief = await octokit
+    .request(`GET /repos/{owner}/{repo}/commits`, {
+      owner: info.owner,
+      repo: info.repositoryName,
+      per_page: 10,
+    })
+    .then((res) => res.data);
+  // console.log(commitBrief);
+  const commitUrls = commitBrief.map((item) => item.url);
 
-  const getAllCommitsSha = async (allBranches) => {
-    const allCommitsSha = [];
-    for (const branch of allBranches) {
-      const data = await octokit.paginate(
-        "GET /repos/{owner}/{repo}/commits?sha={branch_name}",
-        {
-          owner: info.owner,
-          repo: info.repositoryName,
-          branch_name: branch,
-        }
+  const branches = await this.getBranches(info);
+
+  const commitEntityArray = await Promise.all(
+    commitUrls.map(async (url) => {
+      console.log(url);
+      const res = await axios.get(url).then((r) => r.data);
+      console.log(res.sha);
+
+      const fileEntityArray = res.files.map((fileEntry) => {
+        const { sha, filename, status, additions, deletions, changes } =
+          fileEntry;
+
+        const fileEntityObj = {
+          sha,
+          filename,
+          status,
+          additions,
+          deletions,
+          changes,
+          repository: info.repositoryId,
+          authorname: res.committer.login,
+        };
+        return fileEntityObj;
+      });
+
+      console.log(fileEntityArray);
+      const fileEntries = await Promise.all(
+        fileEntityArray.map(async (obj) => {
+          const entry = await axios
+            .post("http://localhost:1337/api/committedfiles", {
+              data: { ...obj, totalchanges: obj.changes },
+            })
+            .then((res) => res.data);
+          return entry.data.id;
+        })
       );
 
-      for (const commit of data) {
-        allCommitsSha.push({
-          branch: branch,
-          sha: commit.sha,
-        });
-      }
-    }
-    return allCommitsSha;
-  };
+      const entityObj = {
+        commit_id: res.sha.slice(0, 6),
+        message: res.commit.message,
+        sha: res.commit.tree.sha,
+        authorid: res.author.id,
+        totalchanges: res.stats.total,
+        totaladditions: res.stats.additions,
+        totaldeletions: res.stats.deletions,
+        committedfiles: fileEntries,
+        commitdate: res.commit.author.date,
+        branch: "master",
+        repository: info.repositoryId,
+        authorname: res.committer.login,
+        authoravatar: res.committer.avatar_url,
+      };
 
   const getAllCommitsDetails = async (allCommitsSha) => {
     const allCommitsDetails = [];
@@ -158,6 +199,11 @@ exports.getCommits = async (info) => {
   const allCommitsSha = await getAllCommitsSha(allBranches);
   const allCommitsDetails = await getAllCommitsDetails(allCommitsSha);
   return allCommitsDetails;
+      console.log("entityObj", entityObj);
+      return entityObj;
+    })
+  );
+  return commitEntityArray;
 };
 
 /**

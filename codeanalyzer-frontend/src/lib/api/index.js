@@ -93,8 +93,9 @@ const getCommitsFrequencyByRepository = (info, headers) => {
   );
 };
 
-const getContributors = (info, headers) => {
-  return get("/contributors");
+const getContributorsForRepo = (info, headers) => {
+  console.log("infooooooo", info);
+  return get(`/contributors?filters[repository][id][$eq]=${info.repoId}`);
 };
 
 const getPullRequestsCountsByBranch = (info, headers) => {
@@ -108,12 +109,21 @@ const getPullRequestsCountsByBranch = (info, headers) => {
 const getAveragePR = (info, headers) => {
   return get(`/pull-request/averageCount/?repositoryId=${info.repository}`);
 }
+const getCommitCountPerHour = (info, headers) => {
+  console.log("info per hour", info);
+  return get(`/commit/getCommitsByHour?repositoryId=${info.repositoryId}`);
+};
+
+const getUserLanguageEffort = (info, headers) => {
+  console.log("info user language effort", info);
+  return get(`/commit/getUserLanguageEffort?repositoryId=${info.repositoryId}`);
+};
 
 export const api = {
   authGithubUser,
   createAuths,
   getJiraAuthCode,
-  getContributors,
+  getContributorsForRepo,
   getJiraAccessToken,
   getJiraCloudId,
   jiraOAuthFlow,
@@ -128,5 +138,8 @@ export const api = {
   getCommmitCountsByBranch,
   getCommitsFrequencyByRepository,
   getPullRequestsCountsByBranch,
-  getAveragePR
+  getAveragePR,
+  getCommitCountPerHour,
+  getUserLanguageEffort,
+  // fetchGithubRepo
 };
