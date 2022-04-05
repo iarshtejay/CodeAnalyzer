@@ -66,11 +66,14 @@ const FileModifications = () => {
   const [loadedCommittedFiles, setLoadedCommittedFiles] = useState(false);
   const [dataByMonth, setDataByMonth] = useState({});
 
+  const userId = localStorage.getItem("strapiUserId");
+
   useEffect(() => {
     ; (async () => {
       const strapiToken = await localStorage.getItem("token");
       const commFiles = await api.getCommitedFilesByUser({
         authorname: 'web-flow'
+        //authorname: userId
       }, {
         headers: {
           'Authorization': 'Bearer ' + strapiToken
@@ -80,19 +83,23 @@ const FileModifications = () => {
       if (commFiles.data) {
         setCommittedFiles(commFiles.data.data);
         setLoadedCommittedFiles(true);
-        generateChartData(committedFiles);
+        console.log(commFiles.data.data)
+        //await generateChartData(commFiles.data.data);
+        // Data model down so using random values
+        // Array.apply(null, {length: 12}).map(x=>Math.floor(Math.random()*5))
+        setDataByMonth({"addition":[1,0,3,5,2,1,1,3,4,2,4,1], "modification":[3,1,4,2,5,3,2,6,2,1,5,1], "deletion":[2,1,0,3,4,1,5,1,3,2,1,4]})
       }
     })()
   }, []);
 
 
   const generateChartData = (data) => {
+    console.log('entered with data', data)
     const addCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
     const deleteCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
     const modificationsCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
-
     for(const committedFile of data){
-
+      console.log("teadsa", committedFile, new Date(committedFile.createdD))
       if(committedFile.status === "added" ){
         addCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
       }else if(committedFile.status === "deleted" ){
@@ -102,28 +109,28 @@ const FileModifications = () => {
       }
     }
     setDataByMonth({"addition":addCountByMonth, "modification":modificationsCountByMonth, "deletion":deleteCountByMonth});
-    console.log(dataByMonth)
-    console.log(addCountByMonth)
-    console.log(modificationsCountByMonth)
-    console.log(deleteCountByMonth)
+    console.log("DBM", dataByMonth)
+    console.log("dsad",addCountByMonth)
+    console.log("dsad",modificationsCountByMonth)
+    console.log("dsad",deleteCountByMonth)
   }
 
   var data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", ],
     datasets: [{
       label: "Aditions ",
       data: dataByMonth.addition,
-      borderColor: 'green',
+      borderColor: 'rgb(42, 157, 143)',
     },
     {
       label: "Modifications ",
       data: dataByMonth.modification,
-      borderColor: 'yellow',
+      borderColor: 'rgb(233, 196, 106)',
     },
     {
       label: "Deletions ",
       data: dataByMonth.deletion,
-      borderColor: 'red',
+      borderColor: 'rgb(231, 111, 81)',
     }]
   };
 
@@ -138,10 +145,7 @@ const FileModifications = () => {
               <CardHeader className="bg-transparent">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h6 className="text-uppercase text-light ls-1 mb-1">
-                      Overview
-                    </h6>
-                    <h2 className="text-white mb-0">File Changes By User</h2>
+                    <h2 className="text-white mb-0">File Changes By User In The Past Year</h2>
                   </div>
                 </Row>
               </CardHeader>
@@ -152,7 +156,6 @@ const FileModifications = () => {
                     data={data}
                     options={chartExample1.options4}
                     height={100}
-                    getDatasetAtEvent={(e) => console.log(e)}
                   />
                 </div>
               </CardBody>

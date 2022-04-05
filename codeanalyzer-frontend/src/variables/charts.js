@@ -434,7 +434,7 @@ let chartExample1 = {
             content += label;
           }
 
-          content += yLabel;
+          content += yLabel + " ";
           return content;
         },
       },
