@@ -119,6 +119,7 @@ exports.getCommits = async (info) => {
           changes,
           repository: info.repositoryId,
           authorname: res.committer.login,
+          commitdate: new Date(res.commit.committer.date).toISOString(),
         };
         return fileEntityObj;
       });
