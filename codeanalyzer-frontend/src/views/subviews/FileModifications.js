@@ -96,15 +96,14 @@ const FileModifications = () => {
       }else if(committedFile.status === "deleted" ){
         deleteCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
       }else if(committedFile.status === "modified" ){
-        modifiedCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
+        modificationsCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
       }
     }
     setDataByMonth({"addition":addCountByMonth, "modification":modificationsCountByMonth, "deletion":deleteCountByMonth});
-    e.preventDefault();
   }
 
   var data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
       label: "Number of file additions per month in 2022",
       data: dataByMonth.addition,
@@ -127,69 +126,6 @@ const FileModifications = () => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
-        <Row>
-          <Col>
-            <Card className="bg-gradient-default shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h6 className="text-uppercase text-light ls-1 mb-1">
-                      Pull Requests
-                    </h6>
-                    <h2 className="text-white mb-0">Pull Requests Frequency By User For A Repository</h2>
-                  </div>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      {
-                        userNotFound ? (
-                          <Alert color="danger">
-                            User not found or User doesn't have raised any pull requests!
-                          </Alert>
-                        ) : <></>
-                      }
-                      <h6 className="text-uppercase text-light ls-1 mb-1">
-                        Repository
-                      </h6>
-                      <div className="input-group mb-4">
-                        <select class="form-control" data-toggle="select" title="Choose a repository" onChange={async e => {
-                          await setChosenRepo(e.target.value);
-                          loadPullRequestUsers(e.target.value);
-                          }}>
-                          {Object.entries(repositories).map((repo) => {
-                            return <option value={repo[1].id} >{repo[1].attributes.name}</option>
-                          })}
-                        </select>
-                      </div>
-                      {
-                        loadedRepos ? (
-                          <>
-                            <h6 className="text-uppercase text-light ls-1 mb-1">
-                              Contributor
-                            </h6>
-                            <div className="input-group mb-4">
-                              <select class="form-control" data-toggle="select" title="Choose a repository" value={chosenPR} onChange={e => setChosenPR(e.target.value)}>
-                                {Object.entries(prs).map((pr) => {
-                                  return <option value={pr[1]} >{pr[1]}</option>
-                                })}
-                              </select>
-                            </div>
-                          </>
-                        ) : <></>
-                      }
-                      <Button color="primary" type="submit" onClick={e => { generatePullRequestsFrequencyPerUser(e) }}>
-                        Submit
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
         <Row className="mt-5">
           <div className="col">
             <Card className="bg-gradient-default shadow">
@@ -199,7 +135,7 @@ const FileModifications = () => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">Pull Requests Frequency</h2>
+                    <h2 className="text-white mb-0">File Changes By User</h2>
                   </div>
                 </Row>
               </CardHeader>
@@ -208,7 +144,7 @@ const FileModifications = () => {
                 <div className="chart">
                   <Line
                     data={data}
-                    options={chartExample1.options}
+                    options={chartExample1.options4}
                     height={100}
                     getDatasetAtEvent={(e) => console.log(e)}
                   />
