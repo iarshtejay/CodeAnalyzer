@@ -118,7 +118,7 @@ exports.getCommits = async (info) => {
           deletions,
           changes,
           repository: info.repositoryId,
-          authorname: res.committer.login,
+          authorname: res.committer?.login || '',
         };
         return fileEntityObj;
       });
@@ -139,7 +139,7 @@ exports.getCommits = async (info) => {
         commit_id: res.sha.slice(0, 6),
         message: res.commit.message,
         sha: res.commit.tree.sha,
-        authorid: res.author.id,
+        authorid: res.author?.id || '',
         totalchanges: res.stats.total,
         totaladditions: res.stats.additions,
         totaldeletions: res.stats.deletions,
@@ -147,8 +147,8 @@ exports.getCommits = async (info) => {
         commitdate: res.commit.author.date,
         branch: "master",
         repository: info.repositoryId,
-        authorname: res.committer.login,
-        authoravatar: res.committer.avatar_url,
+        authorname: res.committer?.login || '',
+        authoravatar: res.committer?.avatar_url || '',
       };
 
       console.log("entityObj", entityObj);

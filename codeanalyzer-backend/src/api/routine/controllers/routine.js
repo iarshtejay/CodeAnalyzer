@@ -80,7 +80,7 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
             totaladditions: commit.stats?.additions,
             totaldeletions: commit.stats?.deletions,
             branch: commit.branch,
-            commitdate: new Date(commit.commit.author.date).toISOString(),
+            commitdate: new Date(commit.author?.date || '2011-04-14T16:00:49Z').toISOString(),
             committedfiles: [1],
             repository: repositoryId,
             authorname: commit.author.login,

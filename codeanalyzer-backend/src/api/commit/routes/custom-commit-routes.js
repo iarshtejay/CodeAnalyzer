@@ -44,6 +44,11 @@ module.exports = {
       method: "GET",
       path: "/commit/getCommitsCountByRepo",
       handler: "commit.getCommitsCountByRepo"
-    }
+    },
+    {
+      method: "GET",
+      path: "/commit/getCommitByTime",
+      handler: "commit.getCommitByTime"
+    },
   ],
 };
