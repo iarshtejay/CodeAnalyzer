@@ -227,7 +227,7 @@ module.exports = createCoreController("api::commit.commit", ({ strapi }) => ({
         },
       }
     });
-    repoCommits.length = 2;
+    repoCommits.length = 5;
     return repoCommits;
   },
 

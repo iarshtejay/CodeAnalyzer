@@ -173,14 +173,14 @@ const Dashboard = (props) => {
             console.log("CCD", commitChartData);
             setCommitsChartData(commitChartData.data);
         }
-        const getTopCommits = await api.getTopCommits({repositoryId:209},{
+        
+        const getTopCommits = await api.getTopCommits({repositoryId:repoCount.data.data[0].id},{
             headers: {
                 'Authorization': 'Bearer ' + accessToken
             }
         });
         if(getTopCommits.length != 0){
             setTopCommit([...getTopCommits.data]); 
-            console.log(topCommits,"<<<<<<<<<<<<<<<")
             setDataLoaded(true);
         }
         

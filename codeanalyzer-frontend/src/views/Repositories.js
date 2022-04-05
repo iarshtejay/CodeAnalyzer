@@ -266,7 +266,7 @@ const Repositories = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-around",
-                  width: "60%",
+                  width: "100%",
                 }}
               >
                 <CardTitle
