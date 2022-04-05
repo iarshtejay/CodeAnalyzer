@@ -76,8 +76,9 @@ const FileModifications = () => {
           'Authorization': 'Bearer ' + strapiToken
         }
       });
+      
       if (commFiles.data) {
-        setCommittedFiles(commFiles.data);
+        setCommittedFiles(commFiles.data.data);
         setLoadedCommittedFiles(true);
         generateChartData(committedFiles);
       }
@@ -85,12 +86,13 @@ const FileModifications = () => {
   }, []);
 
 
-  const generateChartData = async (data) => {
+  const generateChartData = (data) => {
     const addCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
     const deleteCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
     const modificationsCountByMonth = [0,0,0,0,0,0,0,0,0,0,0,0]
 
     for(const committedFile of data){
+
       if(committedFile.status === "added" ){
         addCountByMonth[new Date(committedFile.commitdate).toISOString().getMonth()]++;
       }else if(committedFile.status === "deleted" ){
@@ -100,24 +102,28 @@ const FileModifications = () => {
       }
     }
     setDataByMonth({"addition":addCountByMonth, "modification":modificationsCountByMonth, "deletion":deleteCountByMonth});
+    console.log(dataByMonth)
+    console.log(addCountByMonth)
+    console.log(modificationsCountByMonth)
+    console.log(deleteCountByMonth)
   }
 
   var data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [{
-      label: "Number of file additions per month in 2022",
+      label: "Aditions ",
       data: dataByMonth.addition,
       borderColor: 'green',
     },
     {
-      label: "Number of file modifications per month in 2022",
+      label: "Modifications ",
       data: dataByMonth.modification,
       borderColor: 'yellow',
     },
     {
-      label: "Number of file deletions per month in 2022",
+      label: "Deletions ",
       data: dataByMonth.deletion,
-      borderColor: 'green',
+      borderColor: 'red',
     }]
   };
 

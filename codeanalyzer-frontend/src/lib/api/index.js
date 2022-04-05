@@ -156,6 +156,7 @@ export const api = {
   getTotalRefactoringsForRepo,
   getTotalRefactorings,
   getRefactoringData,
-  getCommitsCountByRepo
+  getCommitsCountByRepo,
+  getCommitedFilesByUser
   // fetchGithubRepo
 };
