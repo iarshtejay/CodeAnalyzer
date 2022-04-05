@@ -23,6 +23,7 @@ import PullRequests from "views/subviews/PullRequests.js";
 import JiraAuth from "views/JiraAuth";
 import Tables from "views/subviews/Tables";
 import Repositories from "./views/Repositories";
+import commitJiraTicket from "views/commitJiraTicket";
 
 var routes = [
   {

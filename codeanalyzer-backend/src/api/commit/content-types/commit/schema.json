@@ -54,6 +54,9 @@
     },
     "authorname": {
       "type": "string"
+    },
+    "jira_ticket": {
+      "type": "string"
     }
   }
 }

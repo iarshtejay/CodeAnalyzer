@@ -8,7 +8,7 @@ import {jiraOAuthFlow} from "../lib/api/jira";
 
 const JiraAuth = () => {
     const [jiraAuth, setJiraAuth] = useContext(JiraContext);
-
+    
     useEffect(() => {
 
         const firstStepCode = new URLSearchParams(window.location.search).get("code")
