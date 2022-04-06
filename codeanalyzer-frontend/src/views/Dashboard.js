@@ -63,6 +63,8 @@ const Dashboard = (props) => {
     const [refactoringsChartData, setRefactoringsChartData] = useState([]);
     const [commitsChartData, setCommitsChartData] = useState([]);
     const { user, setUser } = useContext(GithubContext);
+    const [smells, setSmells] = useState(); 
+    const [loadedSmells, setLoadedSmells] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
