@@ -122,6 +122,10 @@ const Dashboard = (props) => {
         const token = localStorage.getItem("token");
 
         const smellsDataRes = await axios.get("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+        if(smellsDataRes.length!=0){
+            setSmells(smellsDataRes.data);
+            setLoadedSmells(true);
+        }
 
         if(token){
             fetchDashboardData();
