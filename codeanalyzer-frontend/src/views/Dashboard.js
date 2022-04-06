@@ -307,16 +307,6 @@ const Dashboard = (props) => {
                   <div className="col">
                     <h3 className="mb-0">Smell Summary</h3>
                   </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div>
                 </Row>
               </CardHeader>
               <></>
