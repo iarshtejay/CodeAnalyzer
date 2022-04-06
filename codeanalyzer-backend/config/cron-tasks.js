@@ -1,7 +1,7 @@
 module.exports = {
     
     // Cron Job that sends email Report every day
-    '55 16 * * *': async ({ strapi }) => {
+    '0 08 * * *': async ({ strapi }) => {
       const users = [
         {
           email: "bharatwaaj@dal.ca",
