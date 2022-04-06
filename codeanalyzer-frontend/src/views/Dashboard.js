@@ -229,7 +229,7 @@ const Dashboard = (props) => {
 
   // Fetch designite smell analysis output
   const fetchSmells = async () => {
-    const response = await  fetch("34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+    const response = await  fetch("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
     //const data = await response.json();
     setSmells(response)
     console.log("FETCHEDEDEDEDE")
