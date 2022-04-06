@@ -22,6 +22,7 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Bar, Line } from "react-chartjs-2";
+import axios from "axios";
 
 import useQuery from "../hooks/useQuery";
 // reactstrap components
@@ -62,6 +63,8 @@ const Dashboard = (props) => {
     const [refactoringsChartData, setRefactoringsChartData] = useState([]);
     const [commitsChartData, setCommitsChartData] = useState([]);
     const { user, setUser } = useContext(GithubContext);
+    const [smells, setSmells] = useState(); 
+    const [loadedSmells, setLoadedSmells] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -117,6 +120,13 @@ const Dashboard = (props) => {
             }
 
         const token = localStorage.getItem("token");
+
+        const smellsDataRes = await axios.get("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+        if(smellsDataRes.length!=0){
+            setSmells(smellsDataRes.data);
+            setLoadedSmells(true);
+        }
+
         if(token){
             fetchDashboardData();
         }
@@ -297,74 +307,30 @@ const Dashboard = (props) => {
                             <CardHeader className="border-0">
                                 <Row className="align-items-center">
                                     <div className="col">
-                                        <h3 className="mb-0">Page visits</h3>
-                                    </div>
-                                    <div className="col text-right">
-                                        <Button
-                                            color="primary"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                            size="sm"
-                                        >
-                                            See all
-                                        </Button>
+                                        <h3 className="mb-0">Smells Summary</h3>
                                     </div>
                                 </Row>
                             </CardHeader>
                             <></>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
-                                    <tr>
-                                        <th scope="col">Page name</th>
-                                        <th scope="col">Visitors</th>
-                                        <th scope="col">Unique users</th>
-                                        <th scope="col">Bounce rate</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Smell</th>
+                                    <th scope="col">Count</th>
+                                </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">/argon/</th>
-                                        <td>4,569</td>
-                                        <td>340</td>
-                                        <td>
-                                            <i className="fas fa-arrow-up text-success mr-3" /> 46,53%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">/argon/index.html</th>
-                                        <td>3,985</td>
-                                        <td>319</td>
-                                        <td>
-                                            <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                                            46,53%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">/argon/charts.html</th>
-                                        <td>3,513</td>
-                                        <td>294</td>
-                                        <td>
-                                            <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                                            36,49%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">/argon/tables.html</th>
-                                        <td>2,050</td>
-                                        <td>147</td>
-                                        <td>
-                                            <i className="fas fa-arrow-up text-success mr-3" /> 50,87%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">/argon/profile.html</th>
-                                        <td>1,795</td>
-                                        <td>190</td>
-                                        <td>
-                                            <i className="fas fa-arrow-down text-danger mr-3" />{" "}
-                                            46,53%
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                    {
+                                        loadedSmells ? Object.keys(smells).map((keyName,i)=>{
+                                            return(
+                                                <tr>
+                                                <th scope="row">{keyName}</th>
+                                                <td>{smells[keyName]}</td>
+                                        </tr>
+                                            )
+                                        }) :
+                                        <tr>   Fetching...</tr>
+                                    }
                                 </tbody>
                             </Table>
                         </Card>
