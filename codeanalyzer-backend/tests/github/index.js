@@ -250,3 +250,24 @@ it('Get all Branches from Github', async () => {
     console.log("DATA", err);
   }
 });
+
+/**
+ * @author Bharatwaaj Shankar
+ * @description Get all Contributors from Github
+ * @name TEST020
+ */
+ it('Get all Contributors of Repositories from Github via Library', async () => {
+  const output = await strapi.db.query("api::github-auth.github-auth").findMany({orderBy: {id: 'desc'}});
+  console.log("output[0].accessToken", output[0].accessToken);
+  try{
+    const data = await Github.getContributors({
+      accessToken: output[0].accessToken,
+      owner: "bharatwaaj",
+      repositoryName: "Firebase"
+    });
+    console.log("DATA", data.length);
+    expect(data).toBeDefined();
+  } catch(err){
+    console.log("DATA", err);
+  }
+});
