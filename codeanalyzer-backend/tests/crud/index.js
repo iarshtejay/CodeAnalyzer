@@ -43,22 +43,8 @@ it('Check if a Commits in Backend and Database are in same status', async () => 
     });
 });
 
-it('Check if a Committed Files in Backend and Database are in same status', async () => {
-    let success = false;
-    const dbOutput = await strapi.db.query("api::committedfile.committedfile").findMany({where : {id:5122}});
-    console.log("dbOutput", dbOutput[0]);
-
-    await request(strapi.server.httpServer).get('/api/committedfiles/1507').then((data) => {
-        const parsedApiOutput = JSON.parse(data.text).data;
-        if(dbOutput[0].id == parsedApiOutput.id && dbOutput[0].filename == parsedApiOutput.attributes?.filename){
-            success = true;
-            expect(success).toBeDefined();
-        }
-    });
-});
-
 it('Fetch All Users', async() => {
-    await request(strapi.server.httpServer).get('/api/users').then((data) => {
+    await request(strapi.server.httpServer).get('/api/repositories').then((data) => {
         const parsedApiOutput = JSON.parse(data.text).data;
         expect(parsedApiOutput).toBeDefined();
     });
@@ -88,6 +74,28 @@ it('Fetch All Commits', async() => {
 
 it('Fetch All Contributors', async() => {
     await request(strapi.server.httpServer).get('/api/contributors').then((data) => {
+        const parsedApiOutput = JSON.parse(data.text).data;
+        expect(parsedApiOutput).toBeDefined();
+    });
+});
+
+
+it('Get all the data of All Branches', async() => {
+    await request(strapi.server.httpServer).get('/api/branches').then((data) => {
+        const parsedApiOutput = JSON.parse(data.text).data;
+        expect(parsedApiOutput).toBeDefined();
+    });
+});
+
+it('Fetch all Commmited Files', async() => {
+    await request(strapi.server.httpServer).get('/api/committedfiles').then((data) => {
+        const parsedApiOutput = JSON.parse(data.text).data;
+        expect(parsedApiOutput).toBeDefined();
+    });
+});
+
+it('Fetch all Pull Requests Files', async() => {
+    await request(strapi.server.httpServer).get('/api/pull-requests').then((data) => {
         const parsedApiOutput = JSON.parse(data.text).data;
         expect(parsedApiOutput).toBeDefined();
     });
