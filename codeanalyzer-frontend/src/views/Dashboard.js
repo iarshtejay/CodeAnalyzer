@@ -324,12 +324,10 @@ const Dashboard = (props) => {
                             <></>
                             <Table className="align-items-center table-flush" responsive>
                                 <thead className="thead-light">
-                                    <tr>
-                                        <th scope="col">Page name</th>
-                                        <th scope="col">Visitors</th>
-                                        <th scope="col">Unique users</th>
-                                        <th scope="col">Bounce rate</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Smell</th>
+                                    <th scope="col">Count</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
