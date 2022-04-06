@@ -38,3 +38,4 @@ it('strapi is defined', () => {
 
 require('./user');
 require('./github');
+require('./crud');
