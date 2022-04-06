@@ -51,6 +51,7 @@ import GithubContext from "../contexts/GithubContext";
 import { api } from "../lib/api";
 import { useHistory } from "react-router-dom";
 import Header from "components/Headers/Header.js";
+import axios from "axios";
 
 const Dashboard = (props) => {
   const [activeNav, setActiveNav] = useState(1);
@@ -111,7 +112,12 @@ const Dashboard = (props) => {
       console.log("user", user);
       await localStorage.setItem("token", userRegistration.data.jwt);
       await localStorage.setItem("githubToken", accessToken);
-      await fetchSmells();
+    
+      const smellsDataRes = await axios.get("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+      if(smellsDataRes.length!=0){
+          setSmells(smellsDataRes.data);
+          setLoadedSmells(true);
+      }
 
       fetchDashboardData();
     })();
@@ -229,9 +235,11 @@ const Dashboard = (props) => {
 
   // Fetch designite smell analysis output
   const fetchSmells = async () => {
-    const response = await  fetch("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+      console.log("BEFOREEEE GETTT")
+    const response = await axios.get("http://34.125.39.69:3000/designite?repo=zxpoly&owner=qurram-zaheer");
+    console.log('RESSSSPOOOOONSEEEEEE', response.data)
     //const data = await response.json();
-    setSmells(response)
+    setSmells(response.data)
     console.log("FETCHEDEDEDEDE")
     if(smells){
         setLoadedSmells(true)
@@ -318,11 +326,16 @@ const Dashboard = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                    { loadedSmells ? Object.keys(smells).map((keyName, i) => (
-                        <tr>
-                            <th scope="row">{keyName}</th>
-                            <td>{smells[keyName]}</td>
-                        </tr>)) : <p>Loading..</p> 
+                    {
+                        loadedSmells ? Object.keys(smells).map((keyName,i)=>{
+                            return(
+                                <tr>
+                                <th scope="row">{keyName}</th>
+                                <td>{smells[keyName]}</td>
+                        </tr>
+                            )
+                        }) :
+                        <tr></tr>
                     }
                 </tbody>
               </Table>
