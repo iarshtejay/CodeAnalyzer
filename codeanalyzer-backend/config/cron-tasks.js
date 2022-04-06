@@ -476,5 +476,5 @@ module.exports = {
       } catch (err) {
         console.log("Daily summary report not sent", err);
       }
-    },
+    }
   };
