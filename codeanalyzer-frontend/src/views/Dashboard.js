@@ -22,6 +22,7 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Bar, Line } from "react-chartjs-2";
+import axios from "axios";
 
 import useQuery from "../hooks/useQuery";
 // reactstrap components
