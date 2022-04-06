@@ -7,6 +7,14 @@ module.exports = {
         config: {
           auth: false,
         },
+      },
+      { 
+        method: 'GET',
+        path: '/repository/repoId',
+        handler: 'repository.getRepoId',
+        config: {
+          auth: false,
+        },
       }
     ]
 }

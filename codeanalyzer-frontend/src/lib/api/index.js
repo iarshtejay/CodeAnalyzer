@@ -28,13 +28,7 @@ const getUserFromId = (info, headers) => {
   return get(`/users/${info.userId}`, headers);
 }
 
-// const fetchGithubRepo = async (username)=>{
-//     const url = "https://api.github.com/users/tushartushar/repos";
 
-//     const response = await get(url)
-//     //console.log(response.data)
-//     cleanData(response.data)
-// }
 
 const lengthOfFetchedData = async (url) => {
   return await get(url).length;
@@ -140,6 +134,15 @@ const getCommitsCountByRepo = (info, headers) => {
   return get(`/commit/getCommitsCountByRepo`)
 }
 
+const getTopCommits = (info,headers) => {
+  return get(`/commit/getCommitByTime?repositoryId=${info.repositoryId}`);
+}
+
+const getRepoId = async (info,headers) =>{
+  const id = await get(`/repository/repoId?repositoryName=${info.repositoryName}`)
+  return id.data[0].id;
+}
+
 export const api = {
   authGithubUser,
   createAuths,
@@ -167,6 +170,8 @@ export const api = {
   getRefactoringData,
   getCommitsCountByRepo,
   getCommitsQuery,
+  getTopCommits,
+  getRepoId,
   getUserFromId
   // fetchGithubRepo
 };

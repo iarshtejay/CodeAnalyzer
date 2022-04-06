@@ -1,0 +1,51 @@
+{
+  "name": "codeanalyzer",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "start-frontend-dev": "cd ../codeanalyzer-frontend && NODE_ENV=development npm run start",
+    "start-frontend-prod": "cd ../codeanalyzer-frontend && NODE_ENV=production npm run start",
+    "start-backend-dev": "NODE_ENV=development npm run develop",
+    "start-backend-prod": "NODE_ENV=production npm run develop",
+    "full-dev-mode": "concurrently \"npm run start-backend-dev\" \"npm run start-frontend-dev\"",
+    "full-prod-mode": "concurrently \"npm run start-backend-prod\" \"npm run start-frontend-prod\""
+  },
+  "dependencies": {
+    "@octokit/core": "^3.6.0",
+    "@octokit/plugin-paginate-rest": "^2.17.0",
+    "@strapi/plugin-graphql": "4.1.5",
+    "@strapi/plugin-i18n": "4.1.5",
+    "@strapi/plugin-users-permissions": "4.1.5",
+    "@strapi/strapi": "4.1.5",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "concurrently": "^7.0.0",
+    "github-graphql-client": "^1.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "pg": "^8.7.3",
+    "pg-connection-string": "^2.5.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.0",
+    "sharp": "^0.30.2",
+    "sqlite3": "5.0.2",
+    "strapi-utils": "^3.6.8"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "37bdcb22-ef56-4b8a-b4b8-2ce1ed3c4d34"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

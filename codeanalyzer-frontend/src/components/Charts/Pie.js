@@ -11,7 +11,7 @@ const Pie = (props) => {
   return (
     <div>
       {console.log(props.data)}
-      <Doughnut data={props.data} options={{ ...options }} />
+      <Doughnut data={props.data} options={{ ...options, maintainAspectRatio:false }} />
     </div>
   );
 };

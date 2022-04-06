@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "repositories",
+  "info": {
+    "singularName": "repository",
+    "pluralName": "repositories",
+    "displayName": "Repository",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "size": {
+      "type": "biginteger"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "repositories"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "pull_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pull-request.pull-request",
+      "mappedBy": "repository"
+    },
+    "languages": {
+      "type": "json"
+    },
+    "commit": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::commit.commit",
+      "inversedBy": "repository"
+    }
+  }
+}
