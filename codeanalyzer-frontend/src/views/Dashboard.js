@@ -335,7 +335,7 @@ const Dashboard = (props) => {
                         </tr>
                             )
                         }) :
-                        <tr></tr>
+                        <tr>   Fetching...</tr>
                     }
                 </tbody>
               </Table>
