@@ -1,0 +1,7 @@
+organization=csci5308g4
+projectKey=localg4
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.28102
+dashboardUrl=https://sonarcloud.io/dashboard?id=localg4
+ceTaskId=AX_8puFK4HS6BLtL2fNH
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AX_8puFK4HS6BLtL2fNH

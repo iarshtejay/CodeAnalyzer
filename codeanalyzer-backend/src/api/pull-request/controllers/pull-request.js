@@ -11,7 +11,6 @@ module.exports = createCoreController(
   ({ strapi }) => ({
     // Get the time difference between pull requests of a user
     async getAvgTimeDifferenceBetweenPullRequests(ctx, _next) {
-      // const accessToken = ctx.request.query['accessToken'];
       const contributor = ctx.request.query["contributor"];
       const differenceResult = [],
         createdOn = [];

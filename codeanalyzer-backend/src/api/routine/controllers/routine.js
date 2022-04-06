@@ -8,10 +8,6 @@ const Github = require("../../../app/github");
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
-  async getBranches(_ctx) {
-    let results = [];
-  },
-
   // To Fetch and store Pull Requests from Github into our Database
   async getRepositories(ctx, _next) {
     let results = [];
@@ -56,7 +52,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
 
   async getAllCommits(ctx, _next) {
     console.log("Entered");
-    let results = [];
     try {
       console.log("herehehrehehrehrhehr");
       const repositoryId = ctx.request.query.repositoryId;
@@ -92,7 +87,6 @@ module.exports = createCoreController("api::routine.routine", ({ strapi }) => ({
               data: commitDataModel,
             });
           console.log("Uploaded commit model", uploadCommitDataModel);
-          results.push(commitDataModel);
         })
       );
       return commitEntries;

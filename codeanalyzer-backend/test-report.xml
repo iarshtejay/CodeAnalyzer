@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\qurra\Workstation\MACS\ASDC\group4\codeanalyzer-backend\tests\app.test.js">
+    <testCase name="strapi is defined" duration="2"/>
+    <testCase name="should login user and return jwt token" duration="12036"/>
+    <testCase name="Create a new user" duration="369"/>
+    <testCase name="Update a user" duration="406"/>
+    <testCase name="Get all Repositories from Github" duration="47"/>
+    <testCase name="Get all Branches from Github" duration="33"/>
+    <testCase name="Get all Commits from Github" duration="42"/>
+    <testCase name="Get all Contributors from Github" duration="36"/>
+    <testCase name="Get all Pull Requests from Github" duration="47"/>
+    <testCase name="Get all Github Auths from Github" duration="68"/>
+  </file>
+</testExecutions>

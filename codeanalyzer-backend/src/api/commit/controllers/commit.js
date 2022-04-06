@@ -42,7 +42,6 @@ module.exports = createCoreController("api::commit.commit", ({ strapi }) => ({
 
   // Get the time difference between pull requests of a user
   async getAvgTimeDifferenceBetweenCommits(ctx, _next) {
-    // const accessToken = ctx.request.query["accessToken"];
     const repository = ctx.request.query["repositoryId"];
     console.log("repository", repository);
     const differenceResult = [],
@@ -127,7 +126,6 @@ module.exports = createCoreController("api::commit.commit", ({ strapi }) => ({
 
     repoCommits.map((commit) => {
       const { authorname } = commit;
-      const { authoravatar } = commit;
       commit.committedfiles.map((file) => {
         const pathArr = file.filename.split("/");
         let lastToken = pathArr[pathArr.length - 1];
@@ -140,7 +138,6 @@ module.exports = createCoreController("api::commit.commit", ({ strapi }) => ({
         }
         if (!userEffortObj[lastToken][authorname]) {
           userEffortObj[lastToken][authorname] = 0;
-          // userEffortObj[lastToken][authorname] = authoravatar;
         }
         userEffortObj[lastToken][authorname] =
           userEffortObj[lastToken][authorname] + file.totalchanges;

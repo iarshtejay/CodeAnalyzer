@@ -101,10 +101,7 @@ exports.getCommits = async (info) => {
       per_page: 30,
     })
     .then((res) => res.data);
-  // console.log(commitBrief);
   const commitUrls = commitBrief.map((item) => item.url);
-
-  const branches = await this.getBranches(info);
 
   const commitEntityArray = await Promise.all(
     commitUrls.map(async (url) => {
@@ -137,7 +134,7 @@ exports.getCommits = async (info) => {
             .post("http://localhost:1337/api/committedfiles", {
               data: { ...obj, totalchanges: obj.changes },
             })
-            .then((res) => res.data);
+            .then((res2) => res2.data);
           return entry.data.id;
         })
       );
@@ -220,8 +217,6 @@ exports.getRepoDetailsBySlug = async (info) => {
  * @returns languages
  */
 exports.getLangDataFromLangUrl = async (info) => {
-  const MyOctokit = Octokit.plugin(paginateRest);
-  const octokit = new MyOctokit({ auth: info.accessToken });
   const { owner, repo } = info;
   const response = await get(`/repos/${owner}/${repo}/languages`).then(
     (res) => res.data
